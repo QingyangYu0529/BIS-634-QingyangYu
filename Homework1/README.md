@@ -53,20 +53,18 @@ Make a scatterplot of the weights vs the ages. (3 points) Describe the general r
 #### >> Code explanation: 
 1)Using .columns to see how many columns are in this dataframe.
 
-2)Using .groupby to see how many people(not repetitive rows) in this dataframe?
-Answer: 137592 people in this dataframe.
+2)Using .groupby to see how many people(not repetitive rows) in this dataframe.
+
 
 3)Using .describe to generate statistical description on the dataframe. Using .loc to locate the data in the 'age' column. 
 
-count    152361.000000
-mean         39.510528
-std          24.152760
-min           0.000748
-25%          19.296458
-50%          38.468955
-75%          57.623245
-max          99.991547
-Name: age, dtype: float64
+4&5)Import matplotlib to draw the histogram and scatterplot in order to visualize the distribution of ages and weights. Using .xlabel, .ylabel, .title to set the x axis label, y axis label and figure title.
+
+6)From the scatterplot, I have noticed an outlier whose age is among 40-50, and weight is among 20-30. 
+
+First, the dataframe was transposed for further use since pandas dataframe is hard to process directly. Then in the function I defined find_outlier(), I created a list called name_list(at first is empty). Then I used for loop to go through all the elements in transposed dataframe(also use range() and len() to achieve this). I used if as conditional statements. 
+
+According to the above scatterplot, the filter condition refers to when age is among 40-50, and weight is among 20-30. Then the name of that person was added to the name_list.
 
 #### >> Question answer: 
 1)The dataframe has four columns: 'name', 'age', 'weight', 'eyecolor', and the datatype is 'object'.
@@ -75,12 +73,33 @@ Name: age, dtype: float64
 
 3)For 'age' data, the count is 152361, the mean is 39.51, the standard deviation is 24.15, the minimum is 0.00074, the maximum is 99.99.
 
-4)
+4)The number of bins indicates the size of statistical interval. If the number of bins is large, the statistical interval is quite small. While on the contrary, the interval is large.
 
+> Patterns noticed in the distribution of ages:
+Noticed that for people in the dataset, their ages follow uniform distribution in two ranges: either in the range [0,70], or in the range [70,100].
 
+For people whose ages range [0,70], the amount of people in every age is almost the same(~10000). And for people whose ages range [70,100], the amount of people in every age is almost the same(~2000).
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/histogram-of-age-distribution.jpg" style="zoom:150%;" />
+
+> Patterns noticed in the distribution of Noticed that for people in the dataset, for most of the people(~20%), their weights are around 68-70 kg.
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/histogram-of-weight-distribution.jpg" style="zoom:150%;" />
+
+5)The general relationship between ages and weights:
+
+Noticed that for people in the dataset, the weights of young people(aged from 0 to ~20) increase with ages, and the increase rate is steady, indicating a proportional increase. 
+
+As people grow older (aged from 20 to 100), their weights remain stable. 
+
+Also noticed that for people aged over 60, their weights slightly decrease.
+
+6)The name of that person(outlier) is Anthony Freeman.
 
 #### >> Tesing process:
+Function test_find_outlier() is defined for testing if the outlier I found is a real outlier. 
 
+I use for loop to travase the whole dataframe, use if as conditional statement: if the name is 'Anthony Freeman', print his age and weight.
+
+In total I found two records from Anthony Freeman: first record showed his age is 41.3, and his weight is 21.7. Second record showed his age is 33.3, and his weight is 74.0. According to the scatterplot of ages vs weights, the mean of ages or weights, the first record is a real outlier.
 
 ## Exercise 3
 
@@ -101,6 +120,7 @@ Test the above function and provide examples of it in use. (4 points)
 
 #### >> Code explanation: 
 
+1)
 #### >> Question answer:
 
 #### >> Testing process: 
