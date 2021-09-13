@@ -22,7 +22,7 @@ Write a function temp_tester that takes a definition of normal body temperature 
 
 Test your code with the following (include a copy of your tests in [your GitHub](https://github.com/QingyangYu0529/BIS-634-QingyangYu) repository) (10 points):
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Figures-in-homework-question/exercise1.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise1.jpg" style="zoom:150%;" />
 
 ### Solution
 
@@ -41,7 +41,7 @@ After different temperatures are given to human or chicken, the code could succe
 
 Download the sqlite3 database from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1). (Note: this is a link to a page where you can download the database; it is not the database.)
 Use the following code to load it into Python as a pandas DataFrame:
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Figures-in-homework-question/exercise2.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise2.jpg" style="zoom:150%;" />
 
 Examine data. What columns does it have? (2 points) How many rows (think: people) does it have? (2 points)
 Examine the distribution of the ages in the dataset. In particular, be sure to have your code report the mean, standard deviation, minimum, maximum. Plot a histogram of the distribution with an appropriate number of bins for the size of the dataset (describe in your readme the role of the number of bins). Comment on any outliers or patterns you notice in the distribution of ages. (3 points)
@@ -76,12 +76,17 @@ According to the above scatterplot, the filter condition refers to when age is a
 4)The number of bins indicates the size of statistical interval. If the number of bins is large, the statistical interval is quite small. While on the contrary, the interval is large.
 
 > Patterns noticed in the distribution of ages:
-Noticed that for people in the dataset, their ages follow uniform distribution in two ranges: either in the range [0,70], or in the range [70,100].
 
-For people whose ages range [0,70], the amount of people in every age is almost the same(~10000). And for people whose ages range [70,100], the amount of people in every age is almost the same(~2000).
+> Noticed that for people in the dataset, their ages follow uniform distribution in two ranges: either in the range [0,70], or in the range [70,100].
+
+> For people whose ages range [0,70], the amount of people in every age is almost the same(~10000). And for people whose ages range [70,100], the amount of people in every age is almost the same(~2000).
+
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/histogram-of-age-distribution.jpg" style="zoom:150%;" />
 
-> Patterns noticed in the distribution of Noticed that for people in the dataset, for most of the people(~20%), their weights are around 68-70 kg.
+> Patterns noticed in the distribution of weights:
+
+> Noticed that for people in the dataset, for most of the people(~20%), their weights are around 68-70 kg.
+
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/histogram-of-weight-distribution.jpg" style="zoom:150%;" />
 
 5)The general relationship between ages and weights:
@@ -108,7 +113,7 @@ In total I found two records from Anthony Freeman: first record showed his age i
 Download historical data for COVID-19 cases by state from The New York Times's GitHub at [link](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv (Links to an external site.). 
 As this is an ongoing public health crisis, include in your readme the date you downloaded the data (2 points). Since you are using data from an external source, be sure to credit The New York Times as your data source in your readme as well (2 points).
 Load the data into Python in any way you wish. Here's one way that gives you a DataFrame assuming you've put the data in your working directory:
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Figures-in-homework-question/exercise3.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise3.jpg" style="zoom:150%;" />
 
 Make a function that takes a list of state names and plots their cases vs date using overlaid line graphs, one for each selected state. (Edit 2021-09-03: You can plot either the number of new cases, a smoothed average of the last n days, or the running total; just be clear what you're doing.) Be sure to provide a way to tell which line corresponds to what state (one possibility: using colors and a legend). If your approach has any specific limitations, explain them in your readme. (4 points)
 Test the above function and provide examples of it in use. (4 points)
