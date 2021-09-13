@@ -37,7 +37,7 @@ After different temperatures are given to human or chicken, the code could succe
 
 ## Exercise 2
 
-### Question
+### Question:
 
 Download the sqlite3 database from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1). (Note: this is a link to a page where you can download the database; it is not the database.)
 Use the following code to load it into Python as a pandas DataFrame:
@@ -50,7 +50,33 @@ Make a scatterplot of the weights vs the ages. (3 points) Describe the general r
 
 ### Solution
 
+#### >> Code explanation: 
+1)Using .columns to see how many columns are in this dataframe.
 
+2)Using .groupby to see how many people(not repetitive rows) in this dataframe?
+Answer: 137592 people in this dataframe.
+
+3)Using .describe to generate statistical description on the dataframe. Using .loc to locate the data in the 'age' column. 
+
+count    152361.000000
+mean         39.510528
+std          24.152760
+min           0.000748
+25%          19.296458
+50%          38.468955
+75%          57.623245
+max          99.991547
+Name: age, dtype: float64
+
+#### >> Question answer: 
+1)The dataframe has four columns: 'name', 'age', 'weight', 'eyecolor', and the datatype is 'object'.
+
+2)There are 137592 people(non-repetitive rows) in this dataframe.
+
+3)For 'age' data, the count is 152361, the mean is 39.51, the standard deviation is 24.15, the minimum is 0.00074, the maximum is 99.99.
+
+
+#### >> Tesing process:
 
 
 ## Exercise 3
@@ -61,6 +87,7 @@ Download historical data for COVID-19 cases by state from The New York Times's G
 As this is an ongoing public health crisis, include in your readme the date you downloaded the data (2 points). Since you are using data from an external source, be sure to credit The New York Times as your data source in your readme as well (2 points).
 Load the data into Python in any way you wish. Here's one way that gives you a DataFrame assuming you've put the data in your working directory:
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/Figures-in-homework-question/exercise3.png" style="zoom:150%;" />
+
 Make a function that takes a list of state names and plots their cases vs date using overlaid line graphs, one for each selected state. (Edit 2021-09-03: You can plot either the number of new cases, a smoothed average of the last n days, or the running total; just be clear what you're doing.) Be sure to provide a way to tell which line corresponds to what state (one possibility: using colors and a legend). If your approach has any specific limitations, explain them in your readme. (4 points)
 Test the above function and provide examples of it in use. (4 points)
 Make a function that takes the name of a state and returns the date of its highest number of new cases. (4 points)
@@ -69,12 +96,23 @@ Test the above function and provide examples of it in use. (4 points)
 
 ### Solution
 
+#### >> Code explanation: 
 
+#### >> Question answer:
+
+#### >> Testing process: 
 
 ## Exercise 4
+
 ### Question
 
 ### Solution
+
+#### >> Code explanation: 
+
+#### >> Question answer: 
+
+#### >> Testing process: 
 
 ## Maintainer
 @QingyangYu0529
