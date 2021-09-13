@@ -22,7 +22,7 @@ Write a function temp_tester that takes a definition of normal body temperature 
 
 Test your code with the following (include a copy of your tests in [your GitHub](https://github.com/QingyangYu0529/BIS-634-QingyangYu) repository) (10 points):
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/Figures-in-homework-question/exercise1.png" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Figures-in-homework-question/exercise1.jpg" style="zoom:150%;" />
 
 ### Solution
 
@@ -74,6 +74,9 @@ Name: age, dtype: float64
 2)There are 137592 people(non-repetitive rows) in this dataframe.
 
 3)For 'age' data, the count is 152361, the mean is 39.51, the standard deviation is 24.15, the minimum is 0.00074, the maximum is 99.99.
+
+4)
+
 
 
 #### >> Tesing process:
