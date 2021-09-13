@@ -125,10 +125,21 @@ Test the above function and provide examples of it in use. (4 points)
 
 #### >> Code explanation: 
 
-1)
+1)Using np.random.choice to randomly select five states in the dataset. The names of these five states are seved in the list data_state0.
+
 #### >> Question answer:
 
+1)The date I downloaded the data is 2021/09/07.
+2)Note: Data used in this exercise came from [The New York Times's GitHub] (https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv)
+
+
+
+
 #### >> Testing process: 
+
+
+
+
 
 ## Exercise 4
 
@@ -141,6 +152,17 @@ Test the above function and provide examples of it in use. (4 points)
 #### >> Question answer: 
 
 #### >> Testing process: 
+
+
+
+
+## Data source:
+
+Data of exercise2 comes from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1).
+
+Data of exercise3 comes from [The New York Times's GitHub] (https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv).
+
+
 
 ## Maintainer
 @QingyangYu0529
