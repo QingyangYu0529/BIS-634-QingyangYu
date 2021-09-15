@@ -55,18 +55,18 @@ Make a scatterplot of the weights vs the ages. (3 points) Describe the general r
 
 2)Using .groupby to see how many people(not repetitive rows) in this dataframe.
 
-
 3)Using .describe to generate statistical description on the dataframe. Using .loc to locate the data in the 'age' column. 
 
-4&5)Import matplotlib to draw the histogram and scatterplot in order to visualize the distribution of ages and weights. Using .xlabel, .ylabel, .title to set the x axis label, y axis label and figure title.
+4&5)Imported matplotlib to draw the histogram and scatterplot in order to visualize the distribution of ages and weights. Using .xlabel, .ylabel, .title to set the x-axis label, y-axis label and figure title.
 
 6)From the scatterplot, I have noticed an outlier whose age is among 40-50, and weight is among 20-30. 
 
-First, the dataframe was transposed for further use since pandas dataframe is hard to process directly. Then in the function I defined find_outlier(), I created a list called name_list(at first is empty). Then I used for loop to go through all the elements in transposed dataframe(also use range() and len() to achieve this). I used if as conditional statements. 
+First, the dataframe was transposed for further use since pandas dataframe is hard to process directly. Then in the defined function find_outlier(), I created a list called name_list(at first is empty), to store the names in the dataframe. Then I used for loop to go through all the elements in transposed dataframe(also use range() and len() to achieve this). I used if/else as conditional statements:
 
 According to the above scatterplot, the filter condition refers to when age is among 40-50, and weight is among 20-30. Then the name of that person was added to the name_list.
 
 #### >> Question answer: 
+
 1)The dataframe has four columns: 'name', 'age', 'weight', 'eyecolor', and the datatype is 'object'.
 
 2)There are 137592 people(non-repetitive rows) in this dataframe.
@@ -100,9 +100,10 @@ Also noticed that for people aged over 60, their weights slightly decrease.
 6)The name of that person(outlier) is Anthony Freeman.
 
 #### >> Tesing process:
-Function test_find_outlier() is defined for testing if the outlier I found is a real outlier. 
 
-I use for loop to travase the whole dataframe, use if as conditional statement: if the name is 'Anthony Freeman', print his age and weight.
+Function test_find_outlier() was defined for testing if the outlier I found is a real outlier. 
+
+I used for loop to traverse the whole dataframe, use if as conditional statement: if the name is 'Anthony Freeman', print his age and weight.
 
 In total I found two records from Anthony Freeman: first record showed his age is 41.3, and his weight is 21.7. Second record showed his age is 33.3, and his weight is 74.0. According to the scatterplot of ages vs weights, the mean of ages or weights, the first record is a real outlier.
 
@@ -125,21 +126,37 @@ Test the above function and provide examples of it in use. (4 points)
 
 #### >> Code explanation: 
 
-1)Using np.random.choice to randomly select five states in the dataset. The names of these five states are seved in the list data_state0.
+1)Using np.random.choice to randomly select five states in the dataset. The names of these five states are saved in the list data_state0.
+
+2)First, the dataframe was transposed for further use. The function cases_vs_date_of_states() was defined, which is used to plot cases vs. dates of selected states in the list data_state0.
+In the function cases_vs_date_of_states(), I created two lists DataDate_list and DataCases_list, in order to store the dates and cases of selected states. Then I used DataDate_list, DataCases_list, in order to store the dates and cases of selected states. I used if/else as conditional statement, traverse the whole dataframe: If the state of element is in the data_state0, save the date and cases of this state into two lists DataDate_list and DataCases_list. Finally, I used matplotlib.pyplot to draw the overlaid line graphs, one for each selected state. Also used .xlabel, .ylabel, .title, .legend to set the x-axis label, y-axis label, figure title and upper left lengend.
+
+3)The function return_highest_date() was defined, which is used to take the name of a state, and return the date of its highest number of new cases. then I created lists sel_state_cases, sel_state_date, daily_cases to save the cases, date and number of daily cases of selected state. I used for loop three times to solve the problem:
+
+The first one was coupled with if/else to traverse the whole dataframe: If the state of element is the selected state, save the date and cases of selected state into lists sel_state_cases, sel_state_date.
+
+The second one was used to calculate daily cases by latter substract former. results are saved into list daily_cases.
+
+The final one was used to find the largest element in the list daily_cases, and save into the variable highest_cases. The corresponding date was saved into the variable highest_cases_date.
+
 
 #### >> Question answer:
 
 1)The date I downloaded the data is 2021/09/07.
+
 2)Note: Data used in this exercise came from [The New York Times's GitHub] (https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv)
 
+3)Noted that in the overlaid line graphs, x-axis indicates dates developed over time, y-axis indicates the cumulative (total)cases of each selected state. Colors of lines indicate different states.
 
-
+This function could be used to monitor the total COVID-19 cases or disease increase rate in every state of US. Federal or state officials could indicate the trand showed in the figure, then adjust public health actions in different states.
 
 #### >> Testing process: 
 
+Function cases_vs_date_of_states() was defined for plotting cases vs. dates of selected states.
 
+I run the function to see whether it is able to draw a figure based on the given background, also tested the above function by drawing another overlaid line graph of ten different states that were randomly selected.
 
-
+Function 
 
 ## Exercise 4
 
