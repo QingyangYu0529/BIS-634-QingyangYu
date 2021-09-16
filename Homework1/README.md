@@ -121,7 +121,8 @@ In total I found two records from Anthony Freeman: first record showed his age i
 
 ### Question
 
-Download historical data for COVID-19 cases by state from The New York Times's GitHub at [link](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv (Links to an external site.). 
+Download historical data for COVID-19 cases by state from The New York Times's GitHub at [link](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv
+(Links to an external site.). 
 As this is an ongoing public health crisis, include in your readme the date you downloaded the data (2 points). Since you are using data from an external source, be sure to credit The New York Times as your data source in your readme as well (2 points).
 Load the data into Python in any way you wish. Here's one way that gives you a DataFrame assuming you've put the data in your working directory:
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise3.jpg" style="zoom:120%;" />
