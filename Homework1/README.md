@@ -226,20 +226,28 @@ To visualize the results, I used matplotlib.hist to draw the histagram of number
 
 #### >> Question answer: 
 
-1)According to the question 4d, n = 1000, d = 100, s = 50. And The estimated number of drug users is 60.
+1)Discussion of E[yes] negative issue:
+If estimated number of drug users in the population is negative, then the fraction of drug users in the population p is negative. 
+
+According to the given fomula, E[yes]<0.25, which means in the sampled population, less than 25% people said they are drug users(said 'True'). 
+
+This makes sense if there are few drug users in the whole population, or the sampled population can not present the whole population.
+
+
+2)According to the question 4d, n = 1000, d = 100, s = 50. And The estimated number of drug users is 60.
 Note: Every time you run the code, the estimated number of drug users would change due to randomly sample.
 
-2)According to the question 4e, in order to decide how many running times was enough, I set different running times to see if running time increases, the distribution of estimated_druguser(estimated number of drugusers in the population) will be stable.
+3)According to the question 4e, in order to decide how many running times was enough, I set different running times to see if running time increases, the distribution of estimated_druguser(estimated number of drugusers in the population) will be stable, and the estimated number of druguser in the population with highest frequency is similar to the given number of drugusers.
 
-Noted that when running time reaches 100000, the distribution remain quite stable.
+Noted that when running time reaches 100000, the distribution remain quite stable. Also the estimated number of druguser in the population with highest frequency is similar to the given background(~100 people).
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4e.jpg" style="zoom:150%;" />
 
-3)To compare parts d and e but with a population of 100000, 10000 drug users and sampling 5000 people
+4)Compared the figure with the former one, with everything scaled up by a factor of 100(n=100000, d=10000, s=5000), the figure become very compact. The distribution intervel is much bigger as well(5000-15000) Also the estimated number of druguser in the population with highest frequency has become much bigger(~10000 people). This is due to scaled up of the whole population.
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4f.jpg" style="zoom:150%;" />
 
-4)To compare
+5)Compared the figure with the first one, with the smaller population but with higher drug usage rates(n=1000, d=500, s=50), the estimated number of druguser in the population with highest frequency has become much bigger(~500 people). This is because I increased the number of total drug users. The distribution intervel is slightly bigger(0-1000). I assume that if the total population has much higher drug usage rates, the estimated number of druguser in the population is more likely to be a positive number.
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4g.jpg" style="zoom:150%;" />
 
@@ -251,7 +259,6 @@ Noted that when running time reaches 100000, the distribution remain quite stabl
 
 3)I tested the function report_druguse_state2() by randomly set population size n, number of drug users d and sample size s.
 
-4)
 
 
 ## Data source:
