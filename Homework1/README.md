@@ -75,27 +75,29 @@ According to the above scatterplot, the filter condition refers to when age is a
 
 4)The number of bins indicates the size of statistical interval. If the number of bins is large, the statistical interval is quite small. While on the contrary, the interval is large.
 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-age-distribution.jpg" style="zoom:150%;" />
+
 > Patterns noticed in the distribution of ages:
 
 > Noticed that for people in the dataset, their ages follow uniform distribution in two ranges: either in the range [0,70], or in the range [70,100].
 
 > For people whose ages range [0,70], the amount of people in every age is almost the same(~10000). And for people whose ages range [70,100], the amount of people in every age is almost the same(~2000).
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/histogram-of-age-distribution.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-weight-distribution.jpg" style="zoom:150%;" />
 
 > Patterns noticed in the distribution of weights:
 
 > Noticed that for people in the dataset, for most of the people(~20%), their weights are around 68-70 kg.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/histogram-of-weight-distribution.jpg" style="zoom:150%;" />
-
 5)The general relationship between ages and weights:
 
-Noticed that for people in the dataset, the weights of young people(aged from 0 to ~20) increase with ages, and the increase rate is steady, indicating a proportional increase. 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/scatterplot-weights-vs-ages.jpg" style="zoom:150%;" />
 
-As people grow older (aged from 20 to 100), their weights remain stable. 
+> Noticed that for people in the dataset, the weights of young people(aged from 0 to ~20) increase with ages, and the increase rate is steady, indicating a proportional increase. 
 
-Also noticed that for people aged over 60, their weights slightly decrease.
+> As people grow older (aged from 20 to 100), their weights remain stable. 
+
+> Also noticed that for people aged over 60, their weights slightly decrease.
 
 6)The name of that person(outlier) is Anthony Freeman.
 
@@ -154,6 +156,8 @@ First I used the above function return_highest_date to get the highest cases num
 
 This function could be used to monitor the total COVID-19 cases or disease increase rate in every state of US. Federal or state officials could indicate the trand showed in the figure, then adjust public health actions in different states.
 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_5_states.jpg" style="zoom:150%;" />
+
 4)For the function compare_states_highest_cases() (takes the names of two states and reports which one had its highest number of cases first and how many days separate that one's peak from the others), it could be used to see the pattern of covid-19 transmission between adjacent states. If one state has reached the highest number of new cases, when will the state nearby also reach its peak? 
 
 Also it could be used to map the route of covid-19 transmission. In terms of states that reach their peak really fast, what are the possible factors that may contribute to this result? This could urge state or local officials to take public health actions.
@@ -163,6 +167,8 @@ Also it could be used to map the route of covid-19 transmission. In terms of sta
 1)Function cases_vs_date_of_states() was defined for plotting cases vs. dates of selected states.
 
 I run the function to see whether it is able to draw a figure based on the given background, also tested the above function by drawing another overlaid line graph of ten different states that were randomly selected.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_10_states.jpg" style="zoom:150%;" />
 
 2)Function return_highest_date() was defined, which is used to take the name of a state, and return the date of its highest number of new cases.
 
@@ -218,7 +224,6 @@ The function is developed based on report_druguse_states1(). I used for loop to 
 To visualize the results, I used matplotlib.hist to draw the histagram of numbers of estimated drug users.
 
 
-
 #### >> Question answer: 
 
 1)According to the question 4d, n = 1000, d = 100, s = 50. And The estimated number of drug users is 60.
@@ -228,11 +233,15 @@ Note: Every time you run the code, the estimated number of drug users would chan
 
 Noted that when running time reaches 100000, the distribution remain quite stable.
 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4e.jpg" style="zoom:150%;" />
+
 3)To compare parts d and e but with a population of 100000, 10000 drug users and sampling 5000 people
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4f.jpg" style="zoom:150%;" />
 
 4)To compare
 
-
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4g.jpg" style="zoom:150%;" />
 
 #### >> Testing process: 
 
