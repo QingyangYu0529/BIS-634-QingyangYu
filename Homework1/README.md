@@ -44,7 +44,8 @@ After different temperatures are given to human or chicken, the code could succe
 
 ### Question:
 
-Download the sqlite3 database from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1). (Note: this is a link to a page where you can download the database; it is not the database.)
+Download the sqlite3 database from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1). 
+(Note: this is a link to a page where you can download the database; it is not the database.)
 Use the following code to load it into Python as a pandas DataFrame:
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise2.jpg" style="zoom:120%;" />
 
