@@ -1,5 +1,6 @@
 # Readme for homework1
 ## Instruction
+
 This readme file contains:
 
 1)instructions that are necessary for running scripts under this folder
@@ -15,6 +16,8 @@ If you have any question, please feel free to [contact me].(https://github.com/Q
 
 Any comments or insights would be greatly appreciated.
 
+
+
 ## Exercise 1
 
 ### Question
@@ -22,7 +25,7 @@ Write a function temp_tester that takes a definition of normal body temperature 
 
 Test your code with the following (include a copy of your tests in [your GitHub](https://github.com/QingyangYu0529/BIS-634-QingyangYu) repository) (10 points):
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise1.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise1.jpg" style="zoom:120%;" />
 
 ### Solution
 
@@ -35,13 +38,15 @@ Using the concept of "closure(it is allowed to return a function)" so that every
 During tesing process, at first the normal temperatures of human and chicken are set as 37 ℃ and 41.1℃ separately.
 After different temperatures are given to human or chicken, the code could successfully decide whether the given temperature is normal (consider as within 1 degree of the normal temperature).
 
+
+
 ## Exercise 2
 
 ### Question:
 
 Download the sqlite3 database from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1). (Note: this is a link to a page where you can download the database; it is not the database.)
 Use the following code to load it into Python as a pandas DataFrame:
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise2.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise2.jpg" style="zoom:120%;" />
 
 Examine data. What columns does it have? (2 points) How many rows (think: people) does it have? (2 points)
 Examine the distribution of the ages in the dataset. In particular, be sure to have your code report the mean, standard deviation, minimum, maximum. Plot a histogram of the distribution with an appropriate number of bins for the size of the dataset (describe in your readme the role of the number of bins). Comment on any outliers or patterns you notice in the distribution of ages. (3 points)
@@ -75,7 +80,7 @@ According to the above scatterplot, the filter condition refers to when age is a
 
 4)The number of bins indicates the size of statistical interval. If the number of bins is large, the statistical interval is quite small. While on the contrary, the interval is large.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-age-distribution.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-age-distribution.jpg" style="zoom:200%;" />
 
 > Patterns noticed in the distribution of ages:
 
@@ -83,7 +88,7 @@ According to the above scatterplot, the filter condition refers to when age is a
 
 > For people whose ages range [0,70], the amount of people in every age is almost the same(~10000). And for people whose ages range [70,100], the amount of people in every age is almost the same(~2000).
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-weight-distribution.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-weight-distribution.jpg" style="zoom:200%;" />
 
 > Patterns noticed in the distribution of weights:
 
@@ -91,7 +96,7 @@ According to the above scatterplot, the filter condition refers to when age is a
 
 5)The general relationship between ages and weights:
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/scatterplot-weights-vs-ages.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/scatterplot-weights-vs-ages.jpg" style="zoom:200%;" />
 
 > Noticed that for people in the dataset, the weights of young people(aged from 0 to ~20) increase with ages, and the increase rate is steady, indicating a proportional increase. 
 
@@ -109,6 +114,8 @@ I used for loop to traverse the whole dataframe, use if as conditional statement
 
 In total I found two records from Anthony Freeman: first record showed his age is 41.3, and his weight is 21.7. Second record showed his age is 33.3, and his weight is 74.0. According to the scatterplot of ages vs weights, the mean of ages or weights, the first record is a real outlier.
 
+
+
 ## Exercise 3
 
 ### Question
@@ -116,7 +123,7 @@ In total I found two records from Anthony Freeman: first record showed his age i
 Download historical data for COVID-19 cases by state from The New York Times's GitHub at [link](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv (Links to an external site.). 
 As this is an ongoing public health crisis, include in your readme the date you downloaded the data (2 points). Since you are using data from an external source, be sure to credit The New York Times as your data source in your readme as well (2 points).
 Load the data into Python in any way you wish. Here's one way that gives you a DataFrame assuming you've put the data in your working directory:
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise3.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise3.jpg" style="zoom:120%;" />
 
 Make a function that takes a list of state names and plots their cases vs date using overlaid line graphs, one for each selected state. (Edit 2021-09-03: You can plot either the number of new cases, a smoothed average of the last n days, or the running total; just be clear what you're doing.) Be sure to provide a way to tell which line corresponds to what state (one possibility: using colors and a legend). If your approach has any specific limitations, explain them in your readme. (4 points)
 Test the above function and provide examples of it in use. (4 points)
@@ -156,7 +163,7 @@ First I used the above function return_highest_date to get the highest cases num
 
 This function could be used to monitor the total COVID-19 cases or disease increase rate in every state of US. Federal or state officials could indicate the trand showed in the figure, then adjust public health actions in different states.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_5_states.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_5_states.jpg" style="zoom:200%;" />
 
 4)For the function compare_states_highest_cases() (takes the names of two states and reports which one had its highest number of cases first and how many days separate that one's peak from the others), it could be used to see the pattern of covid-19 transmission between adjacent states. If one state has reached the highest number of new cases, when will the state nearby also reach its peak? 
 
@@ -168,7 +175,7 @@ Also it could be used to map the route of covid-19 transmission. In terms of sta
 
 I run the function to see whether it is able to draw a figure based on the given background, also tested the above function by drawing another overlaid line graph of ten different states that were randomly selected.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_10_states.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_10_states.jpg" style="zoom:200%;" />
 
 2)Function return_highest_date() was defined, which is used to take the name of a state, and return the date of its highest number of new cases.
 
@@ -181,6 +188,8 @@ ii.Since I used state 'Washington' to test the function return_highest_date(), I
 iii.I defined another testing function test_for_return_highest_date2(), to see if function return_highest_date() could print the result regardless of which state it is. First I saved all the state names into list unique_state, then used for loop to traverse the list unique_state. For each state, run function return_highest_date(). Results indicate that return_highest_date() works for each state.
 
 3)Function test_for_compare_states_highest_cases() was defined, to see if function compare_states_highest_cases() could make comparison between each two states. Results indicate that compare_states_highest_cases() works for each two states.
+
+
 
 ## Exercise 4
 
@@ -213,7 +222,7 @@ First I created several lists including: pop_result to save the results of drug 
 
 Then I used two for loop to save the results of drug use in the population into pop_result. I used random.sample to select a sample of size s from such population, save into sample_result. I used for loop to save the result of first coin flip into flip_result1. Then I used zip function to store sample_result and flip_result1 in a list samp_and_flip_result1 in order.
 
-Finally I traversed each element in the list samp_and_flip_result1, use if/else to simulate the process of second coin flip: If the result of first coin flip is 'Head', flip a coin again as the sample's response; if the result of first coin flip is 'Tail' and the sampled person is a druguser, 'True' is the sample's response, otherwise 'False' is the response. And I used for loop to print the result of samples' reponses.
+Finally I traversed each element in the list samp_and_flip_result1, use if/else to simulate the process of second coin flip: If the result of first coin flip is 'Head', flip a coin again as the sample's response; if the result of first coin flip is 'Tail' and the sampled person is a drug user, 'True' is the sample's response, otherwise 'False' is the response. And I used for loop to print the result of samples' reponses.
 
 3)The function report_druguse_states2() was defined, which could return the estimated number of drug users in the population that would be predicted using such a sample and the randomized response protocol. 
 
@@ -237,19 +246,25 @@ This makes sense if there are few drug users in the whole population, or the sam
 2)According to the question 4d, n = 1000, d = 100, s = 50. And The estimated number of drug users is 60.
 Note: Every time you run the code, the estimated number of drug users would change due to randomly sample.
 
-3)According to the question 4e, in order to decide how many running times was enough, I set different running times to see if running time increases, the distribution of estimated_druguser(estimated number of drugusers in the population) will be stable, and the estimated number of druguser in the population with highest frequency is similar to the given number of drugusers.
+3)According to the question 4e, in order to decide how many running times was enough, I set different running times to see if running time increases, the distribution of estimated_druguser(estimated number of drug users in the population) will be stable, and the estimated number of drug user in the population with highest frequency is similar to the given number of drug users.
 
-Noted that when running time reaches 100000, the distribution remain quite stable. Also the estimated number of druguser in the population with highest frequency is similar to the given background(~100 people).
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4e.jpg" style="zoom:200%;" />
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4e.jpg" style="zoom:150%;" />
+> Noted that when running time reaches 100000, the distribution remain quite stable. Also the estimated number of drug user in the population with highest frequency is similar to the given background(~100 people).
 
-4)Compared the figure with the former one, with everything scaled up by a factor of 100(n=100000, d=10000, s=5000), the figure become very compact. The distribution intervel is much bigger as well(5000-15000) Also the estimated number of druguser in the population with highest frequency has become much bigger(~10000 people). This is due to scaled up of the whole population.
+4)
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4f.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4f.jpg" style="zoom:200%;" />
 
-5)Compared the figure with the first one, with the smaller population but with higher drug usage rates(n=1000, d=500, s=50), the estimated number of druguser in the population with highest frequency has become much bigger(~500 people). This is because I increased the number of total drug users. The distribution intervel is slightly bigger(0-1000). I assume that if the total population has much higher drug usage rates, the estimated number of druguser in the population is more likely to be a positive number.
+> Compared the figure with the former one, with everything scaled up by a factor of 100(n=100000, d=10000, s=5000), the figure become very compact. The distribution intervel is much bigger as well(5000-15000) Also the estimated number of drug user in the population with highest frequency has become much bigger(~10000 people). This is due to scaled up of the whole population.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4g.jpg" style="zoom:150%;" />
+5)
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4g.jpg" style="zoom:200%;" />
+
+> Compared the figure with the first one, with the smaller population but with higher drug usage rates(n=1000, d=500, s=50), the estimated number of drug user in the population with highest frequency has become much bigger(~500 people). This is because I increased the number of total drug users. The distribution intervel is slightly bigger(0-1000). I assume that if the total population has much higher drug usage rates, the estimated number of drug user in the population is more likely to be a positive number.
+
+
 
 #### >> Testing process: 
 
