@@ -4,13 +4,13 @@
 
 This readme file contains:
 
-1)instructions that are necessary for running scripts under this folder
+1)Instructions that are necessary for running scripts under this folder.
 
-2)answers to each question asked in the exercises 1-4
+2)Answers to each question asked in the exercises 1-4.
 
-3)how I proved my code was correct using different tests
+3)How I proved my code was correct using different tests.
 
-4)any other relevant information. 
+4)Any other relevant information. 
 
 ## Support
 If you have any question, please feel free to [contact me].(https://github.com/QingyangYu0529/BIS-634-QingyangYu#Maintainer)
