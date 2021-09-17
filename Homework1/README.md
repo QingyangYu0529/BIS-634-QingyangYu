@@ -278,7 +278,7 @@ Note: Every time you run the code, the estimated number of drug users would chan
 
 
 
-## Data source:
+## Data source
 
 Data of exercise2 comes from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1).
 
