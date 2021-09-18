@@ -13,7 +13,7 @@ This readme file contains:
 4)Any other relevant information. 
 
 ## Support
-If you have any question, please feel free to [contact me].(https://github.com/QingyangYu0529/BIS-634-QingyangYu#Maintainer)
+If you have any question, please feel free to [contact me](https://github.com/QingyangYu0529/BIS-634-QingyangYu#Maintainer).
 
 Any comments or insights would be greatly appreciated.
 
@@ -45,7 +45,7 @@ After different temperatures are given to human or chicken, the code could succe
 
 ### Question:
 
-Download the sqlite3 database from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1). 
+Download the sqlite3 database from [hw1-population.db](https://yale.instructure.com/courses/70314/files/5320045?wrap=1). 
 (Note: this is a link to a page where you can download the database; it is not the database.)
 Use the following code to load it into Python as a pandas DataFrame:
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise2.jpg" style="zoom:120%;" />
@@ -122,7 +122,7 @@ In total I found two records from Anthony Freeman: first record showed his age i
 
 ### Question
 
-Download historical data for COVID-19 cases by state from The New York Times's GitHub at [link](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv
+Download historical data for COVID-19 cases by state from The New York Times's GitHub at [link](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv.
 (Links to an external site.). 
 As this is an ongoing public health crisis, include in your readme the date you downloaded the data (2 points). Since you are using data from an external source, be sure to credit The New York Times as your data source in your readme as well (2 points).
 Load the data into Python in any way you wish. Here's one way that gives you a DataFrame assuming you've put the data in your working directory:
@@ -160,7 +160,7 @@ First I used the above function return_highest_date to get the highest cases num
 
 1)The date I downloaded the data is 2021/09/07.
 
-2)Note: Data used in this exercise came from [The New York Times's GitHub] (https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv)
+2)Note: Data used in this exercise came from [The New York Times's GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv).
 
 3)Noted that in the overlaid line graphs, x-axis indicates dates developed over time, y-axis indicates the cumulative (total)cases of each selected state. Colors of lines indicate different states.
 
@@ -281,9 +281,9 @@ Note: Every time you run the code, the estimated number of drug users would chan
 
 ## Data source
 
-Data of exercise2 comes from [hw1-population.db] (https://yale.instructure.com/courses/70314/files/5320045?wrap=1).
+Data of exercise2 comes from [hw1-population.db](https://yale.instructure.com/courses/70314/files/5320045?wrap=1).
 
-Data of exercise3 comes from [The New York Times's GitHub] (https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv).
+Data of exercise3 comes from [The New York Times's GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv).
 
 
 
