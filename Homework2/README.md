@@ -122,168 +122,69 @@ In total I found two records from Anthony Freeman: first record showed his age i
 
 ### Question
 
-Download historical data for COVID-19 cases by state from The New York Times's GitHub at [link](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv.
-(Links to an external site.). 
-As this is an ongoing public health crisis, include in your readme the date you downloaded the data (2 points). Since you are using data from an external source, be sure to credit The New York Times as your data source in your readme as well (2 points).
-Load the data into Python in any way you wish. Here's one way that gives you a DataFrame assuming you've put the data in your working directory:
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise3.jpg" style="zoom:120%;" />
+Your friend says to you, "you have to help me! I'm supposed to present in lab meeting in less than an hour, and I haven't been able to get the simplest thing to work!" After you help them calm down, they explain: through a collaboration with a fitness app, they have a 4GB file of high-precision weights of exactly 500 million people throughout the world. Even with 8GB of RAM, they get a MemoryError when trying to load the file in and find the average weight. They show you their code which worked fine when they tested it on a small number of weights:
 
-Make a function that takes a list of state names and plots their cases vs date using overlaid line graphs, one for each selected state. (Edit 2021-09-03: You can plot either the number of new cases, a smoothed average of the last n days, or the running total; just be clear what you're doing.) Be sure to provide a way to tell which line corresponds to what state (one possibility: using colors and a legend). If your approach has any specific limitations, explain them in your readme. (4 points)
-Test the above function and provide examples of it in use. (4 points)
-Make a function that takes the name of a state and returns the date of its highest number of new cases. (4 points)
-Make a function that takes the names of two states and reports which one had its highest number of cases first and how many days separate that one's peak from the other one's peak. (e.g. Connecticut had its highest number of cases in mid-January, whereas Colorado's peak number of cases was in November 2020, so Colorado had its highest number of cases about 2 months before Connecticut.) (5 points)
-Test the above function and provide examples of it in use. (4 points)
 
 ### Solution
 
 #### >> Code explanation: 
 
-1)Using np.random.choice to randomly select five states in the dataset. The names of these five states are saved in the list data_state0.
+1)
 
-2)First, the dataframe was transposed for further use. The function cases_vs_date_of_states() was defined, which is used to plot cases vs. dates of selected states in the list data_state0.
-
-In the function cases_vs_date_of_states(), I created two lists DataDate_list and DataCases_list, in order to store the dates and cases of selected states. Then I used DataDate_list, DataCases_list, in order to store the dates and cases of selected states. I used if/else as conditional statement, traverse the whole dataframe: If the state of element is in the data_state0, save the date and cases of this state into two lists DataDate_list and DataCases_list. Finally, I used matplotlib.pyplot to draw the overlaid line graphs, one for each selected state. Also used .xlabel, .ylabel, .title, .legend to set the x-axis label, y-axis label, figure title and upper left lengend.
-
-3)The function return_highest_date() was defined, which is used to take the name of a state, and return the date of its highest number of new cases. then I created lists sel_state_cases, sel_state_date, daily_cases to save the cases, date and number of daily cases of selected state. I used for loop three times to solve the problem:
-
-The first one was coupled with if/else to traverse the whole dataframe: If the state of element is the selected state, save the date and cases of selected state into lists sel_state_cases, sel_state_date.
-
-The second one was used to calculate daily cases by latter substract former. results are saved into list daily_cases.
-
-The final one was used to find the largest element in the list daily_cases, and save into the variable highest_cases. The corresponding date was saved into the variable highest_cases_date.
-
-4)The function compare_states_highest_cases() was defined, which takes the names of two states and reports which one had its highest number of cases first and how many days separate that one's peak from the others. 
-
-First I used the above function return_highest_date to get the highest cases number of two states, marked as date1 and date2. Then used parse_date to parse date/time of string type into date type, and calculated for how many days/months between these two dates, saved in the variable separate_days, separate_months. Then used if/else as conditional statement, to report which one had its highest number of cases first: If separate_days is bigger than zero, state1 had its highest number of cases first, otherwise state2 had first.
 
 #### >> Question answer:
 
-1)The date I downloaded the data is 2021/09/07.
-
-2)Note: Data used in this exercise came from [The New York Times's GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv).
-
-3)Noted that in the overlaid line graphs, x-axis indicates dates developed over time, y-axis indicates the cumulative (total)cases of each selected state. Colors of lines indicate different states.
-
-This function could be used to monitor the total COVID-19 cases or disease increase rate in every state of US. Federal or state officials could indicate the trand showed in the figure, then adjust public health actions in different states.
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_5_states.jpg" style="zoom:200%;" />
-
-4)For the function compare_states_highest_cases() (takes the names of two states and reports which one had its highest number of cases first and how many days separate that one's peak from the others), it could be used to see the pattern of covid-19 transmission between adjacent states. If one state has reached the highest number of new cases, when will the state nearby also reach its peak? 
-
-Also it could be used to map the route of covid-19 transmission. In terms of states that reach their peak really fast, what are the possible factors that may contribute to this result? This could urge state or local officials to take public health actions.
+1)
 
 #### >> Testing process: 
 
-1)Function cases_vs_date_of_states() was defined for plotting cases vs. dates of selected states.
-
-I run the function to see whether it is able to draw a figure based on the given background, also tested the above function by drawing another overlaid line graph of ten different states that were randomly selected.
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise3/overlaid_line_graph_10_states.jpg" style="zoom:200%;" />
-
-2)Function return_highest_date() was defined, which is used to take the name of a state, and return the date of its highest number of new cases.
-
-i.I test the function by giving a state name 'Washington', to see whether it could return the date of its highest number of new cases.
-
-I also defined two functions to test the function return_highest_date():
-
-ii.Since I used state 'Washington' to test the function return_highest_date(), I defined function test_for_return_highest_date1(), in which a list two_cases was created to save the dates(when highest cases occur and the day before that day) of state Washington. Then I calculated the number of highest cases by substracting the two elements in two_cases. The result 8346 is same as that in the function return_highest_date(). 
-
-iii.I defined another testing function test_for_return_highest_date2(), to see if function return_highest_date() could print the result regardless of which state it is. First I saved all the state names into list unique_state, then used for loop to traverse the list unique_state. For each state, run function return_highest_date(). Results indicate that return_highest_date() works for each state.
-
-3)Function test_for_compare_states_highest_cases() was defined, to see if function compare_states_highest_cases() could make comparison between each two states. Results indicate that compare_states_highest_cases() works for each two states.
-
+1)
 
 
 ## Exercise 4
 
 ### Question
 
-In class on September 2, we discussed a randomized response protocol. Let's simulate it and see what insights we can gain about the relationship between sample size, population size, and predicted accuracy. In particular:
-4a. Make a function that takes a population size n and a number of drug users d and returns a list of size n with d True values and n - d False values. The Trues represent drug users, the Falses represent non-drug users. (2 points)
+Identify a data set online (10 points) that you find interesting that could potentially be used for the final project; the main requirements is that there needs to be many (hundreds or more) data items with several identifiable variables, at least one of which could be viewed as an output variable that you could predict from the others.
 
-4b. Make a function that selects a sample of size s (think: study participants) from such a population and returns that sample's responses to the protocol from the slides. In particular, for each study participant, they flip a coin (choose one of two paths randomly with equal probability). If they flip "heads", they flip a coin and either report True or False (with equal probability). If instead, they flip "tails", they report their drug use status (True or False). (Hint: You can select a sample of a population using random.sample) (3 points)
+Describe the dataset (10 points) Your answer should address (but not be limited to): 
+how many variables? 
+Are the key variables explicitly specified or are they things you would have to derive (e.g. by inferring from text)? 
+Are any of the variables exactly derivable from other variables? (i.e. are any of them redundant?) 
+Are there any variables that could in principle be statistically predicted from other variables? 
+How many rows/data points are there? 
+Is the data in a standard format? If not, how could you convert it to a standard format?
+Describe the terms of use and identify any key restrictions (e.g. do you have to officially apply to get access to the data? Are there certain types of analyses you can't do?) (5 points)
 
-4c. Make a function that takes parameters for the total population, the true number of drug users in the population, the sample size, and returns the estimated number of drug users in the population that would be predicted using such a sample and the randomized response protocol. (Hint: recall from class that the E[yes] = 0.25 + 0.5p, where p is the fraction of drug users; use the measured yes rate to predict the fraction p. EDIT 2021-09-07: if the predicted rate is less than 0, assume 0.) (3 points) (EDIT 2021-09-07: for 3 extra-credit points, analyze the going negative issue in some way that is interesting to you and provide a brief written discussion and either a figure or a statistical analysis.)
-
-4d. Suppose that we have a population of 1000 people, 100 of whom are drug users and we do a survey using this protocol that samples 50 people from the total population. What is the estimated number of drug users you get from such an approach? (3 points)
-
-4e. Your results in part d will obviously depend on which 50 people you surveyed and how their coin-flips worked out. To get a sense of the distribution, repeat the experiment many times (justify how you decided how many was enough in your readme; 2 points) and plot a histogram showing the predictions (4 points).
-
-4f. Repeat parts d and e but with a population of 100_000 people, 10_000 drug users and sampling 5_000 people; i.e. with everything scaled up by a factor of 100. (5 points) How do your results compare? (3 points)
-
-4g. Repeat parts d and e but with 500 drug users in a population of 1_000 and sampling 50 people. i.e. with the smaller population but with higher drug usage rates. (5 points) How do your results compare? (3 points)
+Remember: if you can't find explicit permission to use a given dataset, assume that you cannot do so.
+Note: You're not committing to use this dataset for the project, but this will give you one option.
 
 ### Solution
 
 #### >> Code explanation: 
 
-1)The function report_druguse_state0() was defined in order to take a population size n and a number of drug users d, and return a list of size n with d True values and n - d False values. First I created the list druguse_results, to print the results of drug use in the population. Also I created variable rest, to save the number of non-drug users. Then I used two while loop: for each drug user, print 'True', and for each non-drug user, print 'False'.
-
-2)The function report_druguse_states1() was defined, which could return samples' responses to the randomized response protocol from the slides. 
-
-First I created several lists including: pop_result to save the results of drug use in the population, flip_choice1, flip_choice2 to list the possible results of flip coins for two times, flip_result1, final_result to save the results after the first coin flip and the samples' reponses.
-
-Then I used two for loop to save the results of drug use in the population into pop_result. I used random.sample to select a sample of size s from such population, save into sample_result. I used for loop to save the result of first coin flip into flip_result1. Then I used zip function to store sample_result and flip_result1 in a list samp_and_flip_result1 in order.
-
-Finally I traversed each element in the list samp_and_flip_result1, use if/else to simulate the process of second coin flip: If the result of first coin flip is 'Head', flip a coin again as the sample's response; if the result of first coin flip is 'Tail' and the sampled person is a drug user, 'True' is the sample's response, otherwise 'False' is the response. And I used for loop to print the result of samples' reponses.
-
-3)The function report_druguse_states2() was defined, which could return the estimated number of drug users in the population that would be predicted using such a sample and the randomized response protocol. 
-
-The function is developed based on report_druguse_states1(). I used for loop to calculate the number of sampled people that reported 'True', save in the variable yes. Also the measured yes rate measured_yes_rate, the fraction of drug users in the population p, the estimated number of drug users in the population that could be predicted using such a sample estimated_druguser_in_pop were calculated.
-
-4)The function repeat_function() was defined to repeat the experiment many times. I created list estimated_druguser to save all the results of estimated number of drug users, and used for loop to repeat the function report_druguse_states2() and saved results in the list estimated_druguser.
-
-To visualize the results, I used matplotlib.hist to draw the histagram of numbers of estimated drug users.
+1)
 
 
 #### >> Question answer: 
 
-1)Discussion of E[yes] negative issue:
-If estimated number of drug users in the population is negative, then the fraction of drug users in the population p is negative. 
-
-According to the given fomula, E[yes]<0.25, which means in the sampled population, less than 25% people said they are drug users(said 'True'). 
-
-This makes sense if there are few drug users in the whole population, or the sampled population can not present the whole population.
-
-
-2)According to the question 4d, n = 1000, d = 100, s = 50. And The estimated number of drug users is 60.
-Note: Every time you run the code, the estimated number of drug users would change due to randomly sample.
-
-3)According to the question 4e, in order to decide how many running times was enough, I set different running times to see if running time increases, the distribution of estimated_druguser(estimated number of drug users in the population) will be stable, and the estimated number of drug user in the population with highest frequency is similar to the given number of drug users.
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4e.jpg" style="zoom:200%;" />
-
-> Noted that when running time reaches 100000, the distribution remain quite stable. Also the estimated number of drug user in the population with highest frequency is similar to the given background(~100 people).
-
-4)
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4f.jpg" style="zoom:200%;" />
-
-> Compared the figure with the former one, with everything scaled up by a factor of 100(n=100000, d=10000, s=5000), the figure become very compact. The distribution intervel is much bigger as well(5000-15000) Also the estimated number of drug user in the population with highest frequency has become much bigger(~10000 people). This is due to scaled up of the whole population.
-
-5)
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise4/exercise4g.jpg" style="zoom:200%;" />
-
-> Compared the figure with the first one, with the smaller population but with higher drug usage rates(n=1000, d=500, s=50), the estimated number of drug user in the population with highest frequency has become much bigger(~500 people). This is because I increased the number of total drug users. The distribution intervel is slightly bigger(0-1000). I assume that if the total population has much higher drug usage rates, the estimated number of drug user in the population is more likely to be a positive number.
+1)
 
 
 
 #### >> Testing process: 
 
-1)I tested the function report_druguse_state0() by randomly set population size n and number of drug users d.
-
-2)I tested the function report_druguse_state1() by randomly set population size n, number of drug users d and sample size s.
-
-3)I tested the function report_druguse_state2() by randomly set population size n, number of drug users d and sample size s.
+1)
 
 
 
 ## Data source
 
-Data of exercise2 comes from [hw1-population.db](https://yale.instructure.com/courses/70314/files/5320045?wrap=1).
+Data of exercise1 comes from [hw2-patients.xml](https://yale.instructure.com/courses/70314/files/5401025/download?download_frd=1).
 
-Data of exercise3 comes from [The New York Times's GitHub](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv).
+Data of exercise2 comes from [the latest Human Reference Genome(GRCh38.p13)](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz).
+
+Data of exercise4 comes from [2020 BRFSS Data (SAS Transport Format)](https://www.cdc.gov/brfss/annual_data/2020/files/LLCP2020XPT.zip).
 
 
 
