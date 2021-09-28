@@ -22,11 +22,22 @@ Any comments or insights would be greatly appreciated.
 ## Exercise 1
 
 ### Question
-Write a function temp_tester that takes a definition of normal body temperature and returns a function that returns True if its argument is within 1 degree of normal temperature (i.e. the value is a healthy temperature), and False if not (10 points). 
 
-Test your code with the following (include a copy of your tests in [your GitHub](https://github.com/QingyangYu0529/BIS-634-QingyangYu) repository) (10 points):
+Examine the contents of [hw2-patients.xml](https://yale.instructure.com/courses/70314/files/5401025?wrap=1).  Download [hw2-patients.xmlin](https://yale.instructure.com/courses/70314/files/5401025/download?download_frd=1) a text-editor to see its structure, but in brief, there are a handful of fields you can ignore for this exercise and then several <patient> entries, all contained inside <patients>. Each <patient> has several attributes that we will want, namely name, age, and gender. Some patients have other associated data (e.g. diagnoses), but we won't need that here.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise1.jpg" style="zoom:120%;" />
+Load the data. Plot a histogram showing the distribution of ages (2 points). Do any of the patients share the same exact age? (2 points) How do you know? (2 points).
+(For an extra 2 points: explain how the answer to the question about multiple patients having the same age affects the solution to the rest of the problem.)
+
+Plot the distribution of genders. (2 points). In particular, how did this provider encode gender? What categories did they use? (2 points)
+Sort the patients by age and store the result in a list (use the "sorted" function with the appropriate key, or implement sort yourself by modifying one of the algorithms from the slides or in some other way). (2 points) Who is the oldest patient? (2 points).
+
+Identifying the oldest person from a list sorted by age should be an O(1) task... but sorting is an O(n log n) process (assuming we're using an efficient algorithm), so the total time for the above is O(n log n). Describe how (you don't need to implement this, unless that's easier than writing it out) you could find the second oldest person's name in O(n) time. (2 points). Discuss when it might be advantageous to sort and when it is better to just use the O(n) solution. (2 points).
+
+Recall from our discussion of the motivating problem for September 9th that we can search within a sorted list in O(log n) time via bisection. Use bisection on your sorted list (implement this yourself; don't trivialize the problem by using Python's bisect module) to identify the patient who is 41.5 years old. (2 points)
+Once you have identified the above, use arithmetic to find the number of patients who are at least 41.5 years old. (2 points)
+
+Generalizing the above, write a function that in O(log n) time returns the number of patients who are at least low_age years old but are strictly less than high_age years old. (2 points) Test this function (show your tests) and convince me that this function works. (2 points). (A suggestion: sometimes when you're writing high efficiency algorithms, it helps to make a slower, more obviously correct implementation to compare with for your tests. Be sure your function works both for ages that are and are not in the dataset.)
+Modify the above, including possibly the data structure you're using, to provide a function that returns both the total number of patients in an age range AND the number of males in the age range, all in O(log n) time as measured after any initial data setup. (2 points). Test it (show your tests) and justify that your algorithm works. (2 points)
 
 ### Solution
 
@@ -45,76 +56,55 @@ After different temperatures are given to human or chicken, the code could succe
 
 ### Question:
 
-Download the sqlite3 database from [hw1-population.db](https://yale.instructure.com/courses/70314/files/5320045?wrap=1). 
-(Note: this is a link to a page where you can download the database; it is not the database.)
-Use the following code to load it into Python as a pandas DataFrame:
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-homework-question/exercise2.jpg" style="zoom:120%;" />
+Download and uncompress the latest Human Reference Genome(GRCh38.p13) from (https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz) (Links to an external site.)
+The above should create the file GCA_000001405.28_GRCh38.p13_genomic.fna. This is a FASTA file a little over 3 GB in size, representing the about 3 billion bases in the human genome.
+(The Human Reference Genome is a product of the Genome Reference Consortium. It is a composite sequence representing no individual human but primarily derived from 11 individual humans. Other projects are trying to characterize the diversity possible across the species.)
 
-Examine data. What columns does it have? (2 points) How many rows (think: people) does it have? (2 points)
-Examine the distribution of the ages in the dataset. In particular, be sure to have your code report the mean, standard deviation, minimum, maximum. Plot a histogram of the distribution with an appropriate number of bins for the size of the dataset (describe in your readme the role of the number of bins). Comment on any outliers or patterns you notice in the distribution of ages. (3 points)
-Repeat the above for the distribution of weights. (3 points)
-Make a scatterplot of the weights vs the ages. (3 points) Describe the general relationship between the two variables (3 points). You should notice at least one outlier that does not follow the general relationship. What is the name of the person? (3 points) Be sure to explain your process for identifying the person whose values don't follow the usual relationship in the readme. (3 points)
+Write code to loop through all 15-mers, subsequences of 15 bases within chromosome 2 (CM000664.2).  (5 points)
+
+Hint: Remember, it's generally best not to try to parse files yourself. If you have BioPython installed, you can do something like the following:
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-homework-question/homework2_question2_1.jpg" style="zoom:200%;" />
+
+(If you don't, consider installing BioPython.)
+If you would like to learn more about BioPython's SeqIO module, its documentation is at https://biopython.org/wiki/SeqIO (Links to an external site.)
+In the above, sequence is a byte string of lower-cased letters. I suggest doing this to simplify our call to the hashing function later, but you could leave it as a regular string instead.
+
+Naively, you would expect 4^15 ≈ 1 billion potentially unique distinct subsequences, so by the pigeon hole principle, at least one subsequence must occur more than once in the genome. Things are a little more complicated because these FASTA files also include N for places where any nucleotides might occur. Ignore all subsequences containing more than 2 Ns.
+
+(Recall that N can stand for any nucleotide, but for the purposes of this question consider two 15-mers the same if and only if they have the same sequence of A, C, T, G, and Ns... i.e. if two 15-mers are the same except the 3rd position is an N in one and an A in the other, then they are different.)
+How many total subsequences are there (counting duplicates) that do not contain more than 2 Ns? (5 points)
+
+Using 100 hash functions from the family below and a single pass through the sequences, estimate the number of distinct 15-mers in the reference genome's chromosome 2 using the big data method for estimating distinct counts discussed in class. (5 points) (Here I mean distinct in the sense that if we have the list 1, 1, 2, 3, 4, 5, 4, there are 5 distinct values that appear.) How does your estimate change for different-sized subsets of these hash functions, e.g. the one with a=1 only, or a=1, 2, .., 10, or a=1, 2, ...100, etc? (5 points) (I suggest combining the hashes by taking the median of the minimum values and then turning that into an estimate for distinct elements, but you may want to experiment with other strategies. I further suggest that to get a feel for this, you may want to vary the number of hash functions used more smoothly, e.g. 1, 2, 3, 4, ... 100.)
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-homework-question/homework2_question2_2.jpg" style="zoom:200%;" />
+
+For any byte string, this returns an integer between 0 and scale. For example,
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-homework-question/homework2_question2_3.jpg" style="zoom:200%;" />
+
+To get a number between 0 and 1 from this, you'll want to divide the returned value by scale. Note: you probably don't want to literally use this code as the sha256 return value is the same for all hashes in our family, so feel free to factor that out rather than calling it over and over again.
+
+(For those curious about the mathematics, this is an approximately universal hash family, and this result depends in part on the fact that this p is prime. This particular large prime p belongs to the family of Wieferich primes base 23.)
+
+This will take a while to run. Test your code on some medium sized fake data before trying it on chromosome 2. Explain your tests and why they convinced you that your code works (5 points).
+
 
 ### Solution
 
 #### >> Code explanation: 
-1)Using .columns to see how many columns are in this dataframe.
 
-2)Using .groupby to see how many people(not repetitive rows) in this dataframe.
-
-3)Using .describe to generate statistical description on the dataframe. Using .loc to locate the data in the 'age' column. 
-
-4&5)Imported matplotlib to draw the histogram and scatterplot in order to visualize the distribution of ages and weights. Using .xlabel, .ylabel, .title to set the x-axis label, y-axis label and figure title.
-
-6)From the scatterplot, I have noticed an outlier whose age is among 40-50, and weight is among 20-30. 
-
-First, the dataframe was transposed for further use since pandas dataframe is hard to process directly. Then in the defined function find_outlier(), I created a list called name_list(at first is empty), to store the names in the dataframe. Then I used for loop to go through all the elements in transposed dataframe(also use range() and len() to achieve this). I used if/else as conditional statements:
-
-According to the above scatterplot, the filter condition refers to when age is among 40-50, and weight is among 20-30. Then the name of that person was added to the name_list.
+1)
 
 #### >> Question answer: 
 
-1)The dataframe has four columns: 'name', 'age', 'weight', 'eyecolor', and the datatype is 'object'.
+1)
 
-2)There are 137592 people(non-repetitive rows) in this dataframe.
 
-3)For 'age' data, the count is 152361, the mean is 39.51, the standard deviation is 24.15, the minimum is 0.00074, the maximum is 99.99.
-
-4)The number of bins indicates the size of statistical interval. If the number of bins is large, the statistical interval is quite small. While on the contrary, the interval is large.
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-age-distribution.jpg" style="zoom:200%;" />
-
-> Patterns noticed in the distribution of ages:
-
-> Noticed that for people in the dataset, their ages follow uniform distribution in two ranges: either in the range [0,70], or in the range [70,100].
-
-> For people whose ages range [0,70], the amount of people in every age is almost the same(~10000). And for people whose ages range [70,100], the amount of people in every age is almost the same(~2000).
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/histogram-of-weight-distribution.jpg" style="zoom:200%;" />
-
-> Patterns noticed in the distribution of weights:
-
-> Noticed that for people in the dataset, for most of the people(~20%), their weights are around 68-70 kg.
-
-5)The general relationship between ages and weights:
-
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework1/Figures-in-running-result/exercise2/scatterplot-weights-vs-ages.jpg" style="zoom:200%;" />
-
-> Noticed that for people in the dataset, the weights of young people(aged from 0 to ~20) increase with ages, and the increase rate is steady, indicating a proportional increase. 
-
-> As people grow older (aged from 20 to 100), their weights remain stable. 
-
-> Also noticed that for people aged over 60, their weights slightly decrease.
-
-6)The name of that person(outlier) is Anthony Freeman.
 
 #### >> Tesing process:
 
-Function test_find_outlier() was defined for testing if the outlier I found is a real outlier. 
 
-I used for loop to traverse the whole dataframe, use if as conditional statement: if the name is 'Anthony Freeman', print his age and weight.
-
-In total I found two records from Anthony Freeman: first record showed his age is 41.3, and his weight is 21.7. Second record showed his age is 33.3, and his weight is 74.0. According to the scatterplot of ages vs weights, the mean of ages or weights, the first record is a real outlier.
 
 
 
@@ -124,21 +114,30 @@ In total I found two records from Anthony Freeman: first record showed his age i
 
 Your friend says to you, "you have to help me! I'm supposed to present in lab meeting in less than an hour, and I haven't been able to get the simplest thing to work!" After you help them calm down, they explain: through a collaboration with a fitness app, they have a 4GB file of high-precision weights of exactly 500 million people throughout the world. Even with 8GB of RAM, they get a MemoryError when trying to load the file in and find the average weight. They show you their code which worked fine when they tested it on a small number of weights:
 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-homework-question/homework2_question3.jpg" style="zoom:200%;" />
+
+Aha! You exclaim.
+Explain what went wrong (6 points). Suggest a way of storing all the data in memory that would work (7 points), and suggest a strategy for calculating the average that would not require storing all the data in memory (7 points). 
+
+Remember, your friend has to present soon, so keep your answers concise but thorough.
+
 
 ### Solution
 
-#### >> Code explanation: 
-
-1)
-
-
 #### >> Question answer:
 
-1)
+1) The reason of memoryerror:
 
-#### >> Testing process: 
 
-1)
+2) Suggestion of storing all the data in memory:
+
+
+3) Suggestion for calculating the average that would not require storing all the data in memory:
+
+Instead of using list to store all the data, I use a variable sum to store all the data, and a variable count to count the number of data. For each for loop, each line of data is added into variable sum, and the variable count increase by one. The average is calculated by sum divide by count(sum/count).
+
+In this way, the memory cost are two variables.
+
 
 
 ## Exercise 4
@@ -159,23 +158,42 @@ Describe the terms of use and identify any key restrictions (e.g. do you have to
 Remember: if you can't find explicit permission to use a given dataset, assume that you cannot do so.
 Note: You're not committing to use this dataset for the project, but this will give you one option.
 
-### Solution
-
-#### >> Code explanation: 
-
-1)
 
 
-#### >> Question answer: 
+### Question answer: 
 
-1)
+The online data set I chose is the [2020 Behavioral Risk Factor Surveillance System (BRFSS) Data](https://www.cdc.gov/brfss/index.html).
 
+#### >> Why does this dataset meet the requirements?
 
+The Behavioral Risk Factor Surveillance System (BRFSS) is the nation’s premier system of health-related telephone surveys that collect state data about U.S. residents regarding their health-related risk behaviors, chronic health conditions, and use of preventive services. 
 
-#### >> Testing process: 
+The dataset has many data items since it contains 401,958 rows and 280 columns. 
 
-1)
+The dataset has at least one of which could be viewed as an output variable that you could predict from the others. i.e., these data could be used to find the correlation between different features of people. For example, can we predict the mental health status of a person based on his income and education level? This might be a prototype of the final project, since the dataset has provided data of mental health level, income level and education level.
 
+#### >> Brief description on the dataset:
+
+1) The dataset has 279 variables. 
+
+2) The key variables are represented as numerical values, further data processing is needed. For example, the state information of each person is represented as FIPS Code, 1 refers to Alabama, 2 refers to Alaska.
+
+3) There are some variables that could be exactly derived from other variables. For example, the interview year(IYEAR), month(IMONTH) and day(IDAY) could be derived from the interview date of each person(IDATE).
+
+4) There are some variables that could be statistically predicted from other variables. For example, 
+
+5) There are 401,958 rows, 112,548,240 data points in total.
+
+6) The data is in SAS format(.xpt file), I used the package 'foreign' of R to transfer it into csv format.
+
+#### >> The term of use and key restrictions:
+
+1) On the [website of BRFSS](https://www.cdc.gov/brfss/about/brfss_faq.htm). They said the survey data and comprehensive documentation (data files, codebooks, design documents, methodology, and more) for a given year are all available.
+
+2) They do ask that any published material derived from the data acknowledge CDC’s BRFSS as the original source. 
+
+Suggested Citation for Online BRFSS Database:
+Centers for Disease Control and Prevention (CDC). Behavioral Risk Factor Surveillance System Survey Data. Atlanta, Georgia: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, [appropriate year].
 
 
 ## Data source
