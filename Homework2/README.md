@@ -43,12 +43,34 @@ Modify the above, including possibly the data structure you're using, to provide
 
 #### >> Code explanation: 
 
-Using the concept of "closure(it is allowed to return a function)" so that every time we run the function temp_tester, function set_temp_tester also runs, which is designed to decide whether a given temperature temp is beyond normal temperature normal_temp by using if/else, if the temperature is normal, print 'TRUE', otherwise print 'False'.
+1) Imported module minidom to read xml files, imported library matplotlib to draw the figures.
+
+Created a list age, to save ages(float type) of all patients.
+Using matplotlib.pyplot to draw the histagram of ages. Using .xlabel, .ylabel, .title to set the x-axis label, y-axis label and figure title.
+
+The function share_same_age() was defined to determine if any of the patients share the same exact age. Using if/else statement to determine whether the length of list age equals to that of set age: If the length are the same, there are no patients share the same age. Otherwise there are at least two patients share the same age.
+
+2) Created a list gender, to save gender(string type) of all patients.
+
+Using matplotlib.pyplot to draw the histagram of genders. use .xlabel, .ylabel, .title to set the x-axis label, y-axis label and figure title.
+
+
+
+#### >> Question answer: 
+
+1) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-age-distribution.jpg" style="zoom:200%;" />
+
+No patients share the same exact age. Since set do not have duplicates, if the length of age as a set is not the length of age as a list, there must be at least one duplicate(two patients has the same age).
+
+2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:200%;" />
+
+> According to the distribution of genders, this provider encode gender by using 3 categories: female, male and unknown.
+
+3) 
+
 
 #### >> Tesing process:
 
-During tesing process, at first the normal temperatures of human and chicken are set as 37 ℃ and 41.1℃ separately.
-After different temperatures are given to human or chicken, the code could successfully decide whether the given temperature is normal (consider as within 1 degree of the normal temperature).
 
 
 
