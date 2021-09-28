@@ -54,7 +54,7 @@ The function share_same_age() was defined to determine if any of the patients sh
 
 Using matplotlib.pyplot to draw the histagram of genders. use .xlabel, .ylabel, .title to set the x-axis label, y-axis label and figure title.
 
-
+3) Using zip function to store age and name of in a list age_name_tuple.
 
 #### >> Question answer: 
 
