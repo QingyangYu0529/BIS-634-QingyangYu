@@ -66,7 +66,7 @@ No patients share the same exact age. Since set do not have duplicates, if the l
 
 > According to the distribution of genders, this provider encode gender by using 3 categories: female, male and unknown.
 
-3) 
+3) Monica Caponera is the oldest person.
 
 
 #### >> Tesing process:
@@ -202,7 +202,7 @@ The dataset has at least one of which could be viewed as an output variable that
 
 3) There are some variables that could be exactly derived from other variables. For example, the interview year(IYEAR), month(IMONTH) and day(IDAY) could be derived from the interview date of each person(IDATE).
 
-4) There are some variables that could be statistically predicted from other variables. For example, 
+4) There are some variables that could be statistically predicted from other variables. For example, the dataset has data of income level, education level and mental health level, which means I could predict mental health level based on income and education level.
 
 5) There are 401,958 rows, 112,548,240 data points in total.
 
