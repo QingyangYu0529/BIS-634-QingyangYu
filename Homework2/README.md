@@ -71,7 +71,9 @@ No patients share the same exact age. Since set do not have duplicates, if the l
 
 #### >> Tesing process:
 
+1)
 
+2)
 
 
 ## Exercise 2
