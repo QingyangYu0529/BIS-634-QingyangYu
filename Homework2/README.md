@@ -152,8 +152,13 @@ Remember, your friend has to present soon, so keep your answers concise but thor
 
 1) The reason of memoryerror:
 
+First, we use 4GB to load the data. Then use 2GB to change the data into float type. When the data is appended into the 'weights' list, the list also costs 2GB memory. Apart from that, variable sum and len also cost 2 bytes in total.
+
+The total memory usage is over 8GB, that is why they got a memoryerror.
+
 
 2) Suggestion of storing all the data in memory:
+
 
 
 3) Suggestion for calculating the average that would not require storing all the data in memory:
