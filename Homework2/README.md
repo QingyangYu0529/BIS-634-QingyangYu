@@ -121,7 +121,7 @@ Therefore if you need to find a single element from a not sorted list many times
 
 ### Question:
 
-Download and uncompress the latest Human Reference Genome(GRCh38.p13) from (https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz) (Links to an external site.)
+Download and uncompress the latest Human Reference Genome(GRCh38.p13) from (https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz) [Links to an external site].
 The above should create the file GCA_000001405.28_GRCh38.p13_genomic.fna. This is a FASTA file a little over 3 GB in size, representing the about 3 billion bases in the human genome.
 (The Human Reference Genome is a product of the Genome Reference Consortium. It is a composite sequence representing no individual human but primarily derived from 11 individual humans. Other projects are trying to characterize the diversity possible across the species.)
 
@@ -132,7 +132,7 @@ Hint: Remember, it's generally best not to try to parse files yourself. If you h
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-homework-question/homework2_question2_1.jpg" style="zoom:200%;" />
 
 (If you don't, consider installing BioPython.)
-If you would like to learn more about BioPython's SeqIO module, its documentation is at https://biopython.org/wiki/SeqIO (Links to an external site.)
+If you would like to learn more about BioPython's SeqIO module, its documentation is at https://biopython.org/wiki/SeqIO [Links to an external site].
 In the above, sequence is a byte string of lower-cased letters. I suggest doing this to simplify our call to the hashing function later, but you could leave it as a regular string instead.
 
 Naively, you would expect 4^15 ≈ 1 billion potentially unique distinct subsequences, so by the pigeon hole principle, at least one subsequence must occur more than once in the genome. Things are a little more complicated because these FASTA files also include N for places where any nucleotides might occur. Ignore all subsequences containing more than 2 Ns.
@@ -203,7 +203,7 @@ The total memory usage is over 8GB, that is why they got a memoryerror.
 
 2) Suggestion of storing all the data in memory:
 
-
+use numpy to store all the data.
 
 3) Suggestion for calculating the average that would not require storing all the data in memory:
 
