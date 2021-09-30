@@ -57,7 +57,20 @@ Using matplotlib.pyplot to draw the histagram of genders. use .xlabel, .ylabel, 
 
 3) Created a list name, to save name(string type) of all patients.Using zip function to store age and name of in a list age_name_tuple. Using sorted function to sort the patients by age, and store the sorted result into the list age_sorted_result.
 
-To find the name of the oldest patient, 
+To find the name of the oldest patient, I used for loop to traverse all the attribute age. And used if/else statement: If the value of this element's attribute age equals to the last element in the sorted age list age_sorted_result(the oldest age), print this element's attribute name.
+
+Sorted the list age_name_tuple by ages, and saved into the list tuple_sorted_by_age1.
+
+4) The function bisection() was defined, which is used to identify the patient with known age using the concept of bisection.
+
+I set mid as global variable, so that it could be used in other funcitons. Variables low and high are used to define the search range of ages.
+
+
+
+
+
+
+
 
 #### >> Question answer: 
 
