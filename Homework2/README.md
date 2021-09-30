@@ -68,6 +68,18 @@ No patients share the same exact age. Since set do not have duplicates, if the l
 
 3) Monica Caponera is the oldest person.
 
+4) In order to find the second oldest people, first I use zip to form a list including age and name, called age_name. Then I use the max() function on the list age_name, to find the age and name of the oldest people. The time complexity is O(n). 
+Then I use remove function to remove the tuple that contained age and name of the oldest people, the time complexity is O(1). 
+Finally I use max() on the list age_name agagin, to find the age and name of the second oldest people. The time complexity is O(n).
+In general, the total time complexity is O(n).
+
+Sorting is an O(nlogn) process, but identifying one single element from a sorted list is an O(1) process.
+While traversing a not sorted list is an O(n) process.
+If you need to find a single element from a not sorted list many times, it is a good choice to use sorted function. The total time complexity is O(nlogn). If you only need to find a single element from a list for one time, it is better to use traverse. The total time complexity is O(n).
+
+
+
+
 
 #### >> Tesing process:
 

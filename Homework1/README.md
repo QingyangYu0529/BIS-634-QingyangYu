@@ -34,9 +34,9 @@ Test your code with the following (include a copy of your tests in [your GitHub
 
 Using the concept of "closure(it is allowed to return a function)" so that every time we run the function temp_tester, function set_temp_tester also runs, which is designed to decide whether a given temperature temp is beyond normal temperature normal_temp by using if/else, if the temperature is normal, print 'TRUE', otherwise print 'False'.
 
-#### >> Tesing process:
+#### >> Testing process:
 
-During tesing process, at first the normal temperatures of human and chicken are set as 37 ℃ and 41.1℃ separately.
+During testing process, at first the normal temperatures of human and chicken are set as 37 ℃ and 41.1℃ separately.
 After different temperatures are given to human or chicken, the code could successfully decide whether the given temperature is normal (consider as within 1 degree of the normal temperature).
 
 
@@ -108,7 +108,7 @@ According to the above scatterplot, the filter condition refers to when age is a
 
 6)The name of that person(outlier) is Anthony Freeman.
 
-#### >> Tesing process:
+#### >> Testing process:
 
 Function test_find_outlier() was defined for testing if the outlier I found is a real outlier. 
 
