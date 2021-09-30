@@ -41,6 +41,7 @@ Modify the above, including possibly the data structure you're using, to provide
 
 ### Solution
 
+
 #### >> Code explanation: 
 
 1) Imported module minidom to read xml files, imported library matplotlib to draw the figures.
@@ -54,7 +55,9 @@ The function share_same_age() was defined to determine if any of the patients sh
 
 Using matplotlib.pyplot to draw the histagram of genders. use .xlabel, .ylabel, .title to set the x-axis label, y-axis label and figure title.
 
-3) Using zip function to store age and name of in a list age_name_tuple.
+3) Created a list name, to save name(string type) of all patients.Using zip function to store age and name of in a list age_name_tuple. Using sorted function to sort the patients by age, and store the sorted result into the list age_sorted_result.
+
+To find the name of the oldest patient, 
 
 #### >> Question answer: 
 
@@ -62,28 +65,35 @@ Using matplotlib.pyplot to draw the histagram of genders. use .xlabel, .ylabel, 
 
 No patients share the same exact age. Since set do not have duplicates, if the length of age as a set is not the length of age as a list, there must be at least one duplicate(two patients has the same age).
 
+*Extra points：* If multiple patients share the same age, the bisection function need to be modified: Instead of searching for the index of the single target value, the bisection is asked to search for the leftmost/rightmost target value(since there are multiple target values.)
+
+When value in the list bigger than target value(found_age), high = mid, since the high value might be the leftmost target value; when value in the list smaller than target value, low = mid + 1, to avoid endless loop.
+
 2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:200%;" />
 
 > According to the distribution of genders, this provider encode gender by using 3 categories: female, male and unknown.
 
 3) Monica Caponera is the oldest person.
 
-4) In order to find the second oldest people, first I use zip to form a list including age and name, called age_name. Then I use the max() function on the list age_name, to find the age and name of the oldest people. The time complexity is O(n). 
-Then I use remove function to remove the tuple that contained age and name of the oldest people, the time complexity is O(1). 
-Finally I use max() on the list age_name agagin, to find the age and name of the second oldest people. The time complexity is O(n).
+4) In order to find the second oldest people, first I use zip() to form a list including age and name, called age_name_tuple. Then I use the max() function on the list age_name_tuple, to find the age and name of the oldest people. The time complexity is O(n). 
+Then I use remove() function to remove the element that contained age and name of the oldest people, the time complexity is O(1). 
+Finally I use max() on the list age_name_tuple again, to find the age and name of the second oldest people. The time complexity is O(n).
 In general, the total time complexity is O(n).
+
+Codes: age_name_tuple = zip(age,name) max(age_name_tuple) age.remove(84.99855742449432) max(age_name_tuple)
 
 Sorting is an O(nlogn) process, but identifying one single element from a sorted list is an O(1) process.
 While traversing a not sorted list is an O(n) process.
-If you need to find a single element from a not sorted list many times, it is a good choice to use sorted function. The total time complexity is O(nlogn). If you only need to find a single element from a list for one time, it is better to use traverse. The total time complexity is O(n).
 
+Therefore if you need to find a single element from a not sorted list many times, it is a good choice to use sorted function. The total time complexity is O(nlogn). If you only need to find a single element from a list for one time, it is better to use traverse. The total time complexity is O(n).
 
+5) The patient who is 41.5 years old is John Braswell.
 
-
+6) The number of patients who are at least 41.5 years old is 150471.
 
 #### >> Tesing process:
 
-1)
+1) Last two question 1+2.
 
 2)
 
