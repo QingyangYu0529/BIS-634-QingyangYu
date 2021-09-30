@@ -63,7 +63,13 @@ Sorted the list age_name_tuple by ages, and saved into the list tuple_sorted_by_
 
 4) The function bisection() was defined, which is used to identify the patient with known age using the concept of bisection.
 
-I set mid as global variable, so that it could be used in other funcitons. Variables low and high are used to define the search range of ages.
+I set mid as global variable, so that it could be used in other funcitons. Variables low and high are used to define the search range of ages. While in the while loop, I used variable mid, which is in the middle of each search range and used to compare with found_age. Also used if/else statment: If found_age is bigger than the element in the middle of the sorted list, only need to compare found_age with the elements on the right side. If found_age is samller than the element in the middle of the sorted list, only need to compare found_age with the elements on the left side. If found_age is exactly the element in the middle of the sorted list, mid is the index of found_age and name of the corresponding patient.
+
+5) The number of patients over found_age is the length of the sorted tuple sustract index of the patient whose age is found_age.
+
+6) The function bisection_age_range(), which is used to return the number of patients whose ages are in the age range(low_age, high_age).
+
+Basically I run two times of bisection to search for the index of patients whose age are low_age and high_age, separately. 
 
 
 
@@ -186,6 +192,9 @@ Remember, your friend has to present soon, so keep your answers concise but thor
 #### >> Question answer:
 
 1) The reason of memoryerror:
+When append, high precision weights: for one float takes 8 bytes, for 500 million floats takes 4GB in total. 
+just open not take too much memory.
+python needs extra memory (more than 4GB) to describe the data structure.
 
 First, we use 4GB to load the data. Then use 2GB to change the data into float type. When the data is appended into the 'weights' list, the list also costs 2GB memory. Apart from that, variable sum and len also cost 2 bytes in total.
 
