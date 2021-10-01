@@ -44,9 +44,9 @@ Modify the above, including possibly the data structure you're using, to provide
 
 #### >> Code explanation: 
 
-1) Imported module minidom to read xml files, imported library matplotlib to draw the figures.
+Imported module minidom to read xml files, imported library matplotlib to draw the figures.
 
-Created a list age, to save ages(float type) of all patients.
+1) Created a list age, to save ages(float type) of all patients.
 Using matplotlib.pyplot to draw the histagram of ages. Using .xlabel, .ylabel, .title to set the x-axis label, y-axis label and figure title.
 
 The function share_same_age() was defined to determine if any of the patients share the same exact age. Using if/else statement to determine whether the length of list age equals to that of set age: If the length are the same, there are no patients share the same age. Otherwise there are at least two patients share the same age.
@@ -80,7 +80,7 @@ Basically I run two times of bisection to search for the index of patients whose
 
 #### >> Question answer: 
 
-1) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-age-distribution.jpg" style="zoom:200%;" />
+1) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-age-distribution.jpg" style="zoom:250%;" />
 
 No patients share the same exact age. Since set do not have duplicates, if the length of age as a set is not the length of age as a list, there must be at least one duplicate(two patients has the same age).
 
@@ -88,9 +88,9 @@ No patients share the same exact age. Since set do not have duplicates, if the l
 
 When value in the list bigger than target value(found_age), high = mid, since the high value might be the leftmost target value; when value in the list smaller than target value, low = mid + 1, to avoid endless loop.
 
-2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:200%;" />
+2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:250%;" />
 
-> According to the distribution of genders, this provider encode gender by using 3 categories: female, male and unknown.
+> According to the distribution of genders, this provider encode gender into string type data, and they used 3 categories: female, male and unknown.
 
 3) Monica Caponera is the oldest person.
 
@@ -121,7 +121,7 @@ Therefore if you need to find a single element from a not sorted list many times
 
 ### Question:
 
-Download and uncompress the latest Human Reference Genome(GRCh38.p13) from (https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz) [Links to an external site].
+Download and uncompress the latest Human Reference Genome(GRCh38.p13) from [Links to an external site](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz).
 The above should create the file GCA_000001405.28_GRCh38.p13_genomic.fna. This is a FASTA file a little over 3 GB in size, representing the about 3 billion bases in the human genome.
 (The Human Reference Genome is a product of the Genome Reference Consortium. It is a composite sequence representing no individual human but primarily derived from 11 individual humans. Other projects are trying to characterize the diversity possible across the species.)
 
@@ -132,7 +132,7 @@ Hint: Remember, it's generally best not to try to parse files yourself. If you h
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-homework-question/homework2_question2_1.jpg" style="zoom:200%;" />
 
 (If you don't, consider installing BioPython.)
-If you would like to learn more about BioPython's SeqIO module, its documentation is at https://biopython.org/wiki/SeqIO [Links to an external site].
+If you would like to learn more about BioPython's SeqIO module, its documentation is at [Links to an external site](https://biopython.org/wiki/SeqIO).
 In the above, sequence is a byte string of lower-cased letters. I suggest doing this to simplify our call to the hashing function later, but you could leave it as a regular string instead.
 
 Naively, you would expect 4^15 ≈ 1 billion potentially unique distinct subsequences, so by the pigeon hole principle, at least one subsequence must occur more than once in the genome. Things are a little more complicated because these FASTA files also include N for places where any nucleotides might occur. Ignore all subsequences containing more than 2 Ns.
@@ -159,11 +159,20 @@ This will take a while to run. Test your code on some medium sized fake data bef
 
 #### >> Code explanation: 
 
-1)
+Imported module SeqIO from library Bio to read biological sequence. Note that the human genome sequence was saved into two formats, either encoded by utf8 or not.
+
+1)& 2) The function count_contain_2N was defined, which is used to loop through all 15-mers, seubsequences of 15 bases within chromosome 2(CM000664.2), and count the number of total subsequences that do not contain more than 2Ns.
+
+I used variable count to save the number of total subsequences that do not contain more than 2Ns, and use variable count_n to save the number of Ns in each subsequences.
+
+
+
 
 #### >> Question answer: 
 
-1)
+1) There are 240548031 subsequences do not contain more than 2Ns.
+
+2) 
 
 
 
