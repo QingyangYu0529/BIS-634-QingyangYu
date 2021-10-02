@@ -81,7 +81,7 @@ Basically I run two times of bisection to search for the index of patients whose
 
 #### >> Question answer: 
 
-1) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-age-distribution.jpg" style="zoom:250%;" />
+1) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-age-distribution.jpg" style="zoom:300%;" />
 
 No patients share the same exact age. Since set do not have duplicates, if the length of age as a set is not the length of age as a list, there must be at least one duplicate(two patients has the same age).
 
@@ -103,7 +103,7 @@ If we are searching for a age range(low_age, high_age):
 
 When value in the list bigger than target value(found_age), high = mid, since the high value might be the leftmost target value; when value in the list smaller than target value, low = mid + 1, to avoid endless loop.
 
-2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:250%;" />
+2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:300%;" />
 
 > According to the distribution of genders, this provider encode gender into string type data, and they used 3 categories: female, male and unknown.
 
@@ -231,7 +231,7 @@ Convert the weight data into other data types(eg. int(line)) rather than float. 
 
 Or use "read in chunks" method: Divide the large file into several small files for processing. After processing each small file, release this part of memory.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise3/read-in-chunk.jpg" style="zoom:200%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise3/read-in-chunk.jpg" style="zoom:150%;" />
 
 3) Suggestion for calculating the average that would not require storing all the data in memory:
 
