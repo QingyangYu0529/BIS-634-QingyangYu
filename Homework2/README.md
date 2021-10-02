@@ -42,6 +42,7 @@ Modify the above, including possibly the data structure you're using, to provide
 ### Solution
 
 
+
 #### >> Code explanation: 
 
 Imported module minidom to read xml files, imported library matplotlib to draw the figures.
@@ -84,7 +85,21 @@ Basically I run two times of bisection to search for the index of patients whose
 
 No patients share the same exact age. Since set do not have duplicates, if the length of age as a set is not the length of age as a list, there must be at least one duplicate(two patients has the same age).
 
-*Extra points：* If multiple patients share the same age, the bisection function need to be modified: Instead of searching for the index of the single target value, the bisection is asked to search for the leftmost/rightmost target value(since there are multiple target values.)
+*Extra points：* If multiple patients share the same age, the bisection results may change:
+
+If we are searching for one single age:
+
+(1) If there is only one people with target age(found_age), the result is the same: bisection will return the name of person that has target age.
+
+(2) But if there are multiple people with target age, instead of printing all the people that have the target age, the bisection could only return one person whose age is the target age. Note that the returned element is not always the leftmost/rightmost element among all the duplicates, it depends on 1) the ratio: the number of repeated elements(target age)/total number of of elements. 2) the position of the repeated elements(target age) in the entire list.
+
+If we are searching for a age range(low_age, high_age):
+
+(1) If the searching boundary[low_age, high_age) does not include repeated elements, the result is the same.
+
+(2) But if the searching boundary[low_age, high_age) includes repeated elements, the result might not be the actual age range since bisection stops as long as one of the repeated elements is found. In most of the cases, the returned age range is shorter than the actual age range.
+
+
 
 When value in the list bigger than target value(found_age), high = mid, since the high value might be the leftmost target value; when value in the list smaller than target value, low = mid + 1, to avoid endless loop.
 
@@ -165,7 +180,7 @@ Imported module SeqIO from library Bio to read biological sequence. Note that th
 
 I used variable count to save the number of total subsequences that do not contain more than 2Ns, and use variable count_n to save the number of Ns in each subsequences.
 
-
+I used two for loop to traverse the whole genome sequence.
 
 
 #### >> Question answer: 
@@ -212,7 +227,11 @@ The total memory usage is over 8GB, that is why they got a memoryerror.
 
 2) Suggestion of storing all the data in memory:
 
-use numpy to store all the data.
+Convert the weight data into other data types(eg. int(line)) rather than float. Since each float costs 8 bytes, each int only costs 4 bytes, saving data into int type would not exceed 8Gb.
+
+Or use "read in chunks" method: Divide the large file into several small files for processing. After processing each small file, release this part of memory.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise3/read-in-chunk.jpg" style="zoom:200%;" />
 
 3) Suggestion for calculating the average that would not require storing all the data in memory:
 
