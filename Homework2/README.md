@@ -84,9 +84,9 @@ I run two times of bisection_age_range to get the number of patients in an age r
 
 #### >> Question answer: 
 
-1) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-age-distribution.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-age-distribution.jpg" style="zoom:300%;" />
 
-No patients share the same exact age. Since set do not have duplicates, if the length of age as a set is not the length of age as a list, there must be at least one duplicate(two patients has the same age).
+1) No patients share the same exact age. Since set do not have duplicates, if the length of age as a set is not the length of age as a list, there must be at least one duplicate(two patients has the same age).
 
 *Extra points：* If multiple patients share the same age, the bisection results may change:
 
@@ -103,8 +103,9 @@ If we are searching for a age range(low_age, high_age):
 (2) But if the searching boundary[low_age, high_age) includes repeated elements, the result might not be the actual age range since bisection stops as long as one of the repeated elements is found. In most of the cases, the returned age range is shorter than the actual age range.
 
 
-2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:300%;" />
 
+2) 
 > According to the distribution of genders, this provider encode gender into string type data, and they used 3 categories: female, male and unknown.
 
 3) Monica Caponera is the oldest person.
@@ -137,8 +138,6 @@ Results showed that although the input data and running results are same, the ru
 2) The function for_loop_age_range_and_male() was defined to test the results of function bisection_age_range_and_male(). variables count/count_male were used to save the number of total/male patients in the age range [low_age,high_age). Then I used for loop to traverse the elements in the list. Also used if/else statement: If the element in the list is in the age range [low_age,high_age), variables count/count_male increase by 1.
 
 Results of function bisection_age_range_and_male() and for_loop_age_range_and_male() are same.
-
-
 
 
 
