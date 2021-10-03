@@ -1,4 +1,4 @@
-# Readme for homework1
+# Readme for HW #2
 
 ## Instruction
 
@@ -13,6 +13,7 @@ This readme file contains:
 4)Any other relevant information. 
 
 ## Support
+
 If you have any question, please feel free to [contact me](https://github.com/QingyangYu0529/BIS-634-QingyangYu#Maintainer).
 
 Any comments or insights would be greatly appreciated.
@@ -227,7 +228,7 @@ The total memory usage is over 8GB, that is why they got a memoryerror.
 
 2) Suggestion of storing all the data in memory:
 
-Convert the weight data into other data types(eg. int(line)) rather than float. Since each float costs 8 bytes, each int only costs 4 bytes, saving data into int type would not exceed 8Gb.
+Convert the weight data into other data types(eg. int(line)) rather than float. Since each float costs 8 bytes, each int only costs 4 bytes, saving data into int type would not exceed 8Gb. 
 
 Or use "read in chunks" method: Divide the large file into several small files for processing. After processing each small file, release this part of memory.
 
