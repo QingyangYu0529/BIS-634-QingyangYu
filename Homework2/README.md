@@ -40,8 +40,8 @@ Once you have identified the above, use arithmetic to find the number of patient
 Generalizing the above, write a function that in O(log n) time returns the number of patients who are at least low_age years old but are strictly less than high_age years old. (2 points) Test this function (show your tests) and convince me that this function works. (2 points). (A suggestion: sometimes when you're writing high efficiency algorithms, it helps to make a slower, more obviously correct implementation to compare with for your tests. Be sure your function works both for ages that are and are not in the dataset.)
 Modify the above, including possibly the data structure you're using, to provide a function that returns both the total number of patients in an age range AND the number of males in the age range, all in O(log n) time as measured after any initial data setup. (2 points). Test it (show your tests) and justify that your algorithm works. (2 points)
 
-### Solution
 
+### Solution
 
 
 #### >> Code explanation: 
@@ -71,12 +71,14 @@ I set mid as global variable, so that it could be used in other funcitons. Varia
 
 6) The function bisection_age_range(), which is used to return the number of patients whose ages are in the age range(low_age, high_age).
 
-Basically I run two times of bisection to search for the index of patients whose age are low_age and high_age, separately. 
+Basically I run two times of bisection to search for the index of patients whose age are low_age and high_age, separately. The number of patients who are in the age range [low_age, high_age) is the index of high_age substract index of low_age.
 
 
+7) Using zip function to store age and gender of the patients in a list age_gender_tuple. Then using sorted function to sort the tuple by ages, save into the list tuple_sorted_by_age2. Created a list list_male, to save the ages and genders of males in tuple_sorted_by_age2.
 
+The function bisection_age_range_and_male(), which is define to return both the total number of patients in an age range and the number of males in the age range.
 
-
+I run two times of bisection_age_range to get the number of patients in an age range [low_age, high_age) in the list tuple_sorted_by_age2 or list_male.
 
 
 
@@ -101,9 +103,6 @@ If we are searching for a age range(low_age, high_age):
 (2) But if the searching boundary[low_age, high_age) includes repeated elements, the result might not be the actual age range since bisection stops as long as one of the repeated elements is found. In most of the cases, the returned age range is shorter than the actual age range.
 
 
-
-When value in the list bigger than target value(found_age), high = mid, since the high value might be the leftmost target value; when value in the list smaller than target value, low = mid + 1, to avoid endless loop.
-
 2) <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:300%;" />
 
 > According to the distribution of genders, this provider encode gender into string type data, and they used 3 categories: female, male and unknown.
@@ -126,11 +125,21 @@ Therefore if you need to find a single element from a not sorted list many times
 
 6) The number of patients who are at least 41.5 years old is 150471.
 
+
 #### >> Tesing process:
 
-1) Last two question 1+2.
+1) The function for_loop_age_range was defined to test the results of function bisection_age_range(). First the variable count was created to save the number of patients who are in the age range [low_age, high_age). Then I used for loop to traverse the elements in the list. Also used if/else statement: If the element in the list is in the age range [low_age,high_age), variable count increases by 1.
 
-2)
+Imported module time. Run function for_loop_age_range() and bisection_age_range() separately, and recored the running time.
+
+Results showed that although the input data and running results are same, the running time of two functions differs: Apparently bisection use less time than for loop.
+
+2) The function for_loop_age_range_and_male() was defined to test the results of function bisection_age_range_and_male(). variables count/count_male were used to save the number of total/male patients in the age range [low_age,high_age). Then I used for loop to traverse the elements in the list. Also used if/else statement: If the element in the list is in the age range [low_age,high_age), variables count/count_male increase by 1.
+
+Results of function bisection_age_range_and_male() and for_loop_age_range_and_male() are same.
+
+
+
 
 
 ## Exercise 2
