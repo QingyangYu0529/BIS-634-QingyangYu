@@ -69,7 +69,7 @@ I set mid as global variable, so that it could be used in other funcitons. Varia
 
 5) The number of patients over found_age is the length of the sorted tuple sustract index of the patient whose age is found_age.
 
-6) The function bisection_age_range(), which is used to return the number of patients whose ages are in the age range(low_age, high_age).
+6) The function bisection_age_range(), which is used to return the number of patients whose ages are in the age range [low_age, high_age).
 
 Basically I run two times of bisection to search for the index of patients whose age are low_age and high_age, separately. The number of patients who are in the age range [low_age, high_age) is the index of high_age substract index of low_age.
 
@@ -96,7 +96,7 @@ If we are searching for one single age:
 
 (2) But if there are multiple people with target age, instead of printing all the people that have the target age, the bisection could only return one person whose age is the target age. Note that the returned element is not always the leftmost/rightmost element among all the duplicates, it depends on 1) the ratio: the number of repeated elements(target age)/total number of of elements. 2) the position of the repeated elements(target age) in the entire list.
 
-If we are searching for a age range(low_age, high_age):
+If we are searching for a age range [low_age, high_age):
 
 (1) If the searching boundary[low_age, high_age) does not include repeated elements, the result is the same.
 
@@ -192,17 +192,29 @@ I used variable count to save the number of total subsequences that do not conta
 I used two for loop to traverse the whole genome sequence.
 
 
+
+
 #### >> Question answer: 
 
 1) There are 240548031 subsequences do not contain more than 2Ns.
 
-2) 
+2) Using 100 hash functions and a single pass through the sequences, the number of distinct 15-mers in the reference genome's chromosome 2 is 80.
+
+3) For different-sized subsets of these hash functions(e.g. a = 1 only, or a = 1,..,10, or a = 1,...,100), I combined the hashes by taking the median of the minimum values, found that the number of distinct 15-mers in the reference genome differs:
+
+When a = 1 only, the number of distinct 15-mers in the reference genome is 66076419;
+
+When a = 1,2,...,10, the number of distinct 15-mers in the reference genome is 138827225;
+
+When a = 1,2,...,100, the number of distinct 15-mers in the reference genome is 201523391.
+
+As a increases, the estimated value of distinct number of 15-mers is getting more and more accurate, since the median of the minimum values tend to be normal distribution.
 
 
 
 #### >> Tesing process:
 
-
+I used fake_sequence(sequences that are randomly generated, length is 1000, 10000, 100000).
 
 
 
@@ -222,7 +234,7 @@ Remember, your friend has to present soon, so keep your answers concise but thor
 
 ### Solution
 
-#### >> Question answer:
+#### Question answer:
 
 1) The reason of memoryerror:
 When append, high precision weights: for one float takes 8 bytes, for 500 million floats takes 4GB in total. 
