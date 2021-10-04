@@ -189,9 +189,15 @@ Imported module SeqIO from library Bio to read biological sequence. Note that th
 
 I used variable count to save the number of total subsequences that do not contain more than 2Ns, and use variable count_n to save the number of Ns in each subsequences.
 
-I used two for loop to traverse the whole genome sequence.
+I used two for loop to loop through each 15-mer in the whole genome sequence: If the nucleotide is n, count_n increases by 1; if the number of Ns in the 15-mer less than or equal to 2, count increases by 1. For each loop, reset the count_n to zero in the end.
 
+3) Then I used 1 hash function for a try. At first the minimum hash value min_h_1 was set as the hash value of first 15-mer in the total sequence. Then use for loop to find the minimum hash value and save into the variable min_h_1. Finally I scaled the minimum hash value into a number between 0 and 1, and calculate the estimated number of distinct 15-mers based on the formula: m ≈ 1/min_h - 1.
 
+Also I used 100 hash functions, and calculate the estimated number of distinct 15-mers using above methods.
+
+To allow hash functions to be used on different-sized subsets, I defined the function calculate_min_h(), which is used to return the median of the minimum hashes. First I created a list min_h_list, to save all the values of minimum hashes. The minimum hash value min_h was set as the hash value of first 15-mer in the total sequence. Then I used for loop to find the minimum hash value, save into the variable min_h. Then I saved all the minimum hash values when a = 1,2,...,a into the list min_h_list, and returned the median of the minimum hash values.
+
+The function distinct_num_15_mer() was defined to calculate the estimated number of distinct 15-mers when min_h is given. Same as above, the min_h was scaled into a number between 0 and 1, and formula m ≈ 1/min_h - 1 was used.
 
 
 #### >> Question answer: 
@@ -212,7 +218,7 @@ As a increases, the estimated value of distinct number of 15-mers is getting mor
 
 
 
-#### >> Tesing process:
+#### >> Testing process:
 
 I used fake_sequence(sequences that are randomly generated, length is 1000, 10000, 100000) and short_sequence(sequences that are the first 1000, 10000, 100000 of the total sequence) to test the function distinct_num_15_mer().
 
@@ -222,10 +228,18 @@ The function random_fake_sequence() was defined to randomly generate nucleotide 
 
 The function split_into_subsequence() was defined to split the fake sequence into 15-mers.
 
-The function num_distinct_subsequence() was defined to calculate the number of distinct 15-mers for fake sequence/short sequence. And the results were compared with results generated from distinct_num_15_mer().
+The function num_distinct_subsequence() was defined to calculate the actual number of distinct 15-mers for fake sequence/short sequence. And the results were compared with results generated from distinct_num_15_mer().
+
+First I generated the fake sequences that is 1000, 10000, 100000 long using random_fake_sequence, then I split each fake sequence into 15-mers, save into the list fake_subsequence. And get the number of distinct 15-mers in fake sequences using distinct_num_15_mer() and num_distinct_subsequence(), separately.
+
+Compared with the actual number of distinct 15-mers, when fake sequences are shorter(length is 1000, 10000), the estimated number of distinct 15-mers by hash function is more accurate when a = 1,2,...,100. Whereas when fake sequence is longer(length is 100000), the estimated number of distinct 15-mers by hash function is more accurate when a = 1,2,...,10.
+
 
 2) For the short sequences:
 
+First I extracted the short sequences that is 1000, 10000, 100000 long from the utf8_sequence, then I split each short sequence into 15-mers, save into the list short_subsequence. And get the number of distinct 15-mers in short sequences using distinct_num_15_mer() and num_distinct_subsequence(), separately.
+
+Compared with the actual number of distinct 15-mers, when short sequences are shorter(length is 1000, 10000), the estimated number of distinct 15-mers by hash function is more accurate when a = 1,2,...,100. Whereas when fake sequence is longer(length is 100000, 1000000), the estimated number of distinct 15-mers by hash function is more accurate when a = 1,2,...,10 or a = 1.
 
 
 ## Exercise 3
@@ -295,6 +309,9 @@ Note: You're not committing to use this dataset for the project, but this will g
 ### Question answer: 
 
 The online data set I chose is the [2020 Behavioral Risk Factor Surveillance System (BRFSS) Data](https://www.cdc.gov/brfss/index.html).
+
+*Reminder*: Since the data is over 100 Mb, it can not be uploaded into this repository. I added the link of this data in the Data Source session.
+
 
 #### >> Why does this dataset meet the requirements?
 
