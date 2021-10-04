@@ -276,7 +276,7 @@ Convert the weight data into other data types(eg. int(line)) rather than float. 
 
 Or use "read in chunks" method: Divide the large file into several small files for processing. After processing each small file, release this part of memory.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise3/read-in-chunk.jpg" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise3/read-in-chunk.jpg" style="zoom:100%;" />
 
 3) Suggestion for calculating the average that would not require storing all the data in memory:
 
