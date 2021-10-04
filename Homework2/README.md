@@ -198,7 +198,7 @@ I used two for loop to traverse the whole genome sequence.
 
 1) There are 240548031 subsequences do not contain more than 2Ns.
 
-2) Using 100 hash functions and a single pass through the sequences, the number of distinct 15-mers in the reference genome's chromosome 2 is 80.
+2) Using 100 hash functions and a single pass through the sequences, the number of distinct 15-mers in the reference genome's chromosome 2 is 429496729.
 
 3) For different-sized subsets of these hash functions(e.g. a = 1 only, or a = 1,..,10, or a = 1,...,100), I combined the hashes by taking the median of the minimum values, found that the number of distinct 15-mers in the reference genome differs:
 
@@ -214,7 +214,17 @@ As a increases, the estimated value of distinct number of 15-mers is getting mor
 
 #### >> Tesing process:
 
-I used fake_sequence(sequences that are randomly generated, length is 1000, 10000, 100000).
+I used fake_sequence(sequences that are randomly generated, length is 1000, 10000, 100000) and short_sequence(sequences that are the first 1000, 10000, 100000 of the total sequence) to test the function distinct_num_15_mer().
+
+1) For the fake sequences:
+
+The function random_fake_sequence() was defined to randomly generate nucleotide sequence with defined length.
+
+The function split_into_subsequence() was defined to split the fake sequence into 15-mers.
+
+The function num_distinct_subsequence() was defined to calculate the number of distinct 15-mers for fake sequence/short sequence. And the results were compared with results generated from distinct_num_15_mer().
+
+2) For the short sequences:
 
 
 
