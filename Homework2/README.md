@@ -98,9 +98,9 @@ If we are searching for one single age:
 
 If we are searching for a age range [low_age, high_age):
 
-(1) If the searching boundary[low_age, high_age) does not include repeated elements, the result is the same.
+(1) If the searching boundary low_age, high_age does not include repeated elements, the result is the same.
 
-(2) But if the searching boundary[low_age, high_age) includes repeated elements, the result might not be the actual age range since bisection stops as long as one of the repeated elements is found. In most of the cases, the returned age range is shorter than the actual age range.
+(2) But if the searching boundary low_age, high_age includes repeated elements, the result might not be the actual age range since bisection stops as long as one of the repeated elements is found. In most of the cases, the returned age range is shorter than the actual age range.
 
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework2/Figures-in-running-result/exercise1/histogram-of-gender-distribution.jpg" style="zoom:300%;" />
