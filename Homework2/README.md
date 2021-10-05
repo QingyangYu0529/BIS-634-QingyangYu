@@ -127,7 +127,7 @@ Therefore if you need to find a single element from a not sorted list many times
 6) The number of patients who are at least 41.5 years old is 150471.
 
 
-#### >> Tesing process:
+#### >> Testing process:
 
 1) The function for_loop_age_range was defined to test the results of function bisection_age_range(). First the variable count was created to save the number of patients who are in the age range [low_age, high_age). Then I used for loop to traverse the elements in the list. Also used if/else statement: If the element in the list is in the age range [low_age,high_age), variable count increases by 1.
 
