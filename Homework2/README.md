@@ -261,11 +261,13 @@ Remember, your friend has to present soon, so keep your answers concise but thor
 #### Question answer:
 
 1) The reason of memoryerror:
-When append high precision weights: for one float takes 24 bytes, for 500 million floats takes 4GB in total. 
+When append high precision weights: 
 
-What's more, python needs extra memory (more than 4GB) to describe the data structure.
+Since python needs extra memory to describe the data structure, for one float takes 24 bytes, for 500 million floats takes 1.2 * 10^10 bytes in total.
 
-The total memory usage is over 8GB, that is why they got a memoryerror.
+The RAM is 8GB, which is 8.6 * 10^9 bytes(1GB = 1024^3 bytes).
+
+The total memory usage(1.2 * 10^10 bytes) is over RAM(8.6 * 10^9 bytes), that is why they got a memoryerror.
 
 
 2) Suggestion of storing all the data in memory:
