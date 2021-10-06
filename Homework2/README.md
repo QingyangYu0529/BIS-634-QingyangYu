@@ -261,18 +261,16 @@ Remember, your friend has to present soon, so keep your answers concise but thor
 #### Question answer:
 
 1) The reason of memoryerror:
-When append, high precision weights: for one float takes 8 bytes, for 500 million floats takes 4GB in total. 
-just open not take too much memory.
-python needs extra memory (more than 4GB) to describe the data structure.
+When append high precision weights: for one float takes 24 bytes, for 500 million floats takes 4GB in total. 
 
-First, we use 4GB to load the data. Then use 2GB to change the data into float type. When the data is appended into the 'weights' list, the list also costs 2GB memory. Apart from that, variable sum and len also cost 2 bytes in total.
+What's more, python needs extra memory (more than 4GB) to describe the data structure.
 
 The total memory usage is over 8GB, that is why they got a memoryerror.
 
 
 2) Suggestion of storing all the data in memory:
 
-Convert the weight data into other data types(eg. int(line)) rather than float. Since each float costs 8 bytes, each int only costs 4 bytes, saving data into int type would not exceed 8Gb. 
+Instead of using list to store the data, I use numpy array to store the weight data.
 
 Or use "read in chunks" method: Divide the large file into several small files for processing. After processing each small file, release this part of memory.
 
