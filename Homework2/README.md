@@ -24,7 +24,7 @@ Any comments or insights would be greatly appreciated.
 
 ### Question
 
-Examine the contents of [hw2-patients.xml](https://yale.instructure.com/courses/70314/files/5401025?wrap=1).  Download [hw2-patients.xmlin](https://yale.instructure.com/courses/70314/files/5401025/download?download_frd=1) a text-editor to see its structure, but in brief, there are a handful of fields you can ignore for this exercise and then several <patient> entries, all contained inside <patients>. Each <patient> has several attributes that we will want, namely name, age, and gender. Some patients have other associated data (e.g. diagnoses), but we won't need that here.
+Examine the contents of [hw2-patients.xml](https://yale.instructure.com/courses/70314/files/5401025?wrap=1).  Download [hw2-patients.xml]in (https://yale.instructure.com/courses/70314/files/5401025/download?download_frd=1) a text-editor to see its structure, but in brief, there are a handful of fields you can ignore for this exercise and then several <patient> entries, all contained inside <patients>. Each <patient> has several attributes that we will want, namely name, age, and gender. Some patients have other associated data (e.g. diagnoses), but we won't need that here.
 
 Load the data. Plot a histogram showing the distribution of ages (2 points). Do any of the patients share the same exact age? (2 points) How do you know? (2 points).
 (For an extra 2 points: explain how the answer to the question about multiple patients having the same age affects the solution to the rest of the problem.)
