@@ -272,7 +272,9 @@ The total memory usage(1.2 * 10^10 bytes) is over RAM(8.6 * 10^9 bytes), that is
 
 2) Suggestion of storing all the data in memory:
 
-Instead of using list to store the data, I use numpy array to store the weight data.
+Instead of using list to store the data, I use array to store the data(statement: numpy.array(object, dtype=None, *, copy=True, order='K', subok=False, ndmin=0, like=None)).
+
+Compared with array, list saves the address of the data(pointer), i.e., for each data in the dataset, the list need to store 1 data and 1 pointer, resulting in storage increase and cpu consumption.
 
 Or use "read in chunks" method: Divide the large file into several small files for processing. After processing each small file, release this part of memory.
 
