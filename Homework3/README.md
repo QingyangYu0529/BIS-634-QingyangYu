@@ -106,9 +106,11 @@ The 10 most common MeSH terms for the cancer papers are: Humans; Female; Male; M
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/table-for-5-most-common-MeSH-terms-for-Alzheimer's-or-cancer.jpg" style="zoom:300%;" />
 
+Findings from the table: 
 
+1) The most popular MeSH term is "Humans": As one of the top 5 MeSH terms from both Alzheimer's and cancer papers, 922 of the papaers has this MeSH term.
 
-
+2) While on the contrary, among all the top 5 MeSH terms from both Alzheimer's and cancer papers, "Female" remain to be the least popular: 109 of the papers has this MeSH term.
 
 ## Exercise 3
 
