@@ -46,22 +46,33 @@ Note: BioPython provides functions for accessing the PubMed API. Do not use them
 
 ### Solution
 
-
 #### >> Code explanation: 
 
-Imported modules requests and minidom to parse the file.
+Imported module minidom and libraries requests, time, json.
 
-1) 
+1) Function get_id_of_disease() was defined to return the PubmedId list of a specific disease. First I used requests.get() to send a GET request to the specified url and returned a response object: search term is Alzheimers/cancer+AND+2019[pdat], retmode is xml, retmax = 1000. Then used minidom to parse strings of text from the response object, and got the Id elements by .getElementsByTagName(), saved into the list PubmedId. List IdList was created to save all the PubmedId. Finally I used for loop to get all the data of the elements' firstchild, and saved into the list IdList.
 
+2) Function overlap_in_two_papers() was defined to determine whether there is a overlap in the two sets of papers. First I ran above function to get the PubmedId list from disease1 and disease2, and save into lists IdList1, IdList2, separately. Then turned list into set to remove the duplicates, found the overlap between two sets and returned the overlap.
+
+3) Function pull_metadata() was defined, to pull the metadata for each paper of a specific disease. First I ran the function get_id_of_disease(), to get the PubmedId list of a specific disease. Then I created dictionary paper, to save the metadata for each paper of this disease. For each PubmedId, I sent a GET request to the url of each PubmedId and returned a response object, and parsed strings of text from the response object.
+
+For ArticleTitle, first I got the ArticleTitle elements by .getElementByTagName(). If ArticleTitle is not empty, loop through childnodes of all the elements, and save the text message into Title. If AttributeError was reported, checked if the next childnode is a text node, and also saved the data of next childnode into Title.
+
+AbstractText and Mesh are same as above.
+
+Set the dictionary key as PubmedId, dictionary values include each paper's title, abstract, MeSH terms and query.
+
+4) Ran the function pull_metadata(), and saved metadata of Alzheimer's into dictionary all_data, saved metadata of cancers into dictionary cancer_data. Then I used .update() to update the dictionary all_data, so that data from both Alzheimer's and cancer are saved into all_data. Ran the function overlap_in_two_papers(), to find the overlap in the two sets of papers. Changed the query of this overlap into 'Alzheimer's', 'cancer'. Finally the dictionary all_data was saved into a JSON file paper.json.
 
 #### >> Question answer: 
 
 1) There is a overlap in the two sets of papers that I identified, the pubmed id is 32501203.
 
+2) In order to save all the AbstractText fields of some papers, when looping through childnodes of all the elements, if there is a AttributeError(which suggest there is a childnode of the childnode), I would use try/except AttributeError and save the data of the childnode of the childnode into Abstract, concatenate with other data with a space in between.
 
+In this way, I could save all the data when a paper has multiple AbstractText fields. But the running time and memory cost inevitably increase, since for cases that AttributeError happens, I have to save the data of a childnode of the childnode.
 
-
-
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise1/code-to-get-AbstractText.jpg" style="zoom:300%;" />
 
 
 
@@ -108,9 +119,15 @@ The 10 most common MeSH terms for the cancer papers are: Humans; Female; Male; M
 
 Findings from the table: 
 
-1) The most popular MeSH term is "Humans": As one of the top 5 MeSH terms from both Alzheimer's and cancer papers, 922 of the papaers has this MeSH term.
+(1) The most popular MeSH term is "Humans": As one of the top 5 MeSH terms from both Alzheimer's and cancer papers, 922 of the papaers has this MeSH term.
 
-2) While on the contrary, among all the top 5 MeSH terms from both Alzheimer's and cancer papers, "Female" remain to be the least popular: 109 of the papers has this MeSH term.
+(2) While on the contrary, among all the top 5 MeSH terms from both Alzheimer's and cancer papers, "Female" remain to be the least popular: 109 of the papers has this MeSH term.
+
+(3) According to top 5 MeSH terms in Alzheimer's or cancer papers: Aged people are more likely to have Alzheimer's, while both middle aged and aged people are more likely to have cancers. Compared with female(appears in 109 of papers), male are more likely to have Alzheimer's and cancers(appears in 413 of papers).
+
+(4) From my perspective, although table could show the exact count of papers having both the matching MeSH terms, it is not a good choice for visualization. If using the network/sankey diagrams, I could get a better understanding of how various MeSH terms relate to each other.
+
+
 
 ## Exercise 3
 
@@ -145,12 +162,27 @@ Repeat the above using LDA instead of PCA. In your commentary, be sure to compar
 
 #### >> Code explanation: 
 
-
+1) 
 
 
 #### >> Question answer:
 
-1)
+1) By labeling the PCA/LDA result with queries from the JSON file generated before, I could keep track of sources of papers, i.e, which paper came from searching for Alzheimers, which came from searching for cancer.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/code-to-keep-track-on-papers.jpg" style="zoom:300%;" />
+
+2) 2D scatter plots for PC0 vs PC1, PC0 vs PC2, and PC1 vs PC2 are as follows, colored by the search query: 'Alzheimers', 'cancer', 'Alzheimers and cancer'.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-PCA.jpg" style="zoom:300%;" />
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC2-using-PCA.jpg" style="zoom:300%;" />
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC1-PC2-using-PCA.jpg" style="zoom:300%;" />
+
+Among these three figures, PC0 vs PC1, PC0 vs PC2 show more obvious separation between different queries('Alzheimers', 'cancer', 'Alzheimers and cancer'). While PC1 vs PC2 cannot separate different queries. Note that the overlap(green) could be seen from PC0 vs PC1. 
+
+3) Since 
+
 
 
 #### >> Testing process:
@@ -209,11 +241,11 @@ From my perspective, these missing values are MAR, since there is a correlation 
 
 ## Data source
 
-Data of exercise1 comes from [hw2-patients.xml](https://yale.instructure.com/courses/70314/files/5401025/download?download_frd=1).
+Data of exercise1-3 comes from [Entrez programming utilities](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
 
-Data of exercise2 comes from [the latest Human Reference Genome(GRCh38.p13)](https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.28_GRCh38.p13/GCA_000001405.28_GRCh38.p13_genomic.fna.gz).
+In exercise3, I also used [SPECTER](https://github.com/allenai/specter), [pytorch](https://pytorch.org/get-started/locally/), [transformers](https://huggingface.co/) and [sklearn](https://scikit-learn.org/stable/index.html).
 
-Data of exercise4 comes from [2020 BRFSS Data (SAS Transport Format)](https://www.cdc.gov/brfss/annual_data/2020/files/LLCP2020XPT.zip).
+Data of exercise5 comes from [2020 BRFSS Data (SAS Transport Format)](https://www.cdc.gov/brfss/annual_data/2020/files/LLCP2020XPT.zip).
 
 
 
