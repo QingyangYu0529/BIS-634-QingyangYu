@@ -125,7 +125,10 @@ Findings from the table:
 
 (3) According to top 5 MeSH terms in Alzheimer's or cancer papers: Aged people are more likely to have Alzheimer's, while both middle aged and aged people are more likely to have cancers. Compared with female(appears in 109 of papers), male are more likely to have Alzheimer's and cancers(appears in 413 of papers).
 
-(4) From my perspective, although table could show the exact count of papers having both the matching MeSH terms, it is not a good choice for visualization. If using the network/sankey diagrams, I could get a better understanding of how various MeSH terms relate to each other.
+Limitations from the table:
+For all the top 5 Mesh terms in Alzheimer's or cancer papers, they are too general to describe a specific disease: 4 out of 5 Mesh terms are same regardless of disease.
+
+From my perspective, although table could show the exact count of papers having both the matching MeSH terms, it is not a good choice for visualization. If using the network/sankey diagrams, I could get a better understanding of how various MeSH terms relate to each other.
 
 
 
@@ -181,8 +184,17 @@ Repeat the above using LDA instead of PCA. In your commentary, be sure to compar
 
 Among these three figures, PC0 vs PC1, PC0 vs PC2 show more obvious separation between different queries('Alzheimers', 'cancer', 'Alzheimers and cancer'). While PC1 vs PC2 cannot separate different queries. Note that the overlap(green) could be seen from PC0 vs PC1. 
 
-3) Since 
 
+3) For sklearn of LDA, the number of components n_components is the minimum of [number of classes - 1 and number of features]. Since I want the n_component to be at least 2, n_classes should be at least 3. That is why I chose to separate my data into three classes: For Alzheimer's, target value y = 0, for Alzheimer's and cancer, target value y = 1, for cancer, target value y = 2.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-LDA.jpg" style="zoom:300%;" />
+
+
+Differences between LDA and PCA: The main goal of LDA is classification. It is aimed to find a low-dimensional direction and minimize the intra-class variance and maximize the inter-class variance after projection. LDA needs labels since it wants to evaluate the accuracy of classification. 
+
+While the main goal of PCA is dimension reduction.
+
+Both LDA and PCA could reduce dimension.
 
 
 #### >> Testing process:
