@@ -29,14 +29,14 @@ Note: To search for a disease and a publication year, structure the term like: 
 There are of course many more papers of each category, but is there any overlap in the two sets of papers that you identified? (3 points)
 Use the Entrez API via requests/urllib to pull the metadata for each such paper and save a JSON file storing each paper's title, abstract, MeSH terms (DescriptorName inside of MeshHeading), and the query that found it that is of the general form: (12 points)
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question1_1.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question1_1.jpg" style="zoom:150%;" />
 
 Here 32008517 is the PubMed ID of one of the 2000 papers, specifically one that came from searching for Alzheimer's papers. You should include the full AbstractText and list of MeSH terms; I'm abridging here for clarity.
 Hint: To do this, you'll probably want to look at one of the XML responses with a text editor so that you understand how it is structured.
 Hint: Some papers like 32008517 (Links to an external site.) have multiple AbstractText fields (e.g. when the abstract is structured). Be sure to store all parts. You could do this in many ways, from using a dictionary or a list or simply concatenating with a space in between. Discuss any pros or cons of your choice in your readme (1 point).
 Caution: the PubMed API allows a rate of at most one query at a time and no more than 3 per second unless you have an API key. To be safe, use 
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question1_2.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question1_2.jpg" style="zoom:150%;" />
 
 after each query to the PubMed API. 
 Note: This doesn't require 2002 separate queries. You can get the metadata for many articles at a time by using a comma separated list of ids. While GET queries have a total line length limit, you could use a POST query instead and get the information for all the papers in one pass. (We can use POST instead of GET here in part because this is not a RESTful API.)
@@ -72,7 +72,7 @@ Set the dictionary key as PubmedId, dictionary values include each paper's title
 
 In this way, I could save all the data when a paper has multiple AbstractText fields. But the running time and memory cost inevitably increase, since for cases that AttributeError happens, I have to save the data of a childnode of the childnode.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise1/code-to-get-AbstractText.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise1/code-to-get-AbstractText.jpg" style="zoom:150%;" />
 
 
 
@@ -107,15 +107,15 @@ The fraction of cancer papers have no MeSH terms is much more than that of Alzhe
 
 2) The 10 most common MeSH terms for the Alzheimer's papers are: Humans; Alzheimer Disease; Male; Female; Aged; Animals; Amyloid beta-Peptides; Brain; Aged, 80 and over; Cognitive Dysfunction.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/10-most-common-MeSH-terms-for-Alzheimer's-papers.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/10-most-common-MeSH-terms-for-Alzheimer's-papers.jpg" style="zoom:150%;" />
 
 The 10 most common MeSH terms for the cancer papers are: Humans; Female; Male; Middle Aged; Aged; Adult; Animals; Neoplasms; Retrospective Studies; Aged, 80 and over.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/10-most-common-MeSH-terms-for-cancer-papers.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/10-most-common-MeSH-terms-for-cancer-papers.jpg" style="zoom:150%;" />
 
 3) The table with rows(top 5 MeSH terms from Alzheimer's query) and columns(top 5 MeSH terms from cancer query) is as below, values in the table are the counts of papers having both the matching MeSH terms.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/table-for-5-most-common-MeSH-terms-for-Alzheimer's-or-cancer.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/table-for-5-most-common-MeSH-terms-for-Alzheimer's-or-cancer.jpg" style="zoom:150%;" />
 
 Findings from the table: 
 
@@ -143,21 +143,21 @@ Install the huggingface transformers module: [pip install transformers](https:/
 provides access to a number of pre-trained NLP language models.)
 Have your code load the SPECTER model (the first time you do this, it will take a bit to download the model; it will be stored locally for fast reuse later):
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_1.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_1.jpg" style="zoom:150%;" />
 
 Process your dictionary of papers:
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_2.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_2.jpg" style="zoom:150%;" />
 
 At this point, embeddings[i] is the 768-dim vector for the ith paper.
 Apply principal component analysis (PCA) to identify the first three principal components. (5 points) I suggest using the sklearn module, e.g.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_3.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_3.jpg" style="zoom:150%;" />
 
 Plot 2D scatter plots for PC0 vs PC1, PC0 vs PC2, and PC1 vs PC2; color code these by the search query used (Alzheimers vs cancer). (3 points) Comment on the separation or lack thereof, and any take-aways from that. (2 points)
 Repeat the above using LDA instead of PCA. In your commentary, be sure to compare PCA vs LDA. (10 points)
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_4.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-homework-question/homework3_question3_4.jpg" style="zoom:150%;" />
 
 
 ### Solution
@@ -172,22 +172,22 @@ Repeat the above using LDA instead of PCA. In your commentary, be sure to compar
 
 1) By labeling the PCA/LDA result with queries from the JSON file generated before, I could keep track of sources of papers, i.e, which paper came from searching for Alzheimers, which came from searching for cancer.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/code-to-keep-track-on-papers.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/code-to-keep-track-on-papers.jpg" style="zoom:150%;" />
 
 2) 2D scatter plots for PC0 vs PC1, PC0 vs PC2, and PC1 vs PC2 are as follows, colored by the search query: 'Alzheimers', 'cancer', 'Alzheimers and cancer'.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-PCA.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-PCA.jpg" style="zoom:150%;" />
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC2-using-PCA.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC2-using-PCA.jpg" style="zoom:150%;" />
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC1-PC2-using-PCA.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC1-PC2-using-PCA.jpg" style="zoom:150%;" />
 
 Among these three figures, PC0 vs PC1, PC0 vs PC2 show more obvious separation between different queries('Alzheimers', 'cancer', 'Alzheimers and cancer'). While PC1 vs PC2 cannot separate different queries. Note that the overlap(green) could be seen from PC0 vs PC1. 
 
 
 3) For sklearn of LDA, the number of components n_components is the minimum of [number of classes - 1 and number of features]. Since I want the n_component to be at least 2, n_classes should be at least 3. That is why I chose to separate my data into three classes: For Alzheimer's, target value y = 0, for Alzheimer's and cancer, target value y = 1, for cancer, target value y = 2.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-LDA.jpg" style="zoom:300%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-LDA.jpg" style="zoom:150%;" />
 
 
 Differences between LDA and PCA: The main goal of LDA is classification. It is aimed to find a low-dimensional direction and minimize the intra-class variance and maximize the inter-class variance after projection. LDA needs labels since it wants to evaluate the accuracy of classification. 
