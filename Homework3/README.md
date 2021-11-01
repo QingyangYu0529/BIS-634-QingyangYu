@@ -175,8 +175,18 @@ Repeat the above using LDA instead of PCA. In your commentary, be sure to compar
 #### >> Code explanation: 
 
 Imported AutoTokenizer, AutoModel, and loaded model and tokenizer.
-Also imported json, and load the file paper.json into dictionary all_data.
-1) 
+Imported json, and load the file paper.json into dictionary all_data.
+Imported pandas and sklearn.
+
+1) I used the code provided in the exercise 3 as references.
+For each paper, take the first token in the batch as the embedding. Then principal component analysis was applied to identify the first three principal components PC0, PC1, PC2. 
+
+Imported library plotnine to draw the scatterplot between PC0 and PC1,PC0 and PC2, PC1 and PC2. Legends are three queries: Alzheimers, Alzheimers or cancer(outlier), cancer.
+
+2) Imported classifier LinearDiscriminantAnalysis and library numpy.
+First I created a one-dimensional vector y as target values: If query was Alzheimer's, y = 0; if query was Alzheimer's and cancer, y = 1; if query was cancer, y = 2. Then linear discriminant analysis was applied to identify the first two principal components PC0 and PC1.
+
+Used library plotnine to draw the scatterplot between PC0 and PC1.
 
 
 #### >> Question answer:
@@ -193,7 +203,7 @@ Also imported json, and load the file paper.json into dictionary all_data.
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC1-PC2-using-PCA.jpg" style="zoom:150%;" />
 
-Among these three figures, PC0 vs PC1, PC0 vs PC2 show more obvious separation between different queries('Alzheimers', 'cancer', 'Alzheimers and cancer'). While PC1 vs PC2 cannot separate different queries. Note that the overlap(green) could be seen from PC0 vs PC1. 
+Among these three figures, PC0 vs PC1, PC0 vs PC2 show more obvious separation between different queries('Alzheimers', 'cancer', 'Alzheimers and cancer'). While PC1 vs PC2 cannot separate different queries. Note that the overlap(showed in green) could be seen from PC0 vs PC1. 
 
 
 3) For sklearn of LDA, the number of components n_components is the minimum of [number of classes - 1 and number of features]. Since I want the n_component to be at least 2, n_classes should be at least 3. That is why I chose to separate my data into three classes: For Alzheimer's, target value y = 0, for Alzheimer's and cancer, target value y = 1, for cancer, target value y = 2.
@@ -201,9 +211,9 @@ Among these three figures, PC0 vs PC1, PC0 vs PC2 show more obvious separation b
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-LDA.jpg" style="zoom:150%;" />
 
 
-Differences between LDA and PCA: The main goal of LDA is classification. It is aimed to find a low-dimensional direction and minimize the intra-class variance and maximize the inter-class variance after projection. LDA needs labels since it wants to evaluate the accuracy of classification. 
+Differences between LDA and PCA: The main goal of LDA is classification. It is aimed to find a low-dimensional direction and minimize variance within each projected class and maximize variance between different projected classes. LDA needs labels since it wants to evaluate the accuracy of classification. 
 
-While the main goal of PCA is dimension reduction.
+While the main goal of PCA is dimension reduction. It is aimed to maximize variance within each projected class.
 
 Both LDA and PCA could reduce dimension.
 
