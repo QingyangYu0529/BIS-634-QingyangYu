@@ -48,7 +48,16 @@ Note: BioPython provides functions for accessing the PubMed API. Do not use them
 
 #### >> Code explanation
 
+```python
+import requests
+import xml.dom.minidom as m
+import time
+import json
+```
+
 Imported module minidom and libraries requests, time, json.
+
+
 
 1) Function get_id_of_disease() was defined to return the PubmedId list of a specific disease. First I used requests.get() to send a GET request to the specified url and returned a response object: search term is Alzheimers/cancer+AND+2019[pdat], retmode is xml, retmax = 1000. Then used minidom to parse strings of text from the response object, and got the Id elements by .getElementsByTagName(), saved into the list PubmedId. List IdList was created to save all the PubmedId. Finally I used for loop to get all the data of the elements' firstchild, and saved into the list IdList.
 
