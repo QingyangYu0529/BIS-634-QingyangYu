@@ -248,10 +248,6 @@ To compare the speedup, I would randomly generate n=10, 100, 1000, 10000, 100000
 
 
 
-
-
-
-
 ## Exercise 5
 
 ### Question
