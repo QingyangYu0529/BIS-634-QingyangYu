@@ -46,7 +46,7 @@ Note: BioPython provides functions for accessing the PubMed API. Do not use them
 
 ### Solution
 
-#### >> Code explanation: 
+#### >> Code explanation
 
 Imported module minidom and libraries requests, time, json.
 
@@ -64,7 +64,8 @@ Set the dictionary key as PubmedId, dictionary values include each paper's title
 
 4) Ran the function pull_metadata(), and saved metadata of Alzheimer's into dictionary all_data, saved metadata of cancers into dictionary cancer_data. Then I used .update() to update the dictionary all_data, so that data from both Alzheimer's and cancer are saved into all_data. Ran the function overlap_in_two_papers(), to find the overlap in the two sets of papers. Changed the query of this overlap into 'Alzheimer's', 'cancer'. Finally the dictionary all_data was saved into a JSON file paper.json.
 
-#### >> Question answer: 
+
+#### >> Question answer
 
 1) There is a overlap in the two sets of papers that I identified, the pubmed id is 32501203.
 
@@ -75,6 +76,9 @@ In this way, I could save all the data when a paper has multiple AbstractText fi
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise1/code-to-get-AbstractText.jpg" style="zoom:150%;" />
 
 
+#### >> Testing
+
+As it was mentioned in the HW#3, I manually checked some papers that have multiple AbstractText fields.
 
 
 ## Exercise 2
@@ -90,7 +94,7 @@ Make a labeled table with rows for each of the top 5 MeSH terms from the Alzheim
 
 ### Solution
 
-#### >> Code explanation: 
+#### >> Code explanation
 
 Imported libarary json.
 
@@ -107,7 +111,7 @@ Imported libraries matplotlib and pandas to draw the bar charts.
 Extracted only the counts, saved into the list table_content. Then split table_content into sublists in group of five. Dataframe df_table was created, in which the column name is top 5 MeSH terms of Alzheimer's. Data inside are the counts of papers having both the matching MeSH terms. Table was plotted using matplotlib.
 
 
-#### >> Question answer: 
+#### >> Question answer
 
 1) The number of Alzheimer's papers that have no MeSH terms is 164, which is 16% of total Alzheimer's papers.
 The number of cancer papers that have no MeSH terms is 758, which is 76% of total cancer papers.
@@ -172,7 +176,7 @@ Repeat the above using LDA instead of PCA. In your commentary, be sure to compar
 ### Solution
 
 
-#### >> Code explanation: 
+#### >> Code explanation
 
 Imported AutoTokenizer, AutoModel, and loaded model and tokenizer.
 Imported json, and load the file paper.json into dictionary all_data.
@@ -189,7 +193,7 @@ First I created a one-dimensional vector y as target values: If query was Alzhei
 Used library plotnine to draw the scatterplot between PC0 and PC1.
 
 
-#### >> Question answer:
+#### >> Question answer
 
 1) By labeling the PCA/LDA result with queries from the JSON file generated before, I could keep track of sources of papers, i.e, which paper came from searching for Alzheimers, which came from searching for cancer.
 
@@ -230,7 +234,7 @@ Extra credit: Use the multiprocessing module to implement a 2 process parallel 
 
 
 
-#### >> Question answer: 
+#### >> Question answer
 
 How to parallelize the merge sort algorithm:
 
@@ -258,7 +262,7 @@ Identify any data cleaning needs and write code to perform them. If the data doe
 
 
 
-#### >> Code explanation: 
+#### >> Code explanation
 
 Imported libraries pandas and matplotlib. The BRFSS dataset and other corresponding datasets(state_FIPS, income_value, education_value, which are used for data processing) were loaded. 
 
@@ -271,7 +275,7 @@ Same for variable sex(_SEX), income(_INCOMG) and education level(_EDUCAG').
 2) To do the data cleaning, first I checked whether there are duplicates in the dataset data_2020. Then I counted the missing values of each column in the dataset, and saved into the dataframe data_2020_missing. In data_2020_missing, only kept the variables that count_missing_values > 1000. Then I cleaned the dataset data_2020, so that it only contains variables that have < 1000 missing values (i.e., drop the entire field if there are > 1000 missing values in this field).
 
 
-#### >> Question answer: 
+#### >> Question answer
 
 1) 
 
