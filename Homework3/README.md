@@ -230,13 +230,12 @@ Extra credit: Use the multiprocessing module to implement a 2 process parallel 
 
 
 
-#### >> Code explanation: 
-
-
 #### >> Question answer: 
 
 
-#### >> Testing process:
+
+
+
 
 
 
@@ -253,28 +252,56 @@ Identify any data cleaning needs and write code to perform them. If the data doe
 
 #### >> Code explanation: 
 
+Imported libraries pandas and matplotlib. The BRFSS dataset and other corresponding datasets(state_FIPS, income_value, education_value, which are used for data processing) were loaded. 
+
+1) In order to explore the state data('_STATE'), first I replaced the _STATE column based on STATE_NAME, FIPS CODE from another dataframe state_FIPS. Then I counted the frequencies of each state using value_counts(), and saved into the dataframe df_state_frequency.
+
+I used matplotlib to draw the bar charts of participants' states. The figure size, x/y label names, x/y sticks, figure title were set.
+
+Same for variable sex(_SEX), income(_INCOMG) and education level(_EDUCAG').
+
+2) To do the data cleaning, first I checked whether there are duplicates in the dataset data_2020. Then I counted the missing values of each column in the dataset, and saved into the dataframe data_2020_missing. In data_2020_missing, only kept the variables that count_missing_values > 1000. Then I cleaned the dataset data_2020, so that it only contains variables that have < 1000 missing values (i.e., drop the entire field if there are > 1000 missing values in this field).
+
 
 #### >> Question answer: 
-1)
+
+1) 
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise5/barplot-of-participant-sex-frequency.jpg" style="zoom:150%;" />
+
+>> From the barplot of participants' sex, we could see that among participants in the Behavioral Risk Factor Surveillance System (BRFSS), there are more females than males(1.185:1). In addition, BRFSS has collected sex data of all participants since there is no missing values.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise5/barplot-of-participant-state-frequency.jpg" style="zoom:150%;" />
+
+>> From the barplot of participants' state, we could see that among participants in the BRFSS, most people are from states such as Minnesota, Nebraska, New York, Ohio, and Maryland. This might cause selection bias since some most populated states(California, Texas, Florida, Pennsylvania) have fewer participants. This study was not conducted by using proportional sampling of state population.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise5/barplot-of-participant-income-frequency.jpg" style="zoom:150%;" />
+
+>> From the barplot of participants' income, we could see that among participants in the BRFSS, most people's annual household income are over $50,000. However, there are a large proportion of participants(n = 80057) who did not report their annual income, which could also cause bias to the study results.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise5/barplot-of-participant-educationlevel-frequency.jpg" style="zoom:150%;" />
+
+>> From the barplot of participants' education level, we could see that among participants in the BRFSS, most people are college/technical school graduated(n = 155340), college/technical school attended(n = 111387) and high school graduated(n = 107096). Since there are fewer missing values(n = 1887), the data seems to be reliable and could be used for further analysis.
 
 
 2) Yes, there are missing values in my data. I used isnull().sum() to count the number of(or quantify) missing values in each column. 
 
 From my perspective, these missing values are MAR, since there is a correlation between the ages of population and missing values: Most of the missing values come from columns _CLNSCPY, _SGMSCPY, _SGMS10Y, _RFBLDS4, _STOLDNA, _VIRCOLN, _SBONTIM, _CRCREC1. According to the codebook, these variables are data target at respondents aged 50-75, e.g., _STOLDNA refers to respondents aged 50-75 who have had a stool DNA test within the past three years. For people whose age are not in the range of 50 to 75, these columns are filled with missing values.
 
+3) I checked whether there are duplicates in the dataset(the answer is no). The strategy I used for missing values was to drop the entire field(column) if there are over 1000 missing values in this field.
 
-
-#### >> Testing process:
 
 
 
 ## Data source
 
-Data of exercise1-3 comes from [Entrez programming utilities](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
+Data of exercise 1-3 comes from [Entrez programming utilities](https://www.ncbi.nlm.nih.gov/books/NBK25500/).
 
-In exercise3, I also used [SPECTER](https://github.com/allenai/specter), [pytorch](https://pytorch.org/get-started/locally/), [transformers](https://huggingface.co/) and [sklearn](https://scikit-learn.org/stable/index.html).
+In exercise 3, I also used [SPECTER](https://github.com/allenai/specter), [pytorch](https://pytorch.org/get-started/locally/), [transformers](https://huggingface.co/) and [sklearn](https://scikit-learn.org/stable/index.html).
 
-Data of exercise5 comes from [2020 BRFSS Data (SAS Transport Format)](https://www.cdc.gov/brfss/annual_data/2020/files/LLCP2020XPT.zip).
+Data of exercise 5 comes from [2020 BRFSS Data (SAS Transport Format)](https://www.cdc.gov/brfss/annual_data/2020/files/LLCP2020XPT.zip).
+
+Unfortunately, the dataset is too large to be uploaded(307Mb).
 
 
 
