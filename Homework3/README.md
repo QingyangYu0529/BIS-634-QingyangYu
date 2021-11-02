@@ -116,7 +116,7 @@ The fraction of cancer papers have no MeSH terms is much more than that of Alzhe
 
 2) The 10 most common MeSH terms for the Alzheimer's papers are: Humans; Alzheimer Disease; Male; Female; Aged; Animals; Amyloid beta-Peptides; Brain; Aged, 80 and over; Cognitive Dysfunction.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/10-most-common-MeSH-terms-for-Alzheimer's-papers.jpg" style="zoom:250%" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/10-most-common-MeSH-terms-for-Alzheimer's-papers.jpg" style="zoom:150%;" />
 
 The 10 most common MeSH terms for the cancer papers are: Humans; Female; Male; Middle Aged; Aged; Adult; Animals; Neoplasms; Retrospective Studies; Aged, 80 and over.
 
@@ -232,6 +232,18 @@ Extra credit: Use the multiprocessing module to implement a 2 process parallel 
 
 #### >> Question answer: 
 
+How to parallelize the merge sort algorithm:
+
+Merge sort uses the idea of recursion. After the left and right part of a unsorted list become sorted sublists, the two sublists are merged into a sorted list.
+
+Since the processing of the left and right part does not use the same critical resource, I could parallelize the processing of left and right parts. After parallelization, use join() method before merging to ensure the left and right sublists are in order. 
+
+
+How to validate the result and speedup:
+
+I would compare the sorted result with normal merge sort, to see whether the parallelized one could get a right answer. 
+
+To compare the speedup, I would randomly generate n=10, 100, 1000, 10000, 100000, 100000, 200000, 300000, 400000, 500000 numbers. Run normal merge sort and parallelized merge sort separately, use time.time() to record the running time. Finally I would draw line graph(x-axis: number of unsorted numbers, y-axis: corresponding running time) and calculate speedup ratio to compare the speedup result.
 
 
 
