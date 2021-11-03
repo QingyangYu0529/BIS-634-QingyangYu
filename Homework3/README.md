@@ -6,7 +6,7 @@ This readme file contains:
 
 1)Instructions that are necessary for running scripts under this folder.
 
-2)Answers to each question asked in the exercises 1-4.
+2)Answers to each question asked in the exercises 1-5.
 
 3)How I proved my code was correct using different tests.
 
