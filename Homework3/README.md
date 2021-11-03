@@ -199,7 +199,7 @@ with open('paper.json','a') as f:
     json.dump(all_data,f)
 ```
 
-4) Ran the function pull_metadata(), and saved metadata of Alzheimer's into dictionary all_data, saved metadata of cancers into dictionary cancer_data. Then I used .update() to update the dictionary all_data, so that data from both Alzheimer's and cancer are saved into all_data. Ran the function overlap_in_two_papers(), to find the overlap in the two sets of papers. Changed the query of this overlap into 'Alzheimer's', 'cancer'. Finally the dictionary all_data was saved into a JSON file paper.json.
+4) Ran the function pull_metadata(), and saved metadata of Alzheimer's into dictionary all_data, saved metadata of cancers into dictionary cancer_data. Then I used .update() to update the dictionary all_data, so that data from both Alzheimer's and cancer are saved into all_data. Ran the function overlap_in_two_papers(), to find the overlap in the two sets of papers. Changed the query of this overlap into 'Alzheimer's', 'cancer'. Finally the dictionary all_data was saved into a JSON file paper.json(in the 'Files' folder).
 
 
 #### >> Question answer
@@ -208,14 +208,54 @@ with open('paper.json','a') as f:
 
 2) In order to save all the AbstractText fields of some papers, when looping through childnodes of all the elements, if there is a AttributeError(which suggest there is a childnode of the childnode), I would use try/except AttributeError and save the data of the childnode of the childnode into Abstract, concatenate with other data with a space in between.
 
-In this way, I could save all the data when a paper has multiple AbstractText fields. But the running time and memory cost inevitably increase, since for cases that AttributeError happens, I have to save the data of a childnode of the childnode.
+Advantages: In this way, I could save all the data when a paper has multiple AbstractText fields. 
+
+Disadvantages: However, the running time and memory cost inevitably increase, since for cases that AttributeError happens, I have to save the data of a childnode of the childnode. Also, I did not save the information of AbstractText Label(e.g., BACKGROUND, METHODS, RESULTS, CONCLUSION), this might cause information loss.
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise1/code-to-get-AbstractText.jpg" style="zoom:150%;" />
 
 
 #### >> Testing
 
-As it was mentioned in the HW#3, I manually checked some papers that have multiple AbstractText fields.
+```python
+# import library random.
+import random as rd
+# read JSON file using the open function.
+with open('paper.json') as f:
+    all_data = json.load(f)
+
+# separate data into alzheimer's data(alz_data) and cancer's data(cancer_data) based on content in the Query.
+alz_data = {PubmedId: data for PubmedId, data in all_data.items()
+            if data["Query"] == "Alzheimers" or data["Query"] == ['Alzheimers','cancer']}
+cancer_data = {PubmedId: data for PubmedId, data in all_data.items()
+            if data["Query"] == "cancer" or data["Query"] == ['Alzheimers','cancer']}
+
+# function random_sample_for_testing() was defined to randomly select n elements from the dictionaries alz_data and cancer_data, and return the metadata of these elements(in JSON file format).
+def random_sample_for_testing(dictionary, n):
+    random_sample_dic = {}
+    for key in rd.sample(list(dictionary.keys()), n):
+        random_sample_dic[key] = dictionary[key]
+    return random_sample_dic
+
+# merge the two dictionaries.
+random_total_sample = random_sample_for_testing(alz_data,5)
+random_cancer_sample = random_sample_for_testing(cancer_data,5)
+random_total_sample.update(random_cancer_sample)
+
+# save into JSON file paper_random_sample.json.
+with open('paper_random_sample.json','a') as f:
+    json.dump(random_total_sample,f)
+```
+
+To test the results in exercise 1(to prove the validity of pull_metadata()), I randomly select n elements from the dictionaries alz_data and cancer_data, and return the metadata of these elements. Then merged the two dictionaries and saved into JSON file paper_random_sample.json(in the 'Files' folder). Then I manually checked the results by one by one comparing contents in the JSON file and contents in the XML file.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise1/examples-with-multiple-AbstractText-fields.jpg" style="zoom:150%;" />
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise1/XML-file.jpg" style="zoom:150%;" />
+
+For papers that have multiple AbstractText parts(e.g., PubmedId = 31765915, 32490210), by using pull_metadata() function, all parts were successfully stored in the JSON file.
+
+
 
 
 ## Exercise 2
@@ -286,20 +326,20 @@ print (f"The number of cancer papers that have no MeSH terms is {cancer_count_no
 # import module Counter.
 from collections import Counter
 # function most_common_Mesh() was defined to find the 10 most common MeSH terms of a specific disease when a list is entered.
-def most_common_Mesh(List,disease):
+def most_common_Mesh(List,disease,n):
     # a Counter is a collection where elements are stored as dictionary keys, and the key’s counts are stored as dictionary values.
     Mesh_count = Counter(List)
-    # use the most_common() of Counter to find the most common elements of a list in python, save into the tuple top_10_Mesh.
-    top_10_Mesh = Mesh_count.most_common(10)
+    # use the most_common() of Counter to find the most common elements of a list in python, save into the tuple top_n_Mesh.
+    top_n_Mesh = Mesh_count.most_common(n)
     # reference: https://stackoverflow.com/questions/7558908/unpacking-a-list-tuple-of-pairs-into-two-lists-tuples
-    # separate tuple top_10_Mesh into two lists top_10_Mesh_term, top_10_Mesh_frequency.
-    top_10_Mesh_term, top_10_Mesh_frequency = list(zip(*top_10_Mesh))
-    print(f"The 10 most common MeSH terms for the {disease} papers are: ")
-    print(*top_10_Mesh_term, sep = '; ')
-    return top_10_Mesh
+    # separate tuple top_n_Mesh into two lists top_n_Mesh_term, top_n_Mesh_frequency.
+    top_n_Mesh_term, top_n_Mesh_frequency = list(zip(*top_n_Mesh))
+    print(f"The {n} most common MeSH terms for the {disease} papers are: ")
+    print(*top_n_Mesh_term, sep = '; ')
+    return top_n_Mesh
 ```
 
-2) Imported module Counter. A Counter is a collection where elements are stored as dictionary keys, and the key’s counts are stored as dictionary values. Function most_common_Mesh() was defined to find the 10 most common MeSH terms of a specific disease when a list is entered. I used the most_common() of Counter to find the most common elements of a list in python, and saved into the tuple top_10_Mesh. Then separated tuple top_10_Mesh into two lists top_10_Mesh_term, top_10_Mesh_frequency.
+2) Imported module Counter. A Counter is a collection where elements are stored as dictionary keys, and the key’s counts are stored as dictionary values. Function most_common_Mesh() was defined to find the n most common MeSH terms of a specific disease when a list is entered. I used the most_common() of Counter to find the most common elements of a list in python, and saved into the tuple top_n_Mesh. Then separated tuple top_n_Mesh into two lists top_n_Mesh_term, top_n_Mesh_frequency.
 
 ```python
 # generate list alz_Mesh, to save all the MeSH terms of Alzheimer's.
@@ -421,6 +461,7 @@ table.scale(5,5)
 Table was plotted using matplotlib.
 
 
+
 #### >> Question answer
 
 1) The number of Alzheimer's papers that have no MeSH terms is 164, which is 16% of total Alzheimer's papers.
@@ -452,6 +493,55 @@ Limitations from the table:
 For all the top 5 Mesh terms in Alzheimer's or cancer papers, they are too general to describe a specific disease: 4 out of 5 Mesh terms are same regardless of disease.
 
 From my perspective, although table could show the exact count of papers having both the matching MeSH terms, it is not a good choice for visualization. If using the network/sankey diagrams, I could get a better understanding of how various MeSH terms relate to each other.
+
+
+
+#### >> Testing
+
+To test the results in exercise 2(to prove the validity of function most_common_Mesh()), I used the JSON file paper_random_sample.json(in the 'Files' folder) generated in the exercise 1, which contains metadata of randomly selected elements from the dictionaries alz_data and cancer_data.
+
+```python
+# testing code.
+with open('paper_random_sample.json') as f:
+    random_sample_data = json.load(f)
+
+# separate data into sample_alz_data and sample_cancer_data.
+sample_alz_data = {PubmedId: data for PubmedId, data in random_sample_data.items()
+            if data["Query"] == "Alzheimers" or data["Query"] == ['Alzheimers','cancer']}
+sample_cancer_data = {PubmedId: data for PubmedId, data in random_sample_data.items()
+            if data["Query"] == "cancer" or data["Query"] == ['Alzheimers','cancer']}
+```
+
+First, separated random_sample_data into sample_alz_data and sample_cancer_data.
+
+```python
+# use for loop to find all the Mesh terms in the dictionaries sample_alz_data and sample_cancer_data, save into the lists mesh_alz and mesh_cancer.
+mesh_alz = []
+mesh_cancer = []
+for key in sample_alz_data.keys():
+    mesh_alz.extend(sample_alz_data[key]["Mesh"])
+for key in sample_cancer_data.keys():
+    mesh_cancer.extend(sample_cancer_data[key]["Mesh"])
+print ("The MeSH terms of randomly selected Alzheimers' elements are")
+print (*mesh_alz, sep = '; ')
+print ("The MeSH terms of randomly selected cancer elements are") 
+print (*mesh_cancer, sep = '; ')
+
+```
+
+I used for loop to find all the Mesh terms in the dictionaries sample_alz_data and sample_cancer_data, results were saved into the lists mesh_alz and mesh_cancer.
+
+```python
+# run most_common_Mesh() function to find the 10 most common MeSH terms in sample_alz_data.
+top_5_Mesh_sampled_alz = most_common_Mesh(mesh_alz, 'Alzheimers',10)
+top_5_Mesh_sampled_alz
+
+# same for sample_cancer_data.
+top_5_Mesh_sampled_cancer = most_common_Mesh(mesh_cancer, 'cancer',10)
+top_5_Mesh_sampled_cancer
+```
+Then I run most_common_Mesh() function to find the 10 most common MeSH terms in sample_alz_data/sample_cancer_data. I manually checked the lists mesh_alz and mesh_cancer, it turns out that the results from top_5_Mesh_sampled_alz, top_5_Mesh_sampled_cancer are correct.
+
 
 
 
@@ -615,11 +705,11 @@ Among these three figures, PC0 vs PC1, PC0 vs PC2 show more obvious separation b
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise3/scatter-plot-for-PC0-PC1-using-LDA.jpg" style="zoom:150%;" />
 
 
-Differences between LDA and PCA: The main goal of LDA is classification. It is aimed to find a low-dimensional direction and minimize variance within each projected class and maximize variance between different projected classes. LDA needs labels since it wants to evaluate the accuracy of classification. 
+Differences between LDA and PCA: 
 
-While the main goal of PCA is dimension reduction. It is aimed to maximize variance within each projected class.
+The main goal of LDA is classification. It is aimed to maximize the separation of known categories(maximize variance between different projected classes). LDA needs labels since it wants to evaluate the accuracy of classification. 
 
-Both LDA and PCA could reduce dimension.
+For PCA, it is aimed to maximize variance within each projected class.
 
 
 
