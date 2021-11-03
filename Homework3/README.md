@@ -540,6 +540,13 @@ top_5_Mesh_sampled_alz
 top_5_Mesh_sampled_cancer = most_common_Mesh(mesh_cancer, 'cancer',10)
 top_5_Mesh_sampled_cancer
 ```
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/testing-result-1.jpg" style="zoom:150%;" />
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/testing-result-2.jpg" style="zoom:150%;" />
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework3/Figures-in-running-result/Exercise2/testing-result-3.jpg" style="zoom:150%;" />
+
 Then I run most_common_Mesh() function to find the 10 most common MeSH terms in sample_alz_data/sample_cancer_data. I manually checked the lists mesh_alz and mesh_cancer, it turns out that the results from top_5_Mesh_sampled_alz, top_5_Mesh_sampled_cancer are correct.
 
 
