@@ -107,13 +107,12 @@ When k = 5, the two adjacent continents (e.g. Asia and Australia, North America 
 
 When k = 7, Asia was more often to be split into two clusters, since it is the biggest continent.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise2/Asia-split-into-two-clusters.png" style="zoom:90%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise2/Asia-split-into-two-clusters1.png" style="zoom:90%;" />
+
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise2/Asia-split-into-two-clusters2.png" style="zoom:90%;" />
 
 >> k = 7, when Asia was split into two clusters.
-
-
-
-
 
 
 
