@@ -99,11 +99,11 @@ When k = 5, the two adjacent continents (e.g. Asia and Australia, North America 
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise2/North-America-and-South-America-merges.png" style="zoom:90%;" />
 
->> k = 5, when North America and South America merge together.
+> k = 5, when North America and South America merge together.
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise2/Asia-and-Australia-merges.png" style="zoom:90%;" />
 
->> k = 5, when Asia and Australia merge together.
+> k = 5, when Asia and Australia merge together.
 
 When k = 7, Asia was more often to be split into two clusters, since it is the biggest continent.
 
@@ -112,7 +112,7 @@ When k = 7, Asia was more often to be split into two clusters, since it is the b
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise2/Asia-split-into-two-clusters2.png" style="zoom:90%;" />
 
->> k = 7, when Asia was split into two clusters.
+> k = 7, when Asia was split into two clusters.
 
 
 
