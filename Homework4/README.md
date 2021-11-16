@@ -44,7 +44,23 @@ Important: a key part of this problem is the implementation of the algorithm; do
 
 #### >> Question answer
 
+1) Since I cannot directly compute any derivative because I don't know the details of error function f(a,b), I used the definition of derivative f'(x) = f(x + h) - f(x)/h to approximate the gradient as below:
 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise1/method-to-approximate-derivative.png" style="zoom:90%;" />
+
+Since △a, △b are both small increments, same as △h. In the codes, I set △a and △b as h = 1e-4.
+
+2) I set the learning rate gamma as 0.1, which is used to update parameters a and b, so that it could decrease in a rather slow speed.
+
+For the stopping criteria: 1.when the norm of gradient is smaller than a artificial threshold(I set as 1e-8, which is small enough). A2.when the for-loop reaches a maximum number of iterations (5000).
+
+I set the small increment h as 1e-4, same as slide 12, which is samll enough to be in the derivative formula.
+
+I set the initial guess value init_guess as a array, in which a = 0.1, b = 0.8(meet the requirements that they lie between 0 and 1). 
+
+3) I tried different combinations(a = 0.001, b = 0.999; a = 0.999, b = 0.001; a = 0.5, b = 0.5) of extreme values of a and b to find local and global minimums, values of other parameters remain the same.
+The local minimum is 1.100000005, when a = 0.21595000000038012, b = 0.6889500399996086.
+The global minimum is 1.000000015, when a = 0.7119500099998601, b = 0.16895000000010207.
 
 
 #### >> Testing
@@ -74,13 +90,94 @@ to use the Haversine metric and work with our dataset (5 points). Note: since th
 
 When I installed Basemap and tried to import it, there was an importerror: cannot import name 'dedent' from 'matplotlib.cbook'. I used codes to defind dedent [from this website](https://www.youtube.com/watch?v=MCl6qY7VqRM), then Basemap could work.
 
+```python
+loc_data = pd.read_csv("worldcities.csv")
+loc_data = loc_data[['lng', 'lat']]
+```
+
 1) First I extracted the column 'lng', 'lat' from the file "worldcities.csv".
 
+```python
+def centers(df, k):
+    pts = [np.array(pt) for pt in zip(df['lat'], df['lng'])]
+    centers = random.sample(pts, k)
+    old_cluster_ids, cluster_ids = None, [] # arbitrary but different
+    while cluster_ids != old_cluster_ids:
+        old_cluster_ids = list(cluster_ids)
+        cluster_ids = []
+        for pt in pts:
+            min_cluster = - 1
+            min_dist = float('inf')
+            for i, center in enumerate(centers):
+                # use Haversine function here.
+                dist = haversine(pt[1], pt[0], center[1], center[0])
+                if dist < min_dist:
+                    min_cluster = i
+                    min_dist = dist
+            cluster_ids.append(min_cluster)
+        df['cluster'] = cluster_ids
+        cluster_pts = [[pt for pt, cluster in zip(pts, cluster_ids) if cluster == match]
+                        for match in range(k)]
+        centers = [sum(pts)/len(pts) for pts in cluster_pts]
+        
+    return df['cluster']
+
+def haversine(lng1, lat1, lng2, lat2):
+    """
+    Calculate the great circle distance in kilometers between two points 
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians 
+    lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
+
+    # haversine formula 
+    dlng = lng2 - lng1 
+    dlat = lat2 - lat1 
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlng/2)**2
+    c = 2 * asin(sqrt(a)) 
+    r = 6371 # Radius of earth in kilometers. Use 3956 for miles. Determines return value units.
+    return c * r
+```
+
 2) Function centers() was used to find the cluster center by k-means clustering. In the function, I used Haversine formula to calculate the distance between two GPS points. The function continuouslly repeated until convergence, the coordinates of k centers were returned as result.
+
+```python
+def draw_figure(cluster,k):
+    plt.figure(figsize=(15,9))
+    map = Basemap(projection='robin', lat_0 = 0, lon_0 = 0, resolution = 'c')
+    # draw coastlines.
+    map.drawcoastlines()
+    # convert to map projection coordinates.
+    x, y = map(lngs, lats)
+    map.scatter(x, y, c = cluster, cmap = 'jet', s = 0.6, alpha = 0.3 )
+    map.drawmapboundary(fill_color='aqua')
+    plt.title(f"Distribution of world cities when k = {k}", color = 'white', fontsize = 15)
+    plt.show()
+
+def runtime(k):
+    times = []
+    start = time.time()
+    cluster = list(centers(loc_data,k))
+    end = time.time()
+    times.append(end - start)
+    print (f"The runtime when k = {k} is {times[0]} second.")
+    return cluster
+```
 
 3) Instead of simply making x = lng and y = lat, I used Robinson Projection, which is a common map projection of a world map, and convert my x and y values(original coordinates) to map projection coordinates.
 
 4) Function draw_figure() and runtime() were used to visualize results with color-coded scatterplots, and to record the runtime of k-means cluster.
+
+```python
+for count in range(10):
+    # set k = 5, 7 and 15. find the cluster center and draw the figures.
+    cluster_k5 = runtime(5)
+    draw_figure(cluster_k5,5)
+    cluster_k7 = runtime(7)
+    draw_figure(cluster_k7,7)
+    cluster_k15 = runtime(15)
+    draw_figure(cluster_k15,15)
+```
 
 5) I set k = 5, 7 and 15, and run 10 times for each k to see the results.
 
