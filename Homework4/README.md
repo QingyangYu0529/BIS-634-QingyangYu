@@ -271,7 +271,7 @@ In class, we discussed two different strategies for computing the Fibonacci sequ
 
 1) Choices of n:
 
-Since for f(n) that use common recursive strategy, the computing complexity is O(k^n), k ≈ 1.618, I set n = 40, and repeated function f(n) for 40 times.
+Since for f(n) that use common recursive strategy, the computing complexity is O(k^n), k ≈ 1.618, I set n = 40, and repeated function f(n) for 40 times(it took ~3 hours when n = 50)
 
 For f_lru(n) that use lru_cache() and recursive strategy, the computing complexity is O(1), I set n = 10000.
 
@@ -279,8 +279,15 @@ For f_lru(n) that use lru_cache() and recursive strategy, the computing complexi
 
 For figure of f(n) performance, I transformed both x and y axis to log10 scale for better visualization.
 
+For f_lru(n) performance, I displayed the original x and y axis, since computer reported almost all times as zero(or values close to zero, e.g. 2e-7)
+
 3) Differences between time.perf_counter() and time.time():
-Also I have noticed that if using different time method(time.perf_counter or time.time)
+Also I have noticed that if using different time method(time.perf_counter or time.time), figures showed differences.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise3/f(n)-performance-using-time.perf_counter.png" style="zoom:90%;" />
+
+f(n)-performance-using-time.perf_counter.png
+> when 
 
 
 
