@@ -286,8 +286,27 @@ Also I have noticed that if using different time method(time.perf_counter or tim
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise3/f(n)-performance-using-time.perf_counter.png" style="zoom:90%;" />
 
-f(n)-performance-using-time.perf_counter.png
-> when 
+> f(n) performance when using time.perf_counter, a smooth curve.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise3/f_lru(n)-performance-using-time.perf_counter.png" style="zoom:90%;" />
+
+> f_lru(n) performance when using time.perf_counter. For most of the cases, time cost was 1e-7 or 0 second. For some cases, time cost was 2e-7 second. All values were close to zero.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise3/f(n)-performance-using-time.time.png" style="zoom:90%;" />
+
+> f(n) performance when using time.time, a broken line.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise3/f_lru(n)-performance-using-time.time.png" style="zoom:90%;" />
+
+> f_lru(n) performance when using time.time. For all the cases, time cost were extremely close to zero.
+
+I guess the difference is because function time.time() and time.perf_counter() deal with a different type of time:
+
+time.perf_counter() deals with relative time, it is measured using a CPU counter and should only be used to measure time intervals, which is mostly used to compare performance of different algorithms.
+
+Since it uses a clock with the highest available resolution to measure a short duration, it is more precise. That is why in the second figure, not all time cost are exactly zero, many lie in 2e-7 or 1e-7.
+
+time.time() deals with absolute time, it is measured from a fixed point in the past.
 
 
 
