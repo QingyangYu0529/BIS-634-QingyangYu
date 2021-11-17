@@ -38,9 +38,46 @@ Important: a key part of this problem is the implementation of the algorithm; do
 
 #### >> Code explanation
 
+```python
+def dfda(a, b, h):
+    return (f(a + h,b) - f(a,b))/h
 
+def dfdb(a, b, h):
+    return (f(a,b + h) - f(a,b))/h
 
+def gradf(a, b, h):
+    return np.array([dfda(a, b, h), dfdb(a, b, h)]) 
+```
 
+Functions dfda(a,b,h), dfdb(a,b,h) were defined to retrun derivatives of f(a,b) with respect to a or b.
+Function gradf(a,b,h) would return a 2D vector, which contains dfda(a,b,h) and dfdb(a,b,h).
+
+```python
+def two_dimension_grad_descent(init_guess, gamma, h, threshold):
+    prev_guess = init_guess - 10 * threshold
+    guess = init_guess
+    
+    # save values of a, b and f(a,b) into lists.
+    guess_a = []
+    guess_b = []
+    f_result = []
+    iteration = 0
+ 
+    while norm(guess - prev_guess) > threshold and iteration < 5000:
+        prev_guess = guess
+        
+        guess = guess - gamma * gradf(guess[0], guess[1], h)
+        guess_a.append(guess[0])
+        guess_b.append(guess[1])
+        f_result.append(f(guess[0], guess[1]))
+        iteration = iteration + 1
+        
+    print (f"The minimum value {f_result[-1]} occurs when a = {guess_a[-1]}, b = {guess_b[-1]}.")
+
+```
+In function two_dimension_grad_descent(), the stopping criteria contains two parts: only when norm of gradient is big enough(bigger than a artificial threshold), or the number of iteration is smaller than the maximum value, the while loop will continue.
+
+Each time the parameters a and b were moved a little bit, in the direaction where f(a,b) decreases in a fastest speed.
 
 #### >> Question answer
 
@@ -50,22 +87,21 @@ Important: a key part of this problem is the implementation of the algorithm; do
 
 Since △a, △b are both small increments, same as △h. In the codes, I set △a and △b as h = 1e-4.
 
-2) I set the learning rate gamma as 0.1, which is used to update parameters a and b, so that it could decrease in a rather slow speed.
+2) I set the learning rate gamma as 0.1, which is used to update parameters a and b, so that it could decrease in a rather fast speed(since common learning rate are 0.01, 0.0001, 0.05, 0.1).
 
-For the stopping criteria: 1.when the norm of gradient is smaller than a artificial threshold(I set as 1e-8, which is small enough). A2.when the for-loop reaches a maximum number of iterations (5000).
+For the stopping criteria: 1.when the norm of gradient is smaller than a artificial threshold(I set as 1e-8, which is small enough). 2.when the for-loop reaches a maximum number of iterations (I set the maximum value as 5000).
 
 I set the small increment h as 1e-4, same as slide 12, which is samll enough to be in the derivative formula.
 
 I set the initial guess value init_guess as a array, in which a = 0.1, b = 0.8(meet the requirements that they lie between 0 and 1). 
 
-3) I tried different combinations(a = 0.001, b = 0.999; a = 0.999, b = 0.001; a = 0.5, b = 0.5) of extreme values of a and b to find local and global minimums, values of other parameters remain the same.
-The local minimum is 1.100000005, when a = 0.21595000000038012, b = 0.6889500399996086.
+3) The local minimum is 1.100000005, when a = 0.21595000000038012, b = 0.6889500399996086.
 The global minimum is 1.000000015, when a = 0.7119500099998601, b = 0.16895000000010207.
 
+If I do not know how many minimums there were, I would 
+try different combinations(e.g. a = 0.001, b = 0.999; a = 0.999, b = 0.001; a = 0.999, b = 0.999; a = 0.001, b = 0.001; a = 0.5, b = 0.5) of extreme values of a and b to find local and global minimums, values of other parameters remain the same.
 
-#### >> Testing
-
-
+The smallest value is global minimum, others are local minimum.
 
 
 
