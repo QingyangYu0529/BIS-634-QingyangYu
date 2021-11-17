@@ -79,6 +79,9 @@ In function two_dimension_grad_descent(), the stopping criteria contains two par
 
 Each time the parameters a and b were moved a little bit, in the direaction where f(a,b) decreases in a fastest speed.
 
+
+
+
 #### >> Question answer
 
 1) Since I cannot directly compute any derivative because I don't know the details of error function f(a,b), I used the definition of derivative f'(x) = f(x + h) - f(x)/h to approximate the gradient as below:
@@ -218,6 +221,7 @@ for count in range(10):
 5) I set k = 5, 7 and 15, and run 10 times for each k to see the results.
 
 
+
 #### >> Question answer
 
 1) About runtime of the algorithm:
@@ -265,7 +269,18 @@ In class, we discussed two different strategies for computing the Fibonacci sequ
 
 #### >> Question answer
 
+1) Choices of n:
 
+Since for f(n) that use common recursive strategy, the computing complexity is O(k^n), k ≈ 1.618, I set n = 40, and repeated function f(n) for 40 times.
+
+For f_lru(n) that use lru_cache() and recursive strategy, the computing complexity is O(1), I set n = 10000.
+
+2) How to display the results:
+
+For figure of f(n) performance, I transformed both x and y axis to log10 scale for better visualization.
+
+3) Differences between time.perf_counter() and time.time():
+Also I have noticed that if using different time method(time.perf_counter or time.time)
 
 
 
