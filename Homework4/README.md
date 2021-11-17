@@ -252,6 +252,14 @@ When k = 7, Asia was more often to be split into two clusters, since it is the b
 > k = 7, when Asia was split into two clusters.
 
 
+When k = 15, there is no obvious pattern when compared with other figures.
+
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework4/Figures-in-running-results/Exercise2/k=15.png" style="zoom:90%;" />
+
+> distribution of world cities when k = 15.
+
+
 
 ## Exercise 3
 
@@ -265,6 +273,7 @@ In class, we discussed two different strategies for computing the Fibonacci sequ
 
 #### >> Code explanation
 
+Use time.perf_counter() and time.time() to record time cost, separately.
 
 
 #### >> Question answer
