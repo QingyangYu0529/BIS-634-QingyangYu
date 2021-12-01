@@ -165,11 +165,25 @@ Also mentioned in the Data Source part.
 
 #### >> Testing
 
-If I entered "new york" in the search bar and press "search for info" button
+If I enter "new york" or "New York" in the search bar and press "search for info" button, both results are same, thus capitalization does not matter.
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/testing1.png" style="zoom:150%;" />
 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/testing2.png" style="zoom:150%;" />
 
+A table displaya the state name, FIPS code, age adjusted incidence rate(cases per 100k), confidence interval, average annual count, recent trend(falling/stable). User could click here then turn to homepage.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/testing3.png" style="zoom:150%;" />
+
+If I enter "abc" in the search bar and press "search for info" button, it would show Error: the state name abc is invalid. Also could click here then turn to homepage.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/testing4.png" style="zoom:150%;" />
+
+If I click here in the homepage, it would show the United State cancer cases map.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/testing5.png" style="zoom:150%;" />
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/map-example" style="zoom:150%;" />
 
 
 ## Exercise 2
