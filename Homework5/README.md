@@ -183,7 +183,7 @@ If I click here in the homepage, it would show the United State cancer cases map
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/testing5.png" style="zoom:150%;" />
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/map-example" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/map-example.png" style="zoom:150%;" />
 
 
 ## Exercise 2
