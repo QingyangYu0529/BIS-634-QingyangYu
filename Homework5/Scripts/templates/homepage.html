@@ -1,0 +1,15 @@
+<html>
+    <body style="background-color:powderblue;">
+        <header>
+            <h1><p style="text-align:center">Query for United States cancer</p></h1>
+        </header>
+        <p style="text-align:center">Please enter a state name.</p><br>
+        <p style="text-align:center">Click "Search for info" button for information of the state you entered.</p><br>
+        <form action="/info" method="GET">
+            <p style="text-align:center"><textarea style="width:100%; height: 10em" rows="4" name="usertext"></textarea></p>
+            <br>
+            <p style="text-align:center"><input type = "submit" value = "Search for info"></p>
+        </form>
+        <p>Click <a href="{{ url_for('map') }}">here</a> to view the United State cases map.</p>
+    </body>
+</html>

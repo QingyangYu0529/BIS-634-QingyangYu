@@ -1,0 +1,31 @@
+<html>
+    <style>
+        table, th, td {
+          border:1px solid black;
+        }
+    </style>
+    <body>
+        <h1><p style="text-align:center">Search Result</p></h1>
+        <table style="width:100%">
+            <tr>
+              <th>State Name</th>
+              <th>FIPS Code</th>
+              <th>Age adjusted incidence rate(cases per 100k)</th>
+              <th>Confidence interval</th>
+              <th>Average Annual Count</th>
+              <th>Recent Trend</th>
+            </tr>
+            <tr>
+              <td>{{ usertext.upper() }}</td>
+              <td>{{ FIPS }}</td>
+              <td>{{ IR }}</td>
+              <td>{{ CI }}</td>
+              <td>{{ AAC }}</td>
+              <td>{{ rec_trend }}</td>
+            </tr>
+          </table>
+
+        <p>Click <a href="{{ url_for('homepage') }}">here</a> to go to homepage.</p>
+
+    </body>
+</html>

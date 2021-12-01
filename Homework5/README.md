@@ -120,7 +120,7 @@ if __name__ == "__main__":
     app.run(debug = True)
 ```
 
-> Then I implemented a server with three routes. Web page is in the testing part.
+> Then I implemented a server with three routes. Web page is in the testing part. The first route correspond to homepage.html, the third route correspond to info.html and error.html.
 
 ```python
 cancer_data0 = pd.read_csv("cleaned_cancer_data.csv")
