@@ -24,7 +24,6 @@ Any comments or insights would be greatly appreciated.
 
 ## Exercise 1
 
-
 ### Question
 
 Go to [Links to an external site](https://statecancerprofiles.cancer.gov/incidencerates/index.php) from the National Cancer Institute, search across the entire "area" of the United States at the "area type" resolution of By State, for all cancer sites, all races, all sexes, and all ages. Export the data (this will give you a CSV file).
@@ -48,20 +47,127 @@ You've now completed most of this course, so you're now qualified to choose the 
 
 #### >> Code explanation
 
+```python
+cancer_data = pd.read_csv("cancer_data.csv", skiprows = 8)
+cancer_data = cancer_data.drop(cancer_data.index[53:86])
+cancer_data['State'] = cancer_data['State'].map(lambda x: x[:-3])
+cancer_data = cancer_data.rename(columns = {" FIPS": "FIPS"})
+cancer_data['FIPS'] = (cancer_data['FIPS']/1000).map("{:,.0f}".format)
+cancer_data['Average Annual Count'] = cancer_data['Average Annual Count'].map(lambda x: '%.0f' % x)
+cancer_data.to_csv('cleaned_cancer_data.csv', index=False)
+```
 
+1) For data cleaning, first I used "skiprow = n" to remove the first 8 rows of data. Then I used set_option to display the whole dataframe cancer_data. Also I used drop() to remove the last few rows that do not contain data. I used map() to run a lambda function over the column State, to remove the number and brackets in the column State. I also use map() to standardize the columns FIPS and Average Annual Count to integer precision. Finally the cleaned cancer data was saved into csv file cleaned_cancer_data.csv.
+
+```python
+import pandas as pd
+cancer_data = pd.read_csv("cleaned_cancer_data.csv")
+
+state_name = cancer_data['State'].tolist()
+state_name = [item.lower() for item in state_name]
+FIPS_code = cancer_data['FIPS'].tolist()
+Lower_CI = cancer_data['Lower 95% Confidence Interval'].tolist()
+Upper_CI = cancer_data['Upper 95% Confidence Interval'].tolist()
+average_annual_count = cancer_data['Average Annual Count'].tolist()
+recent_trend = cancer_data['Recent Trend'].tolist()
+age_adjusted_IR = cancer_data['Age-Adjusted Incidence Rate([rate note]) - cases per 100,000'].tolist()
+state_info = list(tuple(zip(state_name, FIPS_code, age_adjusted_IR, Lower_CI, Upper_CI, average_annual_count, recent_trend)))
+```
+
+2) For server implementation, script was in 3routes.py file. First load cleaned cancer data, and saved state name, FIPS code, age adjusted incidence rate, confidence interval, average annual count, recent trend into a tuple state_info.
+
+```python
+from flask import Flask, render_template, request, url_for
+app = Flask(__name__)
+
+@app.route("/")
+def homepage():
+    return render_template("homepage.html")
+
+@app.route("/state/<string:name>")
+def get_info():
+    import json
+    dics = {}
+    for item in state_name:
+        dics[item] = age_adjusted_IR[state_name.index(item)]
+    json_object = json.dumps(dics)
+    return json_object
+
+@app.route("/info", methods=["GET"])
+def info():
+    usertext = request.args.get("usertext")
+    result = ""
+    IR = 0
+    FIPS = 0
+    CI = ""
+    AAC = 0
+    rec_trend = ""
+    if usertext.lower() in state_name:
+        for item in state_info: 
+            if usertext == item[0]:
+                FIPS = item[1]
+                IR = item[2]
+                CI = "(" + str(item[3]) + "," + str(item[4]) + ")"
+                AAC = int(item[5])
+                rec_trend = item[6]
+        result += f"The state name is {usertext}, the age-adjusted incidence rate(cases per 100k) is {IR}.\n" 
+        return render_template("info.html", analysis = result, FIPS = FIPS, IR = IR, CI = CI, AAC = AAC, rec_trend = rec_trend, usertext = usertext)
+    else:
+        result += f"Error: the state name {usertext} is invalid.\n"
+        return render_template("error.html", analysis = result, usertext = usertext)
+    
+if __name__ == "__main__":
+    app.run(debug = True)
+```
+
+> Then I implemented a server with three routes. Web page is in the testing part.
+
+```python
+cancer_data0 = pd.read_csv("cleaned_cancer_data.csv")
+cancer_data0 = cancer_data0[['State','Average Annual Count']]
+cancer_data0 = cancer_data0.drop(cancer_data.index[0])
+cancer_data_list = cancer_data0.dropna().values.tolist()
+low, high = min([x[1] for x in cancer_data_list]), max([x[1] for x in cancer_data_list])
+
+map = (Map()
+    .add("", cancer_data_list, maptype = "美国", is_map_symbol_show = False)
+    .set_series_opts(label_opts = opts.LabelOpts(is_show = False))
+    .set_global_opts(visualmap_opts = opts.VisualMapOpts(max_ = high, min_ = low),
+                     title_opts = opts.TitleOpts(
+                         title = "United State cancer cases")
+                     )
+)
+map.render(path = "templates\map.html")
+```
+
+3) For map drawing, first I integrated columns state, average annual count into list cancer_data_list, found the lowest and highest cases and save into variables low, high. Then I used Pyecharts to draw the US map, saved as html file map.html using map.render().
 
 
 
 #### >> Question answer
 
 1) In exercise 1, incidence data comes from [National Program of Cancer Registries](https://www.cdc.gov/cancer/npcr/), [Centers for Disease Control and Prevention and by the National Cancer Institute's Surveillance, Epidemiology, and End Results (SEER) Program](https://seer.cancer.gov/).
-
 Also mentioned in the Data Source part.
+
+2) For data cleaning, first I removed the first 8 rows of data, also removed the last few rows that do not contain data. Then I removed the number and brackets in the column State. I standardized the columns FIPS and Average Annual Count to integer precision.
+
+3) In the third route of my server @app.route("/info", methods=["GET"]): Since I have already transferred the input string and list of state names into lowercase, when someone search for a state name, the capitalization does not matter, only misspell matters. For instance, if someone input new york, the website will show the data of state New York.
+
+4) I took exercise 1 one step beyond by: 
+
+(1) Provide more data in the info page: it will display the state name, FIPS code, age adjusted incidence rate(cases per 100k), confidence interval, average annual count, recent trend(falling/stable).
+
+(2) Draw a map of United State cancer cases, it would show the state name and average cancer cases of the chosen state. The legend showed the minimum and maximum cases and the state you choose. Map was saved as html file map.html.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/map-example.png" style="zoom:150%;" />
 
 
 
 #### >> Testing
 
+If I entered "new york" in the search bar and press "search for info" button
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/testing1.png" style="zoom:150%;" />
 
 
 
