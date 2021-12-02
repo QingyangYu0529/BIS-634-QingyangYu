@@ -393,14 +393,13 @@ plt.show
 #### >> Question answer
 
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing1.png" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing1.png" style="zoom:250%;" />
 
 > For in operation, from the log-log plot we could see that the curve is in the shape of logn. When n is sufficiently large(~10000), the running time required for checking if a number is in the tree as a function of n is almost horizontal.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing2.png" style="zoom:150%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing2.png" style="zoom:250%;" />
 
 > For tree set up, from the log-log plot we could see that the curve is between a curve that is y=n and one that is y=n^2, indicating that the time to setup the tree is O(n logn).
-
 
 
 
@@ -463,6 +462,7 @@ Recall: when you're doing cross-validation, you have training and test sets. All
 test_data_reduced = pca.transform(test_data[my_cols])
 
 (Note: we use .fit_transform with the training data and .transform with the test data.)
+
 
 
 ### Solution
