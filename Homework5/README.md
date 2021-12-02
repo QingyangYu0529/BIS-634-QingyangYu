@@ -385,7 +385,7 @@ plt.ylabel("time(s)")
 plt.legend(["time(s)","x","x^2"], ncol = 3)
 plt.show
 ```
-> Function setup_tree_timing() was defined to record running time of tree set up.
+> Similar to in_timing(), function setup_tree_timing() was defined to record running time of tree set up.
 
 
 
