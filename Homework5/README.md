@@ -470,10 +470,44 @@ test_data_reduced = pca.transform(test_data[my_cols])
 
 #### >> Code explanation
 
+```python
+data = pd.read_excel('Rice_Osmancik_Cammeo_Dataset.xlsx')
+for column in data[['AREA','PERIMETER','MAJORAXIS','MINORAXIS','ECCENTRICITY','CONVEX_AREA','EXTENT']]:
+    data[column] = (data[column] - data[column].mean())/data[column].std()
+```
+> Loaded data and normalized the seven quantitative columns to a mean of 0 and standard deviation 1.
+
+```python
+column_name.pop()
+column_name
+
+from sklearn import decomposition
+pca = decomposition.PCA(n_components=2)
+data_reduced = pca.fit_transform(data[column_name])
+pc0 = data_reduced[:, 0]
+pc1 = data_reduced[:, 1]
+
+pc0_list = list(pc0)
+pc1_list = list(pc1)
+df_pc0_pc1_class = pd.DataFrame({'PC0': pc0_list,'PC1': pc1_list,'Class': data['CLASS']})
+(p9.ggplot(data = df_pc0_pc1_class, mapping = p9.aes(x='PC0', y='PC1'))
++ p9.geom_point(p9.aes(x = 'PC0', y = 'PC1', color = 'Class'))
++ p9.labs(title = "Scatter plot for PC0 vs PC1"))
+```
+> Took the first seven columns and save into list column_name, reduced the data to two dimensions using PCA from sklearn. Used plotnine to draw scatterplot, which was color-coded by type of rice.
+
+
+
+
+
 
 
 
 #### >> Question answer
+
+1) Scatterplot color-coded by type of rice is below:
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise3/scatterplot.png" style="zoom:250%;" />
 
 
 
