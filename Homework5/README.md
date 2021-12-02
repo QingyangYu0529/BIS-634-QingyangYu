@@ -186,6 +186,7 @@ If I click here in the homepage, it would show the United State cancer cases map
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise1/map-example.png" style="zoom:150%;" />
 
 
+
 ## Exercise 2
 
 
@@ -220,14 +221,216 @@ This speed is not free. Provide supporting evidence that the time to setup the t
 
 #### >> Code explanation
 
+```python
+class Tree:
+    def __init__(self, value = None):
+        self.value = value
+        self.left = None
+        self.right = None
+    
+    def __contains__(self, item):
+        if self.value == item:
+            return True
+        elif self.left and item < self.value:
+            return item in self.left
+        elif self.right and item > self.value:
+            return item in self.right
+        else:
+            return False
+
+    def add(self, value):
+        if self.value is None:
+            self.value = value
+        else:
+            if self.value == value:
+                self.value = value
+            elif self.value < value:
+                if self.right is None:
+                    self.right = Tree(value)
+                else:
+                    self.right.add(value)
+            else:
+                if self.left is None:
+                    self.left = Tree(value)
+                else:
+                    self.left.add(value)
+```
+> The class Tree includes function __init__, used to set the left and right part of the tree, which are initially empty(value = None). 
+
+Add function is used to insert a single value into the tree for each time: If root is None, add value to the root. If root value is smaller than value to be added, value is added to the right part of the tree. Otherwise, value is added to the left part of the tree.
+
+```python
+    def PrintTreeInOrder(self):
+        elements = []
+        if self.left is not None:
+            elements += self.left.PrintTreeInOrder()
+        elements.append(self.value)
+        if self.right is not None:
+            elements += self.right.PrintTreeInOrder()
+        return elements
+
+    def PrintTreePreOrder(self):
+        elements = [self.value]
+        if self.left is not None:
+            elements += self.left.PrintTreePreOrder()
+        if self.right is not None:
+            elements += self.right.PrintTreePreOrder()
+        return elements
+
+    def PrintTreePostOrder(self):
+        elements = []
+        if self.left is not None:
+            elements += self.left.PrintTreePostOrder()
+        if self.right is not None:
+            elements += self.right.PrintTreePostOrder()
+        elements.append(self.value)
+        return elements
+```
+> Also set function PrintTreeInOrder(), PrintTreePreOrder(), and PrintTreePostOrder(), to test whether values are successfully added into the tree.
+
+```python
+def in_timing(n):
+    times = []
+    random_num = []
+    random_in_num = []
+
+    for i in range(n):
+        num = random.randint(1,1000)
+        random_num.append(num)
+    for i in range(10):
+        num = random.randint(1,1000)
+        random_in_num.append(num)
+        
+    count = 0
+    while(count <= 100):
+        my_tree = Tree()
+        for num in random_num:
+            my_tree.add(num)
+        start = time.perf_counter()
+        for num in random_in_num:
+            num in my_tree
+        end = time.perf_counter()
+        times.append(end - start)
+        count = count + 1
+    return statistics.median(times)
+```
+> Function in_timing() was defined to record running time of in operation. List random_num contains n randomly generated values that will be added into the tree. For each tree, it need to determine whether 10 randomly generated numbers are in the tree.
+For each tree, repeated for 100 times and chose the median value of running time to avoid random error.
+
+```python
+ns = range(1, 10000)
+in_running_time = [in_timing(int(n)) for n in tqdm(ns)]
+start_pt = in_running_time[0]
+_x2 = []
+_x = []
+for n in tqdm(ns):
+    _x2.append(start_pt * (n**2))
+for n in tqdm(ns):
+    _x.append(start_pt * (n))
+```
+> ns is in a continuous range between 1 and 1000.
+
+
+```python
+ns = list(ns)
+plt.plot(ns, in_running_time)
+plt.plot(ns, _x)
+plt.plot(ns, _x2)
+plt.xscale("log")
+plt.yscale("log")
+plt.xlabel("ns")
+plt.ylabel("time(s)")
+plt.legend(["time(s)","x","x^2"], ncol = 3)
+plt.show
+```
+> I used matplotlib to visualize the relationship between n and running time in a log-log plot. Also included curve x and x^2.
+
+```python
+def setup_tree_timing(n):
+    times = []
+    random_num = []
+    for i in range(n):
+        num = random.randint(1,1000)
+        random_num.append(num)
+
+    count = 0
+    while(count <= 100):
+        start = time.perf_counter()
+        my_tree = Tree(random_num[0])
+        for num in random_num[1:]:
+            my_tree.add(num)
+        end = time.perf_counter()
+        times.append(end - start)
+        count = count + 1
+    return statistics.median(times)
+
+ns = range(1, 10000)
+setup_running_time = [setup_tree_timing(int(n)) for n in tqdm(ns)]
+start_pt = setup_running_time[0]
+_x2 = []
+_x = []
+for n in tqdm(ns):
+    _x2.append(start_pt * (n**2))
+for n in tqdm(ns):
+    _x.append(start_pt * (n))
+
+ns = list(ns)
+plt.plot(ns, setup_running_time)
+plt.plot(ns, _x)
+plt.plot(ns, _x2)
+plt.xscale("log")
+plt.yscale("log")
+plt.xlabel("ns")
+plt.ylabel("time(s)")
+plt.legend(["time(s)","x","x^2"], ncol = 3)
+plt.show
+```
+> Function setup_tree_timing() was defined to record running time of tree set up.
+
 
 
 
 #### >> Question answer
 
 
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing1.png" style="zoom:150%;" />
+
+> For in operation, from the log-log plot we could see that the curve is in the shape of logn. When n is sufficiently large(~10000), the running time required for checking if a number is in the tree as a function of n is almost horizontal.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing2.png" style="zoom:150%;" />
+
+> For tree set up, from the log-log plot we could see that the curve is between a curve that is y=n and one that is y=n^2, indicating that the time to setup the tree is O(n logn).
+
+
+
+
 
 #### >> Testing
+
+```python
+my_tree = Tree()
+for item in [55, 62, 37, 49, 71, 14, 17]:     
+    my_tree.add(item)
+```
+
+> In order to test the add method, first I constructed a tree as follows.
+
+```python
+my_tree.PrintTreeInOrder()
+my_tree.PrintTreePreOrder()
+my_tree.PrintTreePostOrder()
+```
+
+> Then I run function PrintTreeInOrder(), PrintTreePreOrder(), and PrintTreePostOrder(), to see whether above values are successfully added into the tree.
+
+```python
+my_tree.__contains__(55)
+my_tree.__contains__(42)
+55 in my_tree
+42 in my_tree
+```
+> After replacing the contains method with __contains__, test this method by using above code. 55 in my_tree showed True, while 42 in my_tree showed False.
+
 
 
 
