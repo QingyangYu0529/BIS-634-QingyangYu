@@ -509,6 +509,7 @@ df_pc0_pc1_class = pd.DataFrame({'PC0': pc0_list,'PC1': pc1_list,'Class': data['
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise3/scatterplot.png" style="zoom:250%;" />
 
+> Comment on the 2-dimensional reduction result: It is not quite efficient to classify the data using PCA method, according to the scatterplot, about 1/3 of data points that are either classfied as "Cammeo" or "Osmancik" showed overlapping. 
 
 
 
