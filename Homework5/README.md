@@ -74,7 +74,7 @@ age_adjusted_IR = cancer_data['Age-Adjusted Incidence Rate([rate note]) - cases 
 state_info = list(tuple(zip(state_name, FIPS_code, age_adjusted_IR, Lower_CI, Upper_CI, average_annual_count, recent_trend)))
 ```
 
-2) For server implementation, script was in 3routes.py file. First load cleaned cancer data, and saved state name, FIPS code, age adjusted incidence rate, confidence interval, average annual count, recent trend into a tuple state_info.
+2) For server implementation, script was in erercise1_3routes.py file. First load cleaned cancer data, and saved state name, FIPS code, age adjusted incidence rate, confidence interval, average annual count, recent trend into a tuple state_info.
 
 ```python
 from flask import Flask, render_template, request, url_for
