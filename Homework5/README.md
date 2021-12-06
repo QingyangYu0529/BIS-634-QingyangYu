@@ -478,28 +478,214 @@ for column in data[['AREA','PERIMETER','MAJORAXIS','MINORAXIS','ECCENTRICITY','C
 > Loaded data and normalized the seven quantitative columns to a mean of 0 and standard deviation 1.
 
 ```python
-column_name.pop()
-column_name
+column_names = data.columns.values.tolist()
+column_names.pop()
 
 from sklearn import decomposition
 pca = decomposition.PCA(n_components=2)
-data_reduced = pca.fit_transform(data[column_name])
+data_reduced = pca.fit_transform(data[column_names])
 pc0 = data_reduced[:, 0]
 pc1 = data_reduced[:, 1]
 
-pc0_list = list(pc0)
-pc1_list = list(pc1)
+pc0_list = pc0.tolist()
+pc1_list = pc1.tolist()
 df_pc0_pc1_class = pd.DataFrame({'PC0': pc0_list,'PC1': pc1_list,'Class': data['CLASS']})
+
 (p9.ggplot(data = df_pc0_pc1_class, mapping = p9.aes(x='PC0', y='PC1'))
 + p9.geom_point(p9.aes(x = 'PC0', y = 'PC1', color = 'Class'))
 + p9.labs(title = "Scatter plot for PC0 vs PC1"))
 ```
-> Took the first seven columns and save into list column_name, reduced the data to two dimensions using PCA from sklearn. Used plotnine to draw scatterplot, which was color-coded by type of rice.
+> Took the first seven columns and save into list column_name, reduced the data to two dimensions using PCA from sklearn. Used plotnine to draw scatterplot, which was color-coded by type of rice. Red refers to "Cammeo", blue refers to "Osmancik".
 
+```python
+class Point:
+    def __init__(self, x, y, classes):
+        self.x = x
+        self.y = y
+        self.classes = classes
 
+class Rectangle:
+    def __init__(self, x, y, wid, hgt):
+        self.x = x
+        self.y = y
+        self.wid = wid
+        self.hgt = hgt
+    
+    def within(self, point, distance):
+        def point_distance(x1, y1, x2, y2):
+            value = (x1 - x2)**2 + (y1-y2)**2
+            return math.sqrt(value)
+        min_x = self.x - self.wid
+        min_y = self.y - self.hgt
+        max_x = self.x + self.wid
+        max_y = self.y + self.hgt
+        if point.x >= max_x:
+            if point.y >= max_y:
+                if (point_distance(max_x, max_y, point.x, point.y)) <= distance:
+                    return True
+                else: return False
+            elif point.y <= min_y:
+                if (point_distance(max_x, min_y, point.x, point.y)) < distance:
+                    return True
+                else: return False
+            elif min_y < point.y < max_y:
+                if (point_distance(max_x, 0, point.x, 0)) <= distance:
+                    return True
+                else: return False
+        elif point.x <= min_x:
+            if point.y >= max_y:
+                if (point_distance(min_x, max_y, point.x, point.y)) < distance:
+                    return True
+                else: return False
+            elif point.y <= min_y:
+                if (point_distance(min_x, min_y, point.x, point.y)) < distance:
+                    return True
+                else: return False
+            elif min_y <= point.y <= max_y:
+                if (point_distance(min_x, 0, point.x, 0)) < distance:
+                    return True
+                else: return False
+        elif min_x <= point.x <= max_x:
+            if point.y >= max_y:
+                if (point_distance(0, max_y, 0, point.y)) < distance:
+                    return True
+                else: return False
+            elif point.y <= min_y:
+                if (point_distance(0, min_y, 0, point.y)) < distance:
+                    return True
+                else: return False
+            elif min_y <= point.y <= max_y:
+                return True
+```
+> In order to set up a quad tree, first class Point was used to associate data with point, each point contains data x, y, class. Class Rectangle was used to save the width, height of the quadtree, in which (x,y) is the center point of rectangle, wid, hgt were the 1/2 width and height of the rectangle region. Function within() was defined to validate whether the rectangle is within the circle, whose center point is point.x, point.y.
 
+```python
+class QuadTree:
+    def __init__(self, boundary, points_list, max_point):
+        self.boundary = boundary
+        self.points_list = points_list
+        self.max_point = max_point
+        self.isleaf = False
+        self.divided = False
+        self.upperleft, self.upperright, self.lowerleft, self.lowerright = None, None, None, None
+        self.construct()
 
+    def subdivide(self):
+        x = self.boundary.x
+        y = self.boundary.y
+        wid = self.boundary.wid
+        hgt = self.boundary.hgt
+        upperright = Rectangle(x + wid/2, y + hgt/2, wid/2, hgt/2)
+        upperleft = Rectangle(x - wid/2, y + hgt/2, wid/2, hgt/2)
+        lowerleft = Rectangle(x - wid/2, y - hgt/2, wid/2, hgt/2)
+        lowerright = Rectangle(x + wid/2, y - hgt/2, wid/2, hgt/2)
+        upperright_point, upperleft_point, lowerright_point, lowerleft_point = [], [], [], []
+        for point in self.points_list:
+            if point.x > x and point.y >= y:
+                upperright_point.append(point)
+        for point in self.points_list:
+            if point.x <= x and point.y >= y:
+                upperleft_point.append(point)
+        for point in self.points_list:
+            if point.x <= x and point.y < y:
+                lowerleft_point.append(point)
+        for point in self.points_list:
+            if point.x > x and point.y < y:
+                lowerright_point.append(point)
+        self.upperright = QuadTree(upperright, upperright_point, self.max_point)
+        self.upperleft = QuadTree(upperleft, upperleft_point, self.max_point)
+        self.lowerleft = QuadTree(lowerleft, lowerleft_point, self.max_point)
+        self.lowerright = QuadTree(lowerright, lowerright_point, self.max_point)
 
+    def construct(self):
+        if len(self.points_list) > self.max_point:
+            if self.divided is False:
+                self.subdivide()
+                self.divided = True
+                self.points_list = []
+        else:
+            self.isleaf = True
+            return True
+```
+> Class QuadTree was used to set up the quadtree, in which boundary was used to store the detailed information about rectangule: width, height, center point, max_point was the maximum number of points could be stored in the tree, points_list included points stored in the tree, subdivided was used to mark the tree status: whether it is subdivided, upperleft, upperright, lowerleft, lowerright were subnodes stored under the parent node in the tree.
+
+> Function subdivide() was defined to subdivide the quad tree into 4 sub quad tree, and distribute the points into each sub quad tree. Function construct() was defined to determin whether to keep constructing the quad tree: If all the points in the points_list have been added into the quad tree, then stop subdivide.
+
+```python
+def KNN(quad, pnt,k):     
+    res = []
+    for p in pnt:
+        stack = [quad]
+        r = (float('-inf'),"")
+        point_list = []
+        while len(stack):
+            cur = stack.pop(-1)
+            if cur.isleaf is True and cur.boundary.within(p,-r[0]) is True:
+                for i in cur.points_list:
+                        if len(point_list) < k:
+                            distance = math.sqrt((i.x - p.x)**2+(i.y - p.y)**2)
+                            heapq.heappush(point_list,(-distance, i.classes))
+                            r = heapq.nsmallest(1, point_list)[0]
+                        elif math.sqrt((i.x - p.x)**2+(i.y - p.y)**2)<-r[0]:
+                            distance = math.sqrt((i.x - p.x)**2+(i.y - p.y)**2)
+                            heapq.heappop(point_list)
+                            heapq.heappush(point_list, (-distance, i.classes))
+                            r = heapq.nsmallest(1,point_list)[0]
+            elif cur.isleaf is False:
+                if cur.boundary.within(p,-r[0]):
+                    if cur.upperleft is not None:
+                        stack.append(cur.upperleft)
+                    if cur.lowerright is not None:
+                        stack.append(cur.lowerright)
+                    if cur.upperright is not None:
+                        stack.append(cur.upperright)
+                    if cur.lowerleft is not None:
+                        stack.append(cur.lowerleft)
+        res.append(mode([itr[1] for itr in point_list]))
+    return res 
+```
+> In the function KNN(), quad tree was saved into a stack. Then I used heapq function, to efficiently sort the queue.
+
+```python
+def show_matrix(k):
+    kfold_data = KFold(5)
+    result_quadtree = []
+    result_true = []
+    result_naive = []
+
+    X = data.loc[:, data.columns!='CLASS']
+    y = data['CLASS']
+    for train_index, test_index in kfold_data.split(X):
+        X_train, X_test = X.iloc[train_index], X.iloc[test_index]
+        y_train, y_test = y[train_index], y[test_index]
+
+        data_reduced = pca.fit_transform(X_train[column_names])
+        test_data_reduced = pca.transform(X_test[column_names])
+        pc0 = data_reduced[:, 0]
+        test_pc1 = test_data_reduced[:, 1]
+        test_pc0 = test_data_reduced[:, 0]
+        pc1 = data_reduced[:, 1]       
+        xlim_min = min(pc0)
+        ylim_min = min(pc1)
+        xlim_max = max(pc0)
+        ylim_max = max(pc1)
+
+        boundary = Rectangle((xlim_max + xlim_min)/2, (ylim_max + ylim_min)/2, (xlim_max - xlim_min)/2, (ylim_max - ylim_min)/2)
+        quadtree = QuadTree(boundary, [Point(pc0[k],pc1[k], y_train.iloc[k]) for k in range(len(pc0))], 10)
+        knn_result = KNN(quadtree, [Point(test_pc0[k], test_pc1[k], y_test.iloc[k]) for k in range(len(test_pc0))], k)
+        y_pred = cross_validation(list(zip(pc1, pc0, y_train)), list(zip(test_pc1, test_pc0, y_test)), k)
+
+        result_quadtree = result_quadtree + knn_result
+        result_true = result_true + y_test.to_list()
+        result_naive = result_naive + y_pred
+        
+        
+    print("The confusion matrix of k nearest neighbors based on quad tree data structure is:")    
+    print(confusion_matrix(result_true, result_quadtree))
+    print("The confusion matrix of naive k nearest neighbors is:") 
+    print(confusion_matrix(result_true, result_naive))
+```
+> Function show_matrix() was defined to perform the k fold cross-validation and generate confusion matrix by using sklearn.
 
 
 
@@ -511,19 +697,69 @@ df_pc0_pc1_class = pd.DataFrame({'PC0': pc0_list,'PC1': pc1_list,'Class': data['
 
 > Comment on the 2-dimensional reduction result: It is not quite efficient to classify the data using PCA method, according to the scatterplot, about 1/3 of data points that are either classfied as "Cammeo" or "Osmancik" showed overlapping. 
 
+2) When k = 1, the confusion matrix is [1335 295 261 1919], indicates that the true positive is 1335, false nagative is 295, false positive is 261, true negative is 1919. Thus the sensitivity of matrix is 0.819, the specificity of matrix is 0.880.
+
+When k = 5, the confusion matrix is [1388 242 211 1969], indicates that the true positive is 1388, false nagative is 242, false positive is 211, true negative is 1969. Thus the sensitivity of matrix is 0.852, the specificity of matrix is 0.903. Consequently, when k = 5, the prediction result is better.
+
 
 
 #### >> Testing
 
+To test the result of quad tree k nearest neighbors, I also implemented naive k nearest neighbors method. 
 
+```python
+def euclidean_distance(row1, row2):
+    distance = 0.0
+    for i in range(len(row1)-1):
+        distance += (row1[i] - row2[i])**2
+    return math.sqrt(distance)
+```
+> euclidean_distance() was defined to calculate the euclidean distance between each train row and each test row. In the for loop, i was the index to a specific column, used for loop to calculate euclidean distance of each data from row1 and row2, and sumed up. 
 
+```python
+def get_neighbors(train, test_row, num_neighbors):
+    distances = list()
+    for train_row in train:
+        dist = euclidean_distance(test_row, train_row)
+        distances.append((train_row, dist))
+    distances.sort(key=lambda tup: tup[1])
+    neighbors = list()
+    for i in range(num_neighbors):
+        neighbors.append(distances[i][0])
+    return neighbors
+```
+> get_neighbors() was defined to sort all of the records in the training dataset by their distance to new data, and returned top k similar neighbors. First distance for each record in the dataset was saved as a tuple, then sorted the list of tuples by distance in descending order. Then sorted tuple distance based on euclidean distance, and retrieved the neighbors.
 
+```python
+def predict_classification(train, test_row, num_neighbors):
+    neighbors = get_neighbors(train, test_row, num_neighbors)
+    output_values = [row[-1] for row in neighbors]
+    prediction = max(set(output_values), key=output_values.count)
+    return prediction
+```
+> classification() was defined to return the most represented class among the neighbors. Used max() to take a set of unique class values. For each class value in the set, called the count on the list of class values.
+
+```python
+def cross_validation(train, test, num_neighbors):
+    predictions = list()
+    for row in test:
+        output = predict_classification(train, row, num_neighbors)
+        predictions.append(output)
+    return(predictions) 
+```
+> cross_validation() was defined to perform the cross-validation of k nearest neighbors.
+
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise3/testing-result.png" style="zoom:250%;" />
+
+> When k = 1 and k = 5, the results of k nearest neighbors based on quad tree data structure are same as the results of naive k nearest neighbors.
 
 
 
 ## Data source
 
 In exercise 1, incidence data comes from [National Program of Cancer Registries](https://www.cdc.gov/cancer/npcr/), [Centers for Disease Control and Prevention and by the National Cancer Institute's Surveillance, Epidemiology, and End Results (SEER) Program](https://seer.cancer.gov/).
+
+Code references: https://scipython.com/blog/quadtrees-2-implementation-in-python/, https://www.fatalerrors.org/a/k-nearest-neighbor-query-based-on-k-dimension-tree-of-knn-algorithm.html, https://docs.python.org/3/library/heapq.html, https://machinelearningmastery.com/tutorial-to-implement-k-nearest-neighbors-in-python-from-scratch/, https://www.askpython.com/python/examples/k-fold-cross-validation
 
 
 
