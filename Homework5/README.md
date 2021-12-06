@@ -422,7 +422,7 @@ my_tree.PrintTreePostOrder()
 
 > Then I run function PrintTreeInOrder(), PrintTreePreOrder(), and PrintTreePostOrder(), to see whether above values are successfully added into the tree. Results are as follows.
 
-<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing3.png" style="zoom:250%;" />
+<img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing3.png" style="zoom:100%;" />
 
 
 ```python
