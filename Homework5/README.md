@@ -45,7 +45,7 @@ You've now completed most of this course, so you're now qualified to choose the 
 
 ### Solution
 
-#### >> Code explanation
+### >> Code explanation
 
 ```python
 cancer_data = pd.read_csv("cancer_data.csv", skiprows = 8)
@@ -144,7 +144,7 @@ map.render(path = "templates\map.html")
 
 
 
-#### >> Question answer
+### >> Question answer
 
 1) In exercise 1, incidence data comes from [National Program of Cancer Registries](https://www.cdc.gov/cancer/npcr/), [Centers for Disease Control and Prevention and by the National Cancer Institute's Surveillance, Epidemiology, and End Results (SEER) Program](https://seer.cancer.gov/).
 Also mentioned in the Data Source part.
@@ -163,7 +163,7 @@ Also mentioned in the Data Source part.
 
 
 
-#### >> Testing
+### >> Testing
 
 If I enter "new york" or "New York" in the search bar and press "search for info" button, both results are same, thus capitalization does not matter.
 
@@ -219,7 +219,7 @@ This speed is not free. Provide supporting evidence that the time to setup the t
 ### Solution
 
 
-#### >> Code explanation
+### >> Code explanation
 
 ```python
 class Tree:
@@ -390,7 +390,7 @@ plt.show
 
 
 
-#### >> Question answer
+### >> Question answer
 
 
 <img src="https://github.com/QingyangYu0529/BIS-634-QingyangYu/blob/main/Homework5/Figures-in-running-results/Exercise2/testing1.png" style="zoom:250%;" />
@@ -404,7 +404,7 @@ plt.show
 
 
 
-#### >> Testing
+### >> Testing
 
 ```python
 my_tree = Tree()
@@ -471,7 +471,7 @@ test_data_reduced = pca.transform(test_data[my_cols])
 ### Solution
 
 
-#### >> Code explanation
+### >> Code explanation
 
 ```python
 data = pd.read_excel('Rice_Osmancik_Cammeo_Dataset.xlsx')
@@ -692,7 +692,7 @@ def show_matrix(k):
 
 
 
-#### >> Question answer
+### >> Question answer
 
 1) Scatterplot color-coded by type of rice is below:
 
@@ -706,7 +706,7 @@ When k = 5, the confusion matrix is [1388 242 211 1969], indicates that the true
 
 
 
-#### >> Testing
+### >> Testing
 
 To test the result of quad tree k nearest neighbors, I also implemented naive k nearest neighbors method. 
 
